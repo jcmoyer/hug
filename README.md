@@ -1,6 +1,6 @@
 ﻿# hug
 
-Minimalistic utility library for LÖVE
+Minimalistic utility library for LÖVE. Documentation can be [read online](http://jcmoyer.github.io/hug/) or compiled manually using [LDoc](https://github.com/stevedonovan/LDoc).
 
 # License
 
