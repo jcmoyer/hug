@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><a href="../modules/camera.html">camera</a></li>
+  <li><a href="../modules/chasecamera.html">chasecamera</a></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><a href="../modules/rectangle.html">rectangle</a></li>
+  <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><strong>vector2</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>vector2</code></h1>
+
+<p>Implements a 2D vector type.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#mt.__add">mt.__add&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>+</code> for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__sub">mt.__sub&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>-</code> for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__mul">mt.__mul&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>*</code> for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__div">mt.__div&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>/</code> for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;( [x=0 [, y=0]])</a></td>
+	<td class="summary">Creates a new vector2 object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:clone">vector2:clone&nbsp;()</a></td>
+	<td class="summary">Clones this vector2 and returns it.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:x">vector2:x&nbsp;()</a></td>
+	<td class="summary">Returns the X component of this vector.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:y">vector2:y&nbsp;()</a></td>
+	<td class="summary">Returns the Y component of this vector.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:add">vector2:add&nbsp;(a, b)</a></td>
+	<td class="summary">Adds another vector to this one.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:sub">vector2:sub&nbsp;(a, b)</a></td>
+	<td class="summary">Subtracts another vector from this one.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:mul">vector2:mul&nbsp;(a)</a></td>
+	<td class="summary">Multiplies this vector by a scalar amount.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:div">vector2:div&nbsp;(a)</a></td>
+	<td class="summary">Divides this vector by a scalar amount.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:normalize">vector2:normalize&nbsp;()</a></td>
+	<td class="summary">Normalizes this vector.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:set">vector2:set&nbsp;(x, y)</a></td>
+	<td class="summary">Sets the individual components of this vector.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:zero">vector2:zero&nbsp;()</a></td>
+	<td class="summary">Sets the components of this vector to zero.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "mt.__add"></a>
+    <strong>mt.__add&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>+</code> for <a href="../modules/vector2.html#">vector2</a>  objects.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The first vector.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The second vector.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        The result of adding <code>a</code> and <code>b</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__sub"></a>
+    <strong>mt.__sub&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>-</code> for <a href="../modules/vector2.html#">vector2</a>  objects.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The first vector.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The second vector.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        The result of subtracting <code>b</code> from <code>a</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__mul"></a>
+    <strong>mt.__mul&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>*</code> for <a href="../modules/vector2.html#">vector2</a>  objects.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a> or <span class="type">number</span></span>
+         The first vector or scalar.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span> or <a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The second vector or scalar.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        The result of multiplying <code>a</code> by <code>b</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__div"></a>
+    <strong>mt.__div&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>/</code> for <a href="../modules/vector2.html#">vector2</a>  objects.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The vector.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+         The scalar.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        A new <a href="../modules/vector2.html#">vector2</a>  containing the results of the division.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;( [x=0 [, y=0]])</strong>
+    </dt>
+    <dd>
+    Creates a new vector2 object.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         The X component for this vector. Defaults to 0 if none is
+   provided.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         The Y component for this vector. Defaults to 0 if none is
+   provided.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        A new vector 2 object with the specified magnitude.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:clone"></a>
+    <strong>vector2:clone&nbsp;()</strong>
+    </dt>
+    <dd>
+    Clones this vector2 and returns it.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:x"></a>
+    <strong>vector2:x&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the X component of this vector.
+ This is equivalent to vector[1].
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The X component of this vector.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:y"></a>
+    <strong>vector2:y&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the Y component of this vector.
+ This is equivalent to vector[2].
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The Y component of this vector.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:add"></a>
+    <strong>vector2:add&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Adds another vector to this one.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a> or <span class="type">number</span></span>
+         If a <a href="../modules/vector2.html#">vector2</a>  is provided, each of its components
+   will be added to the components of this vector. If a number is provided
+   instead, it will be added to the X component of this vector.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to add to the Y component of this vector. Only required if
+   <code>a</code> is not a <a href="../modules/vector2.html#">vector2</a> .</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:sub"></a>
+    <strong>vector2:sub&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Subtracts another vector from this one.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a> or <span class="type">number</span></span>
+         If a <a href="../modules/vector2.html#">vector2</a>  is provided, its components will be
+   subtracted from the components of this vector. If a number is provided
+   instead, it will be subtracted from the X component of this vector.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to subtract from the Y component of this vector. Only
+   required if <code>a</code> is not a <a href="../modules/vector2.html#">vector2</a> .</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:mul"></a>
+    <strong>vector2:mul&nbsp;(a)</strong>
+    </dt>
+    <dd>
+    Multiplies this vector by a scalar amount.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to multiply this vector by.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:div"></a>
+    <strong>vector2:div&nbsp;(a)</strong>
+    </dt>
+    <dd>
+    Divides this vector by a scalar amount.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to divide this vector by.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:normalize"></a>
+    <strong>vector2:normalize&nbsp;()</strong>
+    </dt>
+    <dd>
+    Normalizes this vector.
+ This vector will become a unit vector codirectional with the original
+ vector.
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:set"></a>
+    <strong>vector2:set&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Sets the individual components of this vector.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         New value for the X component of this vector.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         New value for the Y component of this vector.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:zero"></a>
+    <strong>vector2:zero&nbsp;()</strong>
+    </dt>
+    <dd>
+    Sets the components of this vector to zero.
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

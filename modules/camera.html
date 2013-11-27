@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><strong>camera</strong></li>
+  <li><a href="../modules/chasecamera.html">chasecamera</a></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><a href="../modules/rectangle.html">rectangle</a></li>
+  <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><a href="../modules/vector2.html">vector2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>camera</code></h1>
+
+<p>Implements a basic 2D camera.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;(width, height)</a></td>
+	<td class="summary">Creates a new camera.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera:center">camera:center&nbsp;(x, y)</a></td>
+	<td class="summary">Centers the camera on a point instantly.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera:panCenter">camera:panCenter&nbsp;(x, y, dt)</a></td>
+	<td class="summary">Pans the camera towards a point.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera:update">camera:update&nbsp;(dt)</a></td>
+	<td class="summary">Updates the state of the camera.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera:shake">camera:shake&nbsp;(duration, magnitude)</a></td>
+	<td class="summary">Shakes the camera.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera:calculatedX">camera:calculatedX&nbsp;()</a></td>
+	<td class="summary">Computes the X coordinate of the camera, taking into account shaking.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera:calculatedY">camera:calculatedY&nbsp;()</a></td>
+	<td class="summary">Computes the Y coordinate of the camera, taking into account shaking.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;(width, height)</strong>
+    </dt>
+    <dd>
+    Creates a new camera.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">number</span></span>
+         Width of the camera's viewport.</li>
+        <li><span class="parameter">height</span>
+            <span class="types"><span class="type">number</span></span>
+         Height of the camera's viewport.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/camera.html#">camera</a></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera:center"></a>
+    <strong>camera:center&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Centers the camera on a point instantly.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the point to center on.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the point to center on.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera:panCenter"></a>
+    <strong>camera:panCenter&nbsp;(x, y, dt)</strong>
+    </dt>
+    <dd>
+    Pans the camera towards a point.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the point to pan towards.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the point to pan towards.</li>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+         Percent to pan by.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera:update"></a>
+    <strong>camera:update&nbsp;(dt)</strong>
+    </dt>
+    <dd>
+    Updates the state of the camera.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+         Delta time to run simulations for, in seconds.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera:shake"></a>
+    <strong>camera:shake&nbsp;(duration, magnitude)</strong>
+    </dt>
+    <dd>
+    Shakes the camera.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">duration</span>
+            <span class="types"><span class="type">number</span></span>
+         Time to shake the camera for, in seconds.</li>
+        <li><span class="parameter">magnitude</span>
+            <span class="types"><span class="type">number</span></span>
+         How violently the camera should shake.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera:calculatedX"></a>
+    <strong>camera:calculatedX&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the X coordinate of the camera, taking into account shaking.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The X coordinate of the top-left point of the camera's viewport.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera:calculatedY"></a>
+    <strong>camera:calculatedY&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the Y coordinate of the camera, taking into account shaking.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The Y coordinate of the top-left point of the camera's viewport.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

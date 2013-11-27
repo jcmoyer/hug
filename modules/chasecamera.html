@@ -1,0 +1,389 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><a href="../modules/camera.html">camera</a></li>
+  <li><strong>chasecamera</strong></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><a href="../modules/rectangle.html">rectangle</a></li>
+  <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><a href="../modules/vector2.html">vector2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>chasecamera</code></h1>
+
+<p>Implements a 2D camera that chases a target.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;(width, height, stiffness, damping, mass)</a></td>
+	<td class="summary">Creates a new chasecamera.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:left">chasecamera:left&nbsp;()</a></td>
+	<td class="summary">Computes the left side of the camera's viewport.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:right">chasecamera:right&nbsp;()</a></td>
+	<td class="summary">Computes the right side of the camera's viewport.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:top">chasecamera:top&nbsp;()</a></td>
+	<td class="summary">Computes the top side of the camera's viewport.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:bottom">chasecamera:bottom&nbsp;()</a></td>
+	<td class="summary">Computes the bottom side of the camera's viewport.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:center">chasecamera:center&nbsp;(x, y)</a></td>
+	<td class="summary">Centers the camera on a point instantly.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:shake">chasecamera:shake&nbsp;(duration, magnitude)</a></td>
+	<td class="summary">Shakes the camera.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:clamp">chasecamera:clamp&nbsp;(x, y, r, b)</a></td>
+	<td class="summary">Clamps the camera's viewport within a rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:update">chasecamera:update&nbsp;(dt, target)</a></td>
+	<td class="summary">Updates the state of the camera.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#chasecamera:predict">chasecamera:predict&nbsp;(dt, target, a)</a></td>
+	<td class="summary">Predicts where the camera will be at a point in the future.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;(width, height, stiffness, damping, mass)</strong>
+    </dt>
+    <dd>
+    Creates a new chasecamera.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">number</span></span>
+         Width of the camera's viewport.</li>
+        <li><span class="parameter">height</span>
+            <span class="types"><span class="type">number</span></span>
+         Height of the camera viewport.</li>
+        <li><span class="parameter">stiffness</span>
+            <span class="types"><span class="type">number</span></span>
+         How stiff the camera feels.</li>
+        <li><span class="parameter">damping</span>
+            <span class="types"><span class="type">number</span></span>
+         How fast the camera should lose velocity. The value should be
+   in the range of [0..1]. A value of 1 means the camera will not lose
+   velocity, and a value of 0 means that velocity will not affect the camera.</li>
+        <li><span class="parameter">mass</span>
+            <span class="types"><span class="type">number</span></span>
+         How weighty the camera feels.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/chasecamera.html#">chasecamera</a></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:left"></a>
+    <strong>chasecamera:left&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the left side of the camera's viewport.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The X-coordinate of the line segment that runs along the
+   left side of the camera's viewport.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:right"></a>
+    <strong>chasecamera:right&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the right side of the camera's viewport.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The X-coordinate of the line segment that runs along the
+   right side of the camera's viewport.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:top"></a>
+    <strong>chasecamera:top&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the top side of the camera's viewport.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The Y-coordinate of the line segment that runs along the
+   top side of the camera's viewport.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:bottom"></a>
+    <strong>chasecamera:bottom&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the bottom side of the camera's viewport.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The Y-coordinate of the line segment that runs along the
+   bottom side of the camera's viewport.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:center"></a>
+    <strong>chasecamera:center&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Centers the camera on a point instantly.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the point to center on.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the point to center on.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:shake"></a>
+    <strong>chasecamera:shake&nbsp;(duration, magnitude)</strong>
+    </dt>
+    <dd>
+    Shakes the camera.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">duration</span>
+            <span class="types"><span class="type">number</span></span>
+         Time to shake the camera for, in seconds.</li>
+        <li><span class="parameter">magnitude</span>
+            <span class="types"><span class="type">number</span></span>
+         How violently the camera should shake.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:clamp"></a>
+    <strong>chasecamera:clamp&nbsp;(x, y, r, b)</strong>
+    </dt>
+    <dd>
+    Clamps the camera's viewport within a rectangle.
+ The camera's viewport will not be allowed outside of this rectangle.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the rectangle.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the rectangle.</li>
+        <li><span class="parameter">r</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the right side of the rectangle.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the bottom side of the rectangle.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:update"></a>
+    <strong>chasecamera:update&nbsp;(dt, target)</strong>
+    </dt>
+    <dd>
+    Updates the state of the camera.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+         Time elapsed, in seconds.</li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         Point to chase.</li>
+    </ul>
+
+
+
+    <h3>see also:</h3>
+    <ul>
+         <a href="../modules/vector2.html#">vector2</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "chasecamera:predict"></a>
+    <strong>chasecamera:predict&nbsp;(dt, target, a)</strong>
+    </dt>
+    <dd>
+    Predicts where the camera will be at a point in the future.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+         Time elapsed, in seconds.</li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         Point to chase.</li>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">number</span></span>
+         Percent to interpolate by.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        The predicted X coordinate.</li>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        The predicted Y coordinate.</li>
+    </ol>
+
+
+    <h3>see also:</h3>
+    <ul>
+         <a href="../modules/vector2.html#">vector2</a>
+    </ul>
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

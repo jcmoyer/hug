@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><a href="../modules/camera.html">camera</a></li>
+  <li><a href="../modules/chasecamera.html">chasecamera</a></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><a href="../modules/rectangle.html">rectangle</a></li>
+  <li><strong>statemachine</strong></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><a href="../modules/vector2.html">vector2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>statemachine</code></h1>
+
+<p>Implements a finite state machine for handling game states.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;()</a></td>
+	<td class="summary">Constructs a new statemachine object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:update">statemachine:update&nbsp;(dt)</a></td>
+	<td class="summary">Updates each of the states managed by this state machine.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:draw">statemachine:draw&nbsp;(a)</a></td>
+	<td class="summary">Draws each of the states managed by this state machine.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:keypressed">statemachine:keypressed&nbsp;(key, unicode)</a></td>
+	<td class="summary">Notifies visible states of a keypressed event.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:keyreleased">statemachine:keyreleased&nbsp;(key)</a></td>
+	<td class="summary">Notifies visible states of a keyreleased event.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:mousepressed">statemachine:mousepressed&nbsp;(x, y, button)</a></td>
+	<td class="summary">Notifies visible states of a mousepressed event.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:mousereleased">statemachine:mousereleased&nbsp;(x, y, button)</a></td>
+	<td class="summary">Notifies visible states of a mousereleased event.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:any">statemachine:any&nbsp;()</a></td>
+	<td class="summary">Determines if this state machine is managing any states.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:top">statemachine:top&nbsp;()</a></td>
+	<td class="summary">Returns the topmost state.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:push">statemachine:push&nbsp;(newstate)</a></td>
+	<td class="summary">Pushes a new <a href="../modules/gamestate.html#">gamestate</a>  on top of the statemachine stack.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#statemachine:pop">statemachine:pop&nbsp;()</a></td>
+	<td class="summary">Pops the topmost <a href="../modules/gamestate.html#">gamestate</a>  from the statemachine stack.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;()</strong>
+    </dt>
+    <dd>
+    Constructs a new statemachine object.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/statemachine.html#">statemachine</a></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:update"></a>
+    <strong>statemachine:update&nbsp;(dt)</strong>
+    </dt>
+    <dd>
+    Updates each of the states managed by this state machine.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+         Time elapsed in seconds.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:draw"></a>
+    <strong>statemachine:draw&nbsp;(a)</strong>
+    </dt>
+    <dd>
+    Draws each of the states managed by this state machine.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to interpolate the render state by.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:keypressed"></a>
+    <strong>statemachine:keypressed&nbsp;(key, unicode)</strong>
+    </dt>
+    <dd>
+    Notifies visible states of a keypressed event.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+
+
+</li>
+        <li><span class="parameter">unicode</span>
+
+
+</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:keyreleased"></a>
+    <strong>statemachine:keyreleased&nbsp;(key)</strong>
+    </dt>
+    <dd>
+    Notifies visible states of a keyreleased event.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">key</span>
+
+
+</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:mousepressed"></a>
+    <strong>statemachine:mousepressed&nbsp;(x, y, button)</strong>
+    </dt>
+    <dd>
+    Notifies visible states of a mousepressed event.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+
+</li>
+        <li><span class="parameter">y</span>
+
+
+</li>
+        <li><span class="parameter">button</span>
+
+
+</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:mousereleased"></a>
+    <strong>statemachine:mousereleased&nbsp;(x, y, button)</strong>
+    </dt>
+    <dd>
+    Notifies visible states of a mousereleased event.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+
+
+</li>
+        <li><span class="parameter">y</span>
+
+
+</li>
+        <li><span class="parameter">button</span>
+
+
+</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:any"></a>
+    <strong>statemachine:any&nbsp;()</strong>
+    </dt>
+    <dd>
+    Determines if this state machine is managing any states.
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:top"></a>
+    <strong>statemachine:top&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the topmost state.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/gamestate.html#">gamestate</a></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:push"></a>
+    <strong>statemachine:push&nbsp;(newstate)</strong>
+    </dt>
+    <dd>
+    Pushes a new <a href="../modules/gamestate.html#">gamestate</a>  on top of the statemachine stack.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newstate</span>
+
+
+</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "statemachine:pop"></a>
+    <strong>statemachine:pop&nbsp;()</strong>
+    </dt>
+    <dd>
+    Pops the topmost <a href="../modules/gamestate.html#">gamestate</a>  from the statemachine stack.
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

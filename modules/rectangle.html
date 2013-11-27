@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><a href="../modules/camera.html">camera</a></li>
+  <li><a href="../modules/chasecamera.html">chasecamera</a></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><strong>rectangle</strong></li>
+  <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><a href="../modules/vector2.html">vector2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>rectangle</code></h1>
+
+<p>Implements a rectangle object.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;(x, y, w, h)</a></td>
+	<td class="summary">Constructs a new <a href="../modules/rectangle.html#">rectangle</a> .</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:right">rectangle:right&nbsp;()</a></td>
+	<td class="summary">Returns the X-coordinate of the right side of the rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:bottom">rectangle:bottom&nbsp;()</a></td>
+	<td class="summary">Returns the Y-coordinate of the bottom side of the rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:intersects">rectangle:intersects&nbsp;(r)</a></td>
+	<td class="summary">Performs an intersection test with another rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:contains">rectangle:contains&nbsp;(x, y)</a></td>
+	<td class="summary">Test whether or not a point falls within the bounds of this rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:center">rectangle:center&nbsp;()</a></td>
+	<td class="summary">Computes the point that lies in the center of this rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:unpack">rectangle:unpack&nbsp;()</a></td>
+	<td class="summary">Unpacks the components that describe this rectangle.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;(x, y, w, h)</strong>
+    </dt>
+    <dd>
+    Constructs a new <a href="../modules/rectangle.html#">rectangle</a> .
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the rectangle's top-left point.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the rectangle's top-left point.</li>
+        <li><span class="parameter">w</span>
+            <span class="types"><span class="type">number</span></span>
+         Width of the rectangle.</li>
+        <li><span class="parameter">h</span>
+            <span class="types"><span class="type">number</span></span>
+         Height of the rectangle.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:right"></a>
+    <strong>rectangle:right&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the X-coordinate of the right side of the rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:bottom"></a>
+    <strong>rectangle:bottom&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the Y-coordinate of the bottom side of the rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:intersects"></a>
+    <strong>rectangle:intersects&nbsp;(r)</strong>
+    </dt>
+    <dd>
+    Performs an intersection test with another rectangle.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+            <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+         Rectangle to test with.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">bool</span></span>
+        True if the rectangles intersect; otherwise, false.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:contains"></a>
+    <strong>rectangle:contains&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Test whether or not a point falls within the bounds of this rectangle.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         X-coordinate of the point.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Y-coordinate of the point.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">bool</span></span>
+        True if the point is contained by this rectangle; otherwise,
+   false.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:center"></a>
+    <strong>rectangle:center&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the point that lies in the center of this rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        X-coordinate of the point.</li>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        Y-coordinate of the point.</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:unpack"></a>
+    <strong>rectangle:unpack&nbsp;()</strong>
+    </dt>
+    <dd>
+    Unpacks the components that describe this rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        X-coordinate of this rectangle's top-left point.</li>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        Y-coordinate of this rectangle's top-left point.</li>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        Width of this rectangle.</li>
+        <li>
+          <span class="types"><span class="type">number</span></span>
+        Height of this rectangle.</li>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

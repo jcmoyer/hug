@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><a href="../modules/camera.html">camera</a></li>
+  <li><a href="../modules/chasecamera.html">chasecamera</a></li>
+  <li><strong>color</strong></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><a href="../modules/rectangle.html">rectangle</a></li>
+  <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><a href="../modules/vector2.html">vector2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>color</code></h1>
+
+<p>Implements a basic color object compatible with LÖVE graphics functions.</p>
+<p>
+
+</p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local red = color.new(255, 0, 0)
+ love.graphics.setColor(red)</pre>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#mt.__add">mt.__add&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>+</code> for colors.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__sub">mt.__sub&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>-</code> for colors.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__mul">mt.__mul&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>*</code> for colors.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__div">mt.__div&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>/</code> for colors.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt.__unm">mt.__unm&nbsp;(a)</a></td>
+	<td class="summary">Implements unary operator <code>-</code> for colors.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;(r, g, b, a)</a></td>
+	<td class="summary">Creates a new color object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#color:clone">color:clone&nbsp;()</a></td>
+	<td class="summary">Clones a color object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#color:add">color:add&nbsp;(b)</a></td>
+	<td class="summary">Adds another color to this one.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#color:sub">color:sub&nbsp;(b)</a></td>
+	<td class="summary">Subtracts another color from this one.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#color:mul">color:mul&nbsp;(b)</a></td>
+	<td class="summary">Multiplies this color by a number.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#color:div">color:div&nbsp;(b)</a></td>
+	<td class="summary">Divides this color by a number.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#color:invert">color:invert&nbsp;()</a></td>
+	<td class="summary">Inverts this color.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "mt.__add"></a>
+    <strong>mt.__add&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>+</code> for colors.
+ This is equivalent to <code>a:clone():add(b)</code>.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        The result of adding colors <code>a</code> and <code>b</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__sub"></a>
+    <strong>mt.__sub&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>-</code> for colors.
+ This is equivalent to <code>a:clone():sub(b)</code>.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        The result of subtracting <code>b</code> from <code>a</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__mul"></a>
+    <strong>mt.__mul&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>*</code> for colors.
+ This is equivalent to <code>a:clone():mul(b)</code> or <code>b:clone():mul(a)</code> depending on
+   the order of the parameters.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a> or <span class="type">number</span></span>
+
+
+</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span> or <a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        The result of multiplying <code>a</code> and <code>b</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__div"></a>
+    <strong>mt.__div&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>/</code> for colors.
+ This is equivalent to <code>a:clone():div(b)</code>.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+
+
+</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        The result of dividing <code>a</code> by <code>b</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt.__unm"></a>
+    <strong>mt.__unm&nbsp;(a)</strong>
+    </dt>
+    <dd>
+    Implements unary operator <code>-</code> for colors.
+ This is equivalent to <code>a:clone():invert()</code>.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+
+
+</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        The result of inverting <code>a</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;(r, g, b, a)</strong>
+    </dt>
+    <dd>
+    Creates a new color object.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+            <span class="types"><span class="type">int</span> or <a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
+         Red value. Accepted values fall in the range of [0..255].
+   Alternatively, you can pass a table with 3 or more numerical components
+   and omit the rest of the parameters.</li>
+        <li><span class="parameter">g</span>
+            <span class="types"><span class="type">int</span> or <span class="type">nil</span></span>
+         Green value. Accepted values fall in the range of [0..255].</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">int</span> or <span class="type">nil</span></span>
+         Blue value. Accepted values fall in the range of [0..255].</li>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">int</span> or <span class="type">nil</span></span>
+         Alpha value. Accepted values fall in the range of
+   [0..255]. This component is not required.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        A new color object with the specified component values.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "color:clone"></a>
+    <strong>color:clone&nbsp;()</strong>
+    </dt>
+    <dd>
+    Clones a color object.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        A new color object with the same values as the source color.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "color:add"></a>
+    <strong>color:add&nbsp;(b)</strong>
+    </dt>
+    <dd>
+    Adds another color to this one.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+         Color to add.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "color:sub"></a>
+    <strong>color:sub&nbsp;(b)</strong>
+    </dt>
+    <dd>
+    Subtracts another color from this one.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+         Color to subtract.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "color:mul"></a>
+    <strong>color:mul&nbsp;(b)</strong>
+    </dt>
+    <dd>
+    Multiplies this color by a number.
+ This operation works the same way as vector-scalar multiplication.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to scale the color by.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "color:div"></a>
+    <strong>color:div&nbsp;(b)</strong>
+    </dt>
+    <dd>
+    Divides this color by a number.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">b</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to scale the color by.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "color:invert"></a>
+    <strong>color:invert&nbsp;()</strong>
+    </dt>
+    <dd>
+    Inverts this color.
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
