@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,11 +12,18 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Provides extra table functions.
+-- @alias extensions
+
 local extensions = {}
 
 local getmetatable, setmetatable, pairs = getmetatable, setmetatable, pairs
 
+--- Shallowly clones a table.
+-- @tparam table t Table to clone.
+-- @treturn table A new table containing all of the data in `t`.
 function extensions.clone(t)
   local r = {}
   for k,v in pairs(t) do

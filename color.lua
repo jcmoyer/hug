@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,14 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Implements a basic color object compatible with LÖVE graphics functions.
+-- @type color
+-- @usage
+-- local red = color.new(255, 0, 0)
+-- love.graphics.setColor(red)
+
 local color = {}
 local mt = { __index = color }
 
@@ -32,18 +39,34 @@ local function checkcolor(a)
   return getmetatable(a) == mt
 end
 
+--- Implements binary operator `+` for colors.
+-- This is equivalent to `a:clone():add(b)`.
+-- @tparam color a
+-- @tparam color b
+-- @treturn color The result of adding colors `a` and `b`.
 function mt.__add(a, b)
   local result = a:clone()
   result:add(b)
   return result
 end
 
+--- Implements binary operator `-` for colors.
+-- This is equivalent to `a:clone():sub(b)`.
+-- @tparam color a
+-- @tparam color b
+-- @treturn color The result of subtracting `b` from `a`.
 function mt.__sub(a, b)
   local result = a:clone()
   result:sub(b)
   return result
 end
 
+--- Implements binary operator `*` for colors.
+-- This is equivalent to `a:clone():mul(b)` or `b:clone():mul(a)` depending on
+--   the order of the parameters.
+-- @tparam color|number a
+-- @tparam number|color b
+-- @treturn color The result of multiplying `a` and `b`.
 function mt.__mul(a, b)
   local result
   if checkcolor(a) then
@@ -58,18 +81,36 @@ function mt.__mul(a, b)
   return result
 end
 
+--- Implements binary operator `/` for colors.
+-- This is equivalent to `a:clone():div(b)`.
+-- @tparam color a
+-- @number b
+-- @treturn color The result of dividing `a` by `b`.
 function mt.__div(a, b)
   local result = a:clone()
   result:div(b)
   return result
 end
 
+--- Implements unary operator `-` for colors.
+-- This is equivalent to `a:clone():invert()`.
+-- @tparam color a
+-- @treturn color The result of inverting `a`.
 function mt.__unm(a)
   local result = a:clone()
   result:invert()
   return result
 end
 
+--- Creates a new color object.
+-- @tparam int|table r Red value. Accepted values fall in the range of [0..255].
+--   Alternatively, you can pass a table with 3 or more numerical components
+--   and omit the rest of the parameters.
+-- @tparam int|nil g Green value. Accepted values fall in the range of [0..255].
+-- @tparam int|nil b Blue value. Accepted values fall in the range of [0..255].
+-- @tparam ?int|nil a Alpha value. Accepted values fall in the range of
+--   [0..255]. This component is not required.
+-- @treturn color A new color object with the specified component values.
 function color.new(r, g, b, a)
   -- support creation from table
   if type(r) == 'table' and #r >= 3 then
@@ -86,13 +127,14 @@ function color.new(r, g, b, a)
   end
 end
 
+--- Clones a color object.
+-- @treturn color A new color object with the same values as the source color.
 function color:clone()
   return setmetatable({self[1], self[2], self[3], self[4]}, mt)
 end
 
---
--- In-place operations
---
+--- Adds another color to this one.
+-- @tparam color b Color to add.
 function color:add(b)
   if not checkcolor(b) then
     error('cannot add a ' .. type(b) .. ' to a color')
@@ -106,6 +148,8 @@ function color:add(b)
   end
 end
 
+--- Subtracts another color from this one.
+-- @tparam color b Color to subtract.
 function color:sub(b)
   if not checkcolor(b) then
     error('cannot subtract a ' .. type(b) .. ' from a color')
@@ -119,6 +163,9 @@ function color:sub(b)
   end
 end
 
+--- Multiplies this color by a number.
+-- This operation works the same way as vector-scalar multiplication.
+-- @number b Amount to scale the color by.
 function color:mul(b)
   if type(b) ~= 'number' then
     error('cannot multiply a color by a ' .. type(b))
@@ -131,6 +178,8 @@ function color:mul(b)
   end
 end
 
+--- Divides this color by a number.
+-- @number b Amount to scale the color by.
 function color:div(b)
   if type(b) ~= 'number' then
     error('cannot divide a color by a ' .. type(b))
@@ -143,6 +192,7 @@ function color:div(b)
   end
 end
 
+--- Inverts this color.
 function color:invert()
   self[1] = 255 - self[1]
   self[2] = 255 - self[2]

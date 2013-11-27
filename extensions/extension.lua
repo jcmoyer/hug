@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,12 +12,18 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Provides functions that help manage extensions.
+
 local extension = {}
 
 local type, error, pairs = type, error, pairs
 
--- installs the members of table 'ext' into table 't'
+--- Installs the members of one table into another.
+-- An error will be raised if there is a name conflict.
+-- @tab ext Source table.
+-- @tab t Destination table.
 function extension.install(ext, t)
   if type(ext) ~= 'table' then
     error('ext must be a table')

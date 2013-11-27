@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,11 +12,19 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Provides extra string functions.
+-- @alias extensions
+
 local extensions = {}
 
 local concat = table.concat
 
+--- Joins a table of strings, inserting a delimiter between each one.
+-- @tparam string delim Delimiter to insert between each string in `xs`.
+-- @tparam table xs Table of strings to join.
+-- @treturn string The joined string.
 function extensions.join(delim, xs)
   local whole = {}
   for i = 1, #xs do
@@ -28,6 +36,13 @@ function extensions.join(delim, xs)
   return concat(whole)
 end
 
+--- Splits a string on a delimiter.
+-- @string s String to split.
+-- @string p Pattern to split on.
+-- @bool[opt=false] noempty If true, the resulting table will have any empty
+--   entries removed from it. If false or omitted, empty entries will be
+--   preserved.
+-- @treturn table A table containing the pieces `s` was split into.
 function extensions.split(s, p, noempty)
   if s == '' then
     return {}

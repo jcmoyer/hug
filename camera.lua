@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,11 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Implements a basic 2D camera.
+-- @type camera
+
 local camera = {}
 local mt = { __index = camera }
 
@@ -21,6 +25,10 @@ local random = math.random
 local mathex = require('hug.extensions.math')
 local lerp = mathex.lerp
 
+--- Creates a new camera.
+-- @number width Width of the camera's viewport.
+-- @number height Height of the camera's viewport.
+-- @treturn camera
 function camera.new(width, height)
   local instance = {
     x = 0,
@@ -36,11 +44,18 @@ function camera.new(width, height)
   return setmetatable(instance, mt)
 end
 
+--- Centers the camera on a point instantly.
+-- @number x X-coordinate of the point to center on.
+-- @number y Y-coordinate of the point to center on.
 function camera:center(x, y)
   self.x = x - self.w / 2
   self.y = y - self.h / 2
 end
 
+--- Pans the camera towards a point.
+-- @number x X-coordinate of the point to pan towards.
+-- @number y Y-coordinate of the point to pan towards.
+-- @number dt Percent to pan by.
 function camera:panCenter(x, y, dt)
   local cx = self.x
   local cy = self.y
@@ -49,6 +64,8 @@ function camera:panCenter(x, y, dt)
   self.y = lerp(cy, self.y, dt * 3)
 end
 
+--- Updates the state of the camera.
+-- @number dt Delta time to run simulations for, in seconds.
 function camera:update(dt)
   self.st = self.st - dt
   if self.st < 0 then
@@ -61,16 +78,23 @@ function camera:update(dt)
   end
 end
 
+--- Shakes the camera.
+-- @number duration Time to shake the camera for, in seconds.
+-- @number magnitude How violently the camera should shake.
 function camera:shake(duration, magnitude)
   self.st = duration
   self.sd = duration
   self.sm = magnitude or random() * 20
 end
 
+--- Computes the X coordinate of the camera, taking into account shaking.
+-- @treturn number The X coordinate of the top-left point of the camera's viewport.
 function camera:calculatedX()
   return self.x + self.sx
 end
 
+--- Computes the Y coordinate of the camera, taking into account shaking.
+-- @treturn number The Y coordinate of the top-left point of the camera's viewport.
 function camera:calculatedY()
   return self.y + self.sy
 end

@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,11 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Implements a 2D vector type.
+-- @type vector2
+
 local vector2 = {}
 local mt = {__index = vector2}
 
@@ -20,18 +24,30 @@ local function checkvec2(v)
   return getmetatable(v) == mt
 end
 
+--- Implements binary operator `+` for `vector2` objects.
+-- @tparam vector2 a The first vector.
+-- @tparam vector2 b The second vector.
+-- @treturn vector2 The result of adding `a` and `b`.
 function mt.__add(a, b)
   local result = a:clone()
   result:add(b)
   return result
 end
 
+--- Implements binary operator `-` for `vector2` objects.
+-- @tparam vector2 a The first vector.
+-- @tparam vector2 b The second vector.
+-- @treturn vector2 The result of subtracting `b` from `a`.
 function mt.__sub(a, b)
   local result = a:clone()
   result:sub(b)
   return result
 end
 
+--- Implements binary operator `*` for `vector2` objects.
+-- @tparam vector2|number a The first vector or scalar.
+-- @tparam number|vector2 b The second vector or scalar.
+-- @treturn vector2 The result of multiplying `a` by `b`.
 function mt.__mul(a, b)
   local result
   if checkvec2(a) then
@@ -44,6 +60,10 @@ function mt.__mul(a, b)
   return result
 end
 
+--- Implements binary operator `/` for `vector2` objects.
+-- @tparam vector2 a The vector.
+-- @number b The scalar.
+-- @treturn vector2 A new `vector2` containing the results of the division.
 function mt.__div(a, b)
   local result
   if checkvec2(a) then
@@ -56,6 +76,12 @@ function mt.__div(a, b)
   return result
 end
 
+--- Creates a new vector2 object.
+-- @number[opt=0] x The X component for this vector. Defaults to 0 if none is
+--   provided.
+-- @number[opt=0] y The Y component for this vector. Defaults to 0 if none is
+--   provided.
+-- @treturn vector2 A new vector 2 object with the specified magnitude.
 function vector2.new(x, y)
   local instance = {
     x or 0,
@@ -64,21 +90,32 @@ function vector2.new(x, y)
   return setmetatable(instance, mt)
 end
 
+--- Clones this vector2 and returns it.
+-- @treturn vector2
 function vector2:clone()
   return setmetatable({self[1], self[2]}, mt)
 end
 
+--- Returns the X component of this vector.
+-- This is equivalent to vector[1].
+-- @treturn number The X component of this vector.
 function vector2:x()
   return self[1]
 end
 
+--- Returns the Y component of this vector.
+-- This is equivalent to vector[2].
+-- @treturn number The Y component of this vector.
 function vector2:y()
   return self[2]
 end
 
--- possible values:
---    a as vector2
---    a and b as numbers
+--- Adds another vector to this one.
+-- @tparam vector2|number a If a `vector2` is provided, each of its components
+--   will be added to the components of this vector. If a number is provided
+--   instead, it will be added to the X component of this vector.
+-- @number b Amount to add to the Y component of this vector. Only required if
+--   `a` is not a `vector2`.
 function vector2:add(a, b)
   if checkvec2(a) then
     self[1] = self[1] + a[1]
@@ -89,6 +126,12 @@ function vector2:add(a, b)
   end
 end
 
+--- Subtracts another vector from this one.
+-- @tparam vector2|number a If a `vector2` is provided, its components will be
+--   subtracted from the components of this vector. If a number is provided
+--   instead, it will be subtracted from the X component of this vector.
+-- @number b Amount to subtract from the Y component of this vector. Only
+--   required if `a` is not a `vector2`.
 function vector2:sub(a, b)
   if checkvec2(a) then
     self[1] = self[1] - a[1]
@@ -99,16 +142,23 @@ function vector2:sub(a, b)
   end
 end
 
+--- Multiplies this vector by a scalar amount.
+-- @number a Amount to multiply this vector by.
 function vector2:mul(a)
   self[1] = self[1] * a
   self[2] = self[2] * a
 end
 
+--- Divides this vector by a scalar amount.
+-- @number a Amount to divide this vector by.
 function vector2:div(a)
   self[1] = self[1] * a
   self[2] = self[2] * a
 end
 
+--- Normalizes this vector.
+-- This vector will become a unit vector codirectional with the original
+-- vector.
 function vector2:normalize()
   local x = self[1]
   local y = self[2]
@@ -117,11 +167,15 @@ function vector2:normalize()
   self[2] = y / l
 end
 
+--- Sets the individual components of this vector.
+-- @number x New value for the X component of this vector.
+-- @number y New value for the Y component of this vector.
 function vector2:set(x, y)
   self[1] = x
   self[2] = y
 end
 
+--- Sets the components of this vector to zero.
 function vector2:zero()
   self[1] = 0
   self[2] = 0

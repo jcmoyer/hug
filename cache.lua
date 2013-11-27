@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+--
 -- Copyright 2013 J.C. Moyer
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,9 +12,25 @@
 -- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
---------------------------------------------------------------------------------
+--
+
+--- Implements a generalized data cache.
+-- @type cache
+-- @usage
+-- local imagecache = require('hug.cache').new(love.graphics.newImage)
+-- local im1 = imagecache.get('foo.png')
+-- local im2 = imagecache.get('foo.png')
+-- assert(im1 == im2)
+
 local cache = {}
 
+--- Creates a cache from a function.
+-- @func factory function that produces values for some input. The given
+--   function should be referentially transparent.
+-- @return A table with a single method, get(name). The function specified
+--   will receive name as a parameter, and it is expected to return a
+--   non-nil result corresponding to that name. Subsequent calls to get
+--   will return the same, cached value for the same name.
 function cache.new(factory)
   local t = {}
   
