@@ -29,9 +29,7 @@ end
 -- @tparam vector2 b The second vector.
 -- @treturn vector2 The result of adding `a` and `b`.
 function mt.__add(a, b)
-  local result = a:clone()
-  result:add(b)
-  return result
+  return a:clone():add(b)
 end
 
 --- Implements binary operator `-` for `vector2` objects.
@@ -39,9 +37,7 @@ end
 -- @tparam vector2 b The second vector.
 -- @treturn vector2 The result of subtracting `b` from `a`.
 function mt.__sub(a, b)
-  local result = a:clone()
-  result:sub(b)
-  return result
+  return a:clone():sub(b)
 end
 
 --- Implements binary operator `*` for `vector2` objects.
@@ -65,9 +61,7 @@ end
 -- @number b The scalar.
 -- @treturn vector2 A new `vector2` containing the results of the division.
 function mt.__div(a, b)
-  local result = a:clone()
-  result:div(b)
-  return result
+  return a:clone():div(b)
 end
 
 --- Creates a new vector2 object.

@@ -45,9 +45,7 @@ end
 -- @tparam color b
 -- @treturn color The result of adding colors `a` and `b`.
 function mt.__add(a, b)
-  local result = a:clone()
-  result:add(b)
-  return result
+  return a:clone():add(b)
 end
 
 --- Implements binary operator `-` for colors.
@@ -56,9 +54,7 @@ end
 -- @tparam color b
 -- @treturn color The result of subtracting `b` from `a`.
 function mt.__sub(a, b)
-  local result = a:clone()
-  result:sub(b)
-  return result
+  return a:clone():sub(b)
 end
 
 --- Implements binary operator `*` for colors.
@@ -87,9 +83,7 @@ end
 -- @number b
 -- @treturn color The result of dividing `a` by `b`.
 function mt.__div(a, b)
-  local result = a:clone()
-  result:div(b)
-  return result
+  return a:clone():div(b)
 end
 
 --- Implements unary operator `-` for colors.
@@ -97,9 +91,7 @@ end
 -- @tparam color a
 -- @treturn color The result of inverting `a`.
 function mt.__unm(a)
-  local result = a:clone()
-  result:invert()
-  return result
+  return a:clone():invert()
 end
 
 --- Creates a new color object.
