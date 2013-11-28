@@ -65,14 +65,8 @@ end
 -- @number b The scalar.
 -- @treturn vector2 A new `vector2` containing the results of the division.
 function mt.__div(a, b)
-  local result
-  if checkvec2(a) then
-    result = a:clone()
-    result:div(b)
-  else
-    result = b:clone()
-    result:div(a)
-  end
+  local result = a:clone()
+  result:div(b)
   return result
 end
 
