@@ -94,6 +94,14 @@ function mt.__unm(a)
   return a:clone():invert()
 end
 
+--- Implements binary operator `==` for `color` objects.
+-- @tparam color a Color A.
+-- @tparam color b Color B.
+-- @treturn boolean True if the colors are equal; otherwise false.
+function mt.__eq(a, b)
+  return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
+end
+
 --- Creates a new color object.
 -- @tparam int|table r Red value. Accepted values fall in the range of [0..255].
 --   Alternatively, you can pass a table with 3 or more numerical components
