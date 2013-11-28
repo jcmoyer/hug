@@ -110,6 +110,7 @@ end
 --   instead, it will be added to the X component of this vector.
 -- @number b Amount to add to the Y component of this vector. Only required if
 --   `a` is not a `vector2`.
+-- @treturn vector2 This vector.
 function vector2:add(a, b)
   if checkvec2(a) then
     self[1] = self[1] + a[1]
@@ -118,6 +119,7 @@ function vector2:add(a, b)
     self[1] = self[1] + a
     self[2] = self[2] + b
   end
+  return self
 end
 
 --- Subtracts another vector from this one.
@@ -126,6 +128,7 @@ end
 --   instead, it will be subtracted from the X component of this vector.
 -- @number b Amount to subtract from the Y component of this vector. Only
 --   required if `a` is not a `vector2`.
+-- @treturn vector2 This vector.
 function vector2:sub(a, b)
   if checkvec2(a) then
     self[1] = self[1] - a[1]
@@ -134,45 +137,56 @@ function vector2:sub(a, b)
     self[1] = self[1] - a
     self[2] = self[2] - b
   end
+  return self
 end
 
 --- Multiplies this vector by a scalar amount.
 -- @number a Amount to multiply this vector by.
+-- @treturn vector2 This vector.
 function vector2:mul(a)
   self[1] = self[1] * a
   self[2] = self[2] * a
+  return self
 end
 
 --- Divides this vector by a scalar amount.
 -- @number a Amount to divide this vector by.
+-- @treturn vector2 This vector.
 function vector2:div(a)
   self[1] = self[1] / a
   self[2] = self[2] / a
+  return self
 end
 
 --- Normalizes this vector.
 -- This vector will become a unit vector codirectional with the original
 -- vector.
+-- @treturn vector2 This vector.
 function vector2:normalize()
   local x = self[1]
   local y = self[2]
   local l = math.sqrt(x * x + y * y)
   self[1] = x / l
   self[2] = y / l
+  return self
 end
 
 --- Sets the individual components of this vector.
 -- @number x New value for the X component of this vector.
 -- @number y New value for the Y component of this vector.
+-- @treturn vector2 This vector.
 function vector2:set(x, y)
   self[1] = x
   self[2] = y
+  return self
 end
 
 --- Sets the components of this vector to zero.
+-- @treturn vector2 This vector.
 function vector2:zero()
   self[1] = 0
   self[2] = 0
+  return self
 end
 
 return vector2

@@ -135,6 +135,7 @@ end
 
 --- Adds another color to this one.
 -- @tparam color b Color to add.
+-- @treturn color This color.
 function color:add(b)
   if not checkcolor(b) then
     error('cannot add a ' .. type(b) .. ' to a color')
@@ -146,10 +147,12 @@ function color:add(b)
   if #self == 4 and #b == 4 then
     self[4] = clampcolor(self[4] + b[4])
   end
+  return self
 end
 
 --- Subtracts another color from this one.
 -- @tparam color b Color to subtract.
+-- @treturn color This color.
 function color:sub(b)
   if not checkcolor(b) then
     error('cannot subtract a ' .. type(b) .. ' from a color')
@@ -161,11 +164,13 @@ function color:sub(b)
   if #self == 4 and #b == 4 then
     self[4] = clampcolor(self[4] - b[4])
   end
+  return self
 end
 
 --- Multiplies this color by a number.
 -- This operation works the same way as vector-scalar multiplication.
 -- @number b Amount to scale the color by.
+-- @treturn color This color.
 function color:mul(b)
   if type(b) ~= 'number' then
     error('cannot multiply a color by a ' .. type(b))
@@ -176,10 +181,12 @@ function color:mul(b)
   if #self == 4 then
     self[4] = clampcolor(self[4] * b)
   end
+  return self
 end
 
 --- Divides this color by a number.
 -- @number b Amount to scale the color by.
+-- @treturn color This color.
 function color:div(b)
   if type(b) ~= 'number' then
     error('cannot divide a color by a ' .. type(b))
@@ -190,9 +197,11 @@ function color:div(b)
   if #self == 4 then
     self[4] = clampcolor(self[4] / b)
   end
+  return self
 end
 
 --- Inverts this color.
+-- @treturn color This color.
 function color:invert()
   self[1] = 255 - self[1]
   self[2] = 255 - self[2]
@@ -200,6 +209,7 @@ function color:invert()
   if #self == 4 then
     self[4] = 255 - self[4]
   end
+  return self
 end
 
 return color
