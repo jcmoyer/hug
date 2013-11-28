@@ -146,8 +146,8 @@ end
 --- Divides this vector by a scalar amount.
 -- @number a Amount to divide this vector by.
 function vector2:div(a)
-  self[1] = self[1] * a
-  self[2] = self[2] * a
+  self[1] = self[1] / a
+  self[2] = self[2] / a
 end
 
 --- Normalizes this vector.
