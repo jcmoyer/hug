@@ -58,7 +58,7 @@ end
 
 local function ensureerror(f, desc)
   local status = pcall(f)
-  if not status then
+  if status then
     if desc then
       error(string.format('%s: expected an error to be raised', desc))
     else
