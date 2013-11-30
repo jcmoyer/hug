@@ -23,7 +23,7 @@ local function dump(value)
 end
 
 local function test(desc, f)
-  status, msg = pcall(f)
+  local status, msg = pcall(f)
   if not status then
     print('[FAIL] ' .. desc .. ': ' .. msg)
   else
