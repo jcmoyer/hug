@@ -16,9 +16,6 @@ local function add()
 end
 
 local function sub()
-  local a = vector2.new(400, 300)
-  local b = vector2.new(200, 100)
-  local c = a - b
   framework.compare(
     vector2.new(6, 4),
     vector2.new(10, 8):sub(vector2.new(4, 4))
