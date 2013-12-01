@@ -1,6 +1,4 @@
--- Look for modules in parent directory
-package.path = "../?.lua;" .. package.path
-
+require('path')
 local framework = require('framework')
 local vector2   = require('vector2')
 
