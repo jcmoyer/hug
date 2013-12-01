@@ -121,7 +121,7 @@ function color.new(r, g, b, a)
   end
   -- ensure all parameters are numbers
   if type(r) == 'number' and type(g) == 'number' and type(b) == 'number' and (type(a) == 'nil' or type(a) == 'number') then
-    return setmetatable({r, g, b, a}, mt)
+    return setmetatable({ clampcolor(r), clampcolor(g), clampcolor(b), a and clampcolor(a) }, mt)
   else
     error('a color requires at least three numerical components')  
   end
