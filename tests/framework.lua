@@ -26,13 +26,18 @@ local function test(desc, f)
   local status, msg = pcall(f)
   if not status then
     print('[FAIL] ' .. desc .. ': ' .. msg)
+    return false
   else
     print('[PASS] ' .. desc)
+    return true
   end
 end
 
 local function testall(t)
-  for i = 1, #t do
+  local total = #t
+  local passed = 0
+  
+  for i = 1, total do
     local testinfo = t[i]
     local name = testinfo[1]
     local f = testinfo[2]
@@ -42,8 +47,12 @@ local function testall(t)
     if not f then
       error('no test function given for ' .. name)
     end
-    test(name, f)
+    if test(name, f) then
+      passed = passed + 1
+    end
   end
+  
+  return passed, total
 end
 
 local function compare(expected, actual, desc)
