@@ -8,7 +8,8 @@ local function runtest(name)
   print(makeheader('Running tests for ' .. name))
   
   local chunk = assert(loadfile('test-' .. name .. '.lua'))
-  chunk()
+  local passed, total = chunk()
+  print(string.format('%d test(s) passed out of %d. (%.2f%%)', passed, total, 100 * passed / total))
 end
 
 -- calls runtest for each entry in a table
