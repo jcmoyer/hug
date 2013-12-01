@@ -86,7 +86,7 @@ local function normalize()
   )  
 end
 
-framework.testall {
+return framework.testall {
   { 'equality', eq },
 
   { 'in-place addition', add },
