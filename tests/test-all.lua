@@ -20,5 +20,6 @@ local function runtests(t)
 end
 
 runtests {
-  'vector2'
+  'vector2',
+  'color'
 }
