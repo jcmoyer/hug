@@ -87,6 +87,14 @@
 	<td class="summary">Implements binary operator <code>/</code> for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#mt.__eq">mt.__eq&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>==</code> for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt:__tostring">mt:__tostring&nbsp;()</a></td>
+	<td class="summary">Implements <a href="http://www.lua.org/manual/5.2/manual.html#pdf-tostring">tostring</a>  for <a href="../modules/vector2.html#">vector2</a>  objects.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#new">new&nbsp;( [x=0 [, y=0]])</a></td>
 	<td class="summary">Creates a new vector2 object.</td>
 	</tr>
@@ -251,6 +259,56 @@
 
 </dd>
     <dt>
+    <a name = "mt.__eq"></a>
+    <strong>mt.__eq&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>==</code> for <a href="../modules/vector2.html#">vector2</a>  objects.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         Vector A.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         Vector B.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">boolean</span></span>
+        True if the vectors are equal; otherwise false.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt:__tostring"></a>
+    <strong>mt:__tostring&nbsp;()</strong>
+    </dt>
+    <dd>
+    Implements <a href="http://www.lua.org/manual/5.2/manual.html#pdf-tostring">tostring</a>  for <a href="../modules/vector2.html#">vector2</a>  objects.
+ Do not use this method for serialization as the format may change in the
+ future. This method only guarantees that <a href="../modules/vector2.html#">vector2</a>  objects can be converted
+ to a human-readable representation.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+        A <a href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a>  representation for this vector.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "new"></a>
     <strong>new&nbsp;( [x=0 [, y=0]])</strong>
     </dt>
@@ -361,6 +419,12 @@
    <code>a</code> is not a <a href="../modules/vector2.html#">vector2</a> .</li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 
@@ -386,6 +450,12 @@
    required if <code>a</code> is not a <a href="../modules/vector2.html#">vector2</a> .</li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 
@@ -405,6 +475,12 @@
          Amount to multiply this vector by.</li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 
@@ -424,6 +500,12 @@
          Amount to divide this vector by.</li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 
@@ -439,6 +521,12 @@
  vector.
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 
@@ -461,6 +549,12 @@
          New value for the Y component of this vector.</li>
     </ul>
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 
@@ -474,6 +568,12 @@
     Sets the components of this vector to zero.
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+        This vector.
+    </ol>
 
 
 

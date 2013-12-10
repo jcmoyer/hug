@@ -64,10 +64,11 @@
 
 <p>Facilitates the reuse of fonts instead of creating new ones.</p>
 <p> <strong>DEPRECATED</strong>: Prefer an abstraction based on <a href="../modules/cache.html#">cache</a>  instead. The current
- functionality in this module may be duplicated with the following line of
- code:</p>
+ functionality in this module may be duplicated with the following code:</p>
 
-<p> <code>fontpool = require('hug.cache').new(love.graphics.newFont)</code></p>
+<pre><code>fontpool = require('hug.cache').new(love.graphics.newFont)
+font = fontpool.get(16)
+</code></pre>
 
 <p> This module will be removed in the future.</p>
 
