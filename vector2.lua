@@ -72,6 +72,15 @@ function mt.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2]
 end
 
+--- Implements `tostring` for `vector2` objects.
+-- Do not use this method for serialization as the format may change in the
+-- future. This method only guarantees that `vector2` objects can be converted
+-- to a human-readable representation.
+-- @treturn string A `string` representation for this vector.
+function mt:__tostring()
+  return string.format('<%f,%f>', self[1], self[2])
+end
+
 --- Creates a new vector2 object.
 -- @number[opt=0] x The X component for this vector. Defaults to 0 if none is
 --   provided.
