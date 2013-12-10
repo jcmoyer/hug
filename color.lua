@@ -102,6 +102,21 @@ function mt.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
+--- Implements `tostring` for `color` objects.
+-- Do not use this method for serialization as the format may change in the
+-- future. This method only guarantees that `color` objects can be converted
+-- to a human-readable representation.
+-- @treturn string A `string` representation for this color.
+function mt:__tostring()
+  if #self == 3 then
+    return string.format('rgb(%d,%d,%d)', self[1], self[2], self[3])
+  elseif #self == 4 then
+    return string.format('rgba(%d,%d,%d,%d)', self[1], self[2], self[3], self[4])
+  else
+    return '<invalid color>'
+  end
+end
+
 --- Creates a new color object.
 -- @tparam int|table r Red value. Accepted values fall in the range of [0..255].
 --   Alternatively, you can pass a table with 3 or more numerical components
