@@ -16,10 +16,10 @@
 
 --- Facilitates the reuse of fonts instead of creating new ones.
 -- **DEPRECATED**: Prefer an abstraction based on `cache` instead. The current
--- functionality in this module may be duplicated with the following line of
--- code:
+-- functionality in this module may be duplicated with the following code:
 --
--- `fontpool = require('hug.cache').new(love.graphics.newFont)`
+--    fontpool = require('hug.cache').new(love.graphics.newFont)
+--    font = fontpool.get(16)
 --
 -- This module will be removed in the future.
 
