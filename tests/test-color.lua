@@ -13,7 +13,7 @@ local function eq()
   
   local e = color.new(100, 200, 300, 100)
   local f = color.new{100, 200, 300, 100}
-  framework.compare(false, c == d, 'rgba-rgba color equality')
+  framework.compare(true, e == f, 'rgba-rgba color equality')
 end
 
 local function add()
