@@ -80,11 +80,11 @@ end
 
 --- Shakes the camera.
 -- @number duration Time to shake the camera for, in seconds.
--- @number magnitude How violently the camera should shake.
+-- @number[opt=20] magnitude How violently the camera should shake.
 function camera:shake(duration, magnitude)
   self.st = duration
   self.sd = duration
-  self.sm = magnitude or random() * 20
+  self.sm = magnitude or 20
 end
 
 --- Computes the X coordinate of the camera, taking into account shaking.
