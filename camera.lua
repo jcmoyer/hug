@@ -55,13 +55,13 @@ end
 --- Pans the camera towards a point.
 -- @number x X-coordinate of the point to pan towards.
 -- @number y Y-coordinate of the point to pan towards.
--- @number dt Percent to pan by.
-function camera:panCenter(x, y, dt)
+-- @number a Percent to pan by.
+function camera:panCenter(x, y, a)
   local cx = self.x
   local cy = self.y
   self:center(x, y)
-  self.x = lerp(cx, self.x, dt * 3)
-  self.y = lerp(cy, self.y, dt * 3)
+  self.x = lerp(cx, self.x, a)
+  self.y = lerp(cy, self.y, a)
 end
 
 --- Updates the state of the camera.
