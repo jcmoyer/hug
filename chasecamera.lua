@@ -91,11 +91,11 @@ end
 
 --- Shakes the camera.
 -- @number duration Time to shake the camera for, in seconds.
--- @number magnitude How violently the camera should shake.
+-- @number[opt=20] magnitude How violently the camera should shake.
 function chasecamera:shake(duration, magnitude)
   self.shaketime = duration
   self.shakedur  = duration
-  self.shakemag  = magnitude or math.random() * 20
+  self.shakemag  = magnitude or 20
 end
 
 --- Clamps the camera's viewport within a rectangle.
