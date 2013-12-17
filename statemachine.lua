@@ -126,17 +126,22 @@ function statemachine:push(newstate)
 end
 
 --- Pops the topmost `gamestate` from the statemachine stack.
+-- The state being popped will receive a call to `onLeave` with the underlying
+-- state as a parameter. Likewise, the state being transitioned to will receive
+-- a call to `onEnter` with the popped state as a parameter.
+-- @treturn gamestate The gamestate popped from the stack.
 function statemachine:pop()
-  local popped = remove(self.states, newstate)
+  local old = remove(self.states, #self.states)
+  local new = self:top()
   
-  if popped then
-    popped:onLeave(newstate)
+  old:onLeave(new)
+  if new then
+    new:onEnter(old)
   end
-  self:top():onEnter(popped)
   
   self:findBaseState()
   
-  return popped
+  return old
 end
 
 return statemachine
