@@ -25,15 +25,8 @@ local basicgame = {}
 --- Creates a state machine and hooks it into LÖVE callbacks.
 -- When this function is called, a state machine will be created and
 -- `initialstate` will be pushed onto the top of the stack.
--- This function will then set the following callbacks:
---
--- * `love.load`
--- * `love.draw`
--- * `love.update`
--- * `love.keypressed`
--- * `love.keyreleased`
--- * `love.mousepressed`
--- * `love.mousereleased`
+-- This function will then set the LÖVE callbacks listed in
+-- `gamestate.callbacks`, plus `love.load`.
 --
 -- These events will be forwarded to the state machine, which in turn will
 -- dispatch them to the appropriate game state.
@@ -41,6 +34,7 @@ local basicgame = {}
 -- @tparam gamestate initialstate the state to start the basicgame with
 -- @see statemachine
 -- @see gamestate
+-- @see gamestate.callbacks
 function basicgame.start(initialstate)  
   local sm = statemachine.new()
   
