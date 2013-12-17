@@ -13,6 +13,8 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 --
+local tablex = require('hug.extensions.table')
+
 local gamestate = {}
 local mt = { __index = gamestate }
 
@@ -30,6 +32,39 @@ local mt = { __index = gamestate }
 -- end
 
 local setmetatable = setmetatable
+
+--- List of supported gamestate callbacks.
+-- Each of these callbacks can be implemented on your derived gamestates. This
+-- list is a one-to-one mapping of the LÖVE callbacks found
+-- [here](http://love2d.org/wiki/love#Callbacks). Note that `errhand`, `load`,
+-- `run`, and `threaderror` are omitted.
+--
+-- This table cannot be directly accessed. Use `gamestate.callbacks()` to
+-- retreive a clone of this table.
+local callbacks = {
+  'draw',
+  'focus',
+  'keypressed',
+  'keyreleased',
+  'mousefocus',
+  'mousepressed',
+  'mousereleased',
+  'quit',
+  'resize',
+  'textinput',
+  'update',
+  'visible',
+
+  'gamepadaxis',
+  'gamepadpressed',
+  'gamepadreleased',
+  'joystickadded',
+  'joystickaxis',
+  'joystickhat',
+  'joystickpressed',
+  'joystickreleased',
+  'joystickremoved'
+}
 
 gamestate.isgamestate = true
 
@@ -52,40 +87,6 @@ end
 function gamestate:onLeave(newstate)
 end
 
---- Callback invoked when a key is pressed.
--- @string key Character of the key pressed.
--- @number unicode The unicode number of the key pressed.
-function gamestate:keypressed(key, unicode)
-end
-
---- Callback invoked when a key is released.
--- @string key Character of the key released.
-function gamestate:keyreleased(key)
-end
-
---- Callback invoked when a mouse button is pressed.
--- @number x Mouse X position.
--- @number y Mouse Y position.
--- @string button Mouse button pressed.
-function gamestate:mousepressed(x, y, button)
-end
-
---- Callback invoked when a mouse button is released.
--- @number x Mouse X position.
--- @number y Mouse Y position.
--- @string button Mouse button released.
-function gamestate:mousereleased(x, y, button)
-end
-
---- Callback invoked when this gamestate needs to update its state.
--- @number dt Time elapsed in seconds.
-function gamestate:update(dt)
-end
-
---- Callback invoked when this gamestate needs to draw itself.
-function gamestate:draw()
-end
-
 --- Gets or sets the `statemachine` associated with this game state.
 -- @tparam ?statemachine who If provided, `who` will be stored with this game
 --   state.
@@ -95,6 +96,19 @@ function gamestate:sm(who)
     self.statemachine = who
   end
   return self.statemachine
+end
+
+--- Returns a copy of the callbacks table.
+-- @treturn table A copy of the callbacks table.
+function gamestate.callbacks()
+  return tablex.clone(callbacks)
+end
+
+-- set up empty functions for all the supported callbacks
+for i = 1, #callbacks do
+  local name = callbacks[i]
+  gamestate[name] = function(...)
+  end
 end
 
 return gamestate

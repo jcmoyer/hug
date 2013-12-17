@@ -19,6 +19,7 @@
 local statemachine = require('hug.statemachine')
 local timerpool = require('hug.timerpool')
 local extension = require('hug.extensions.extension')
+local gamestate = require('hug.gamestate')
 
 local basicgame = {}
 
@@ -52,35 +53,21 @@ function basicgame.start(initialstate, withexts)
     extension.install(require('hug.extensions.table'), table)
   end
   
-  sm:push(initialstate)
-
-  function love.load(args)
+  local callbacks = gamestate.callbacks()
+  for i = 1, #callbacks do
+    local name = callbacks[i]
+    love[name] = function(...)
+      sm[name](sm, ...)
+    end
+  end
+  
+  function love.load()
     sm:push(initialstate)
   end
-
-  function love.draw(a)
-    sm:draw(a)
-  end
-
-  function love.update(dt)
+  
+  function love.update(dt, ...)
     timerpool.update(dt)
-    sm:update(dt)
-  end
-
-  function love.keypressed(key, unicode)
-    sm:keypressed(key, unicode)
-  end
-
-  function love.keyreleased(key, unicode)
-    sm:keyreleased(key)
-  end
-
-  function love.mousepressed(x, y, button)
-    sm:mousepressed(x, y, button)
-  end
-
-  function love.mousereleased(x, y, button)
-    sm:mousereleased(x, y, button)
+    sm:update(dt, ...)
   end
 end
 

@@ -25,6 +25,14 @@ local setmetatable, error = setmetatable, error
 local max = math.max
 local insert, remove = table.insert, table.remove
 
+local callbacks = require('hug.gamestate').callbacks()
+
+local function reviter(f, t)
+  for i = #t, 1, -1 do
+    f(t[i])
+  end
+end
+
 --- Constructs a new statemachine object.
 -- @treturn statemachine
 function statemachine.new()
@@ -48,52 +56,25 @@ function statemachine:findBaseState()
   end
 end
 
---- Updates each of the states managed by this state machine.
--- @number dt Time elapsed in seconds.
-function statemachine:update(dt)
-  for i = #self.states, self.base, -1 do
-    if not self.states[i]:update(dt) then return end
+-- start of callback implementations
+for i = 1, #callbacks do
+  local name = callbacks[i]
+  statemachine[name] = function(self, ...)
+    for i = #self.states, self.base, -1 do
+      if not self.states[i][name](self.states[i], ...) then return end
+    end
   end
 end
 
---- Draws each of the states managed by this state machine.
--- @number a Amount to interpolate the render state by.
-function statemachine:draw(a)
+function statemachine:draw(...)
   local g = love.graphics
   for i = self.base, #self.states do
     g.push()
-    self.states[i]:draw(a)
+    self.states[i]:draw(...)
     g.pop()
   end
 end
-
---- Notifies visible states of a keypressed event.
-function statemachine:keypressed(key, unicode)
-  for i = #self.states, self.base, -1 do
-    if not self.states[i]:keypressed(key, unicode) then return end
-  end
-end
-
---- Notifies visible states of a keyreleased event.
-function statemachine:keyreleased(key)
-  for i = #self.states, self.base, -1 do
-    if not self.states[i]:keyreleased(key) then return end
-  end
-end
-
---- Notifies visible states of a mousepressed event.
-function statemachine:mousepressed(x, y, button)
-  for i = #self.states, self.base, -1 do
-    if not self.states[i]:mousepressed(x, y, button) then return end
-  end
-end
-
---- Notifies visible states of a mousereleased event.
-function statemachine:mousereleased(x, y, button)
-  for i = #self.states, self.base, -1 do
-    if not self.states[i]:mousereleased(x, y, button) then return end
-  end
-end
+-- end of callback implementations
 
 --- Determines if this state machine is managing any states.
 function statemachine:any()
