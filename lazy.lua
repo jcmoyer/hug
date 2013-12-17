@@ -20,7 +20,7 @@
 -- @type lazy
 -- @usage
 --local filenames = lazy.new(function()
---  return love.filesystem.enumerate('images/')
+--  return love.filesystem.getDirectoryItems('images/')
 --end)
 --...
 --for file in ipairs(filenames:get()) do
