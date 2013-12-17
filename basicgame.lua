@@ -18,7 +18,6 @@
 
 local statemachine = require('hug.statemachine')
 local timerpool = require('hug.timerpool')
-local extension = require('hug.extensions.extension')
 local gamestate = require('hug.gamestate')
 
 local basicgame = {}
@@ -40,18 +39,10 @@ local basicgame = {}
 -- dispatch them to the appropriate game state.
 --
 -- @tparam gamestate initialstate the state to start the basicgame with
--- @bool[opt=false] withexts If true, hug extensions will be installed into
---   global tables. **DEPRECATED**: Prefer installing the extensions yourself,
---   or require them and use them under a different name.
 -- @see statemachine
 -- @see gamestate
-function basicgame.start(initialstate, withexts)  
+function basicgame.start(initialstate)  
   local sm = statemachine.new()
-  
-  if withexts == true then
-    extension.install(require('hug.extensions.math'), math)
-    extension.install(require('hug.extensions.table'), table)
-  end
   
   local callbacks = gamestate.callbacks()
   for i = 1, #callbacks do
