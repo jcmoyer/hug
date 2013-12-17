@@ -90,6 +90,24 @@ local function len()
   )
 end
 
+local function dot()
+  framework.compare(
+    true,
+    vector2.new(50, 0):dot(vector2.new(0, 10)) == 0,
+    'perpendicular vectors'
+  )
+  framework.compare(
+    true,
+    vector2.new(0, 1):dot(vector2.new(0, 2)) > 0,
+    'same direction vectors'
+  )
+  framework.compare(
+    true,
+    vector2.new(0, 1):dot(vector2.new(0, -1)) < 0,
+    'opposite direction vectors'
+  )
+end
+
 return framework.testall {
   { 'equality', eq },
 
@@ -104,5 +122,6 @@ return framework.testall {
   { 'operator division', opdiv },
   
   { 'normalization', normalize },
-  { 'length', len }
+  { 'length', len },
+  { 'dot product', dot }
 }

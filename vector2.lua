@@ -123,6 +123,13 @@ function vector2:len()
   return math.sqrt(x * x + y * y)
 end
 
+--- Computes the dot product between this vector and another.
+-- @tparam vector2 vec The second vector.
+-- @treturn number The dot product between the given vectors.
+function vector2:dot(vec)
+  return self[1] * vec[1] + self[2] * vec[2]
+end
+
 --- Adds another vector to this one.
 -- @tparam vector2|number a If a `vector2` is provided, each of its components
 --   will be added to the components of this vector. If a number is provided
