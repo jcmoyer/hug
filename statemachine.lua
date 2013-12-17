@@ -27,12 +27,6 @@ local insert, remove = table.insert, table.remove
 
 local callbacks = require('hug.gamestate').callbacks()
 
-local function reviter(f, t)
-  for i = #t, 1, -1 do
-    f(t[i])
-  end
-end
-
 --- Constructs a new statemachine object.
 -- @treturn statemachine
 function statemachine.new()
