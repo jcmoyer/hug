@@ -207,12 +207,4 @@ function vector2:set(x, y)
   return self
 end
 
---- Sets the components of this vector to zero.
--- @treturn vector2 This vector.
-function vector2:zero()
-  self[1] = 0
-  self[2] = 0
-  return self
-end
-
 return vector2
