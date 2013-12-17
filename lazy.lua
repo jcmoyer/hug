@@ -19,14 +19,14 @@
 -- to delay a potentially expensive computation until the moment it is needed.
 -- @type lazy
 -- @usage
---local filenames = lazy.new(function()
---  return love.filesystem.getDirectoryItems('images/')
---end)
---...
---for file in ipairs(filenames:get()) do
---  local im = love.graphics.newImage(file)
---  ...
---end
+-- local filenames = lazy.new(function()
+--   return love.filesystem.getDirectoryItems('images/')
+-- end)
+-- ...
+-- for file in ipairs(filenames:get()) do
+--   local im = love.graphics.newImage(file)
+--   ...
+-- end
 
 local lazy = {}
 local mt = { __index = lazy }
