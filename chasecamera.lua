@@ -146,9 +146,8 @@ function chasecamera:update(dt, target)
   self.shaketime = self.shaketime - dt
   if self.shaketime < 0 then
     self.shaketime = 0
-    self.shakevec:zero()
+    self.shakevec:set(0, 0)
   else
-    self.shakevec:zero()
     self.shakevec:set(
       math.random() * self.shakemag * (self.shaketime / self.shakedur),
       math.random() * self.shakemag * (self.shaketime / self.shakedur))
