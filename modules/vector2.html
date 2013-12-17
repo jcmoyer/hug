@@ -65,7 +65,30 @@
 <p>Implements a 2D vector type.</p>
 <p>
 
+<p> <a href="../modules/vector2.html#">vector2</a>  is implemented as a table with X and Y components residing at
+ indices <code>1</code> and <code>2</code>, respectively. This design choice has the following
+ implications:</p>
+
+<ol>
+    <li><code>unpack</code> can be used to retreive the components of a vector as needed.</li>
+    <li>Numerical indices give certain performance benefits due to the way tables
+    are implemented in Lua.</li>
+</ol>
+
 </p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local a = vector2.new(3, 4)
+ local b = vector2.new(5, 2)
+ -- allocates a new vector:
+ local c = a + b
+ -- modifies vector b in-place:
+ b:sub(a)
+
+ -- unpack allows you to pass vector components into functions:
+ love.graphics.translate(unpack(c))</pre>
+    </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
@@ -111,6 +134,14 @@
 	<td class="summary">Returns the Y component of this vector.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#vector2:len">vector2:len&nbsp;()</a></td>
+	<td class="summary">Computes the length of this vector.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#vector2:dot">vector2:dot&nbsp;(vec)</a></td>
+	<td class="summary">Computes the dot product between this vector and another.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#vector2:add">vector2:add&nbsp;(a, b)</a></td>
 	<td class="summary">Adds another vector to this one.</td>
 	</tr>
@@ -133,10 +164,6 @@
 	<tr>
 	<td class="name" nowrap><a href="#vector2:set">vector2:set&nbsp;(x, y)</a></td>
 	<td class="summary">Sets the individual components of this vector.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#vector2:zero">vector2:zero&nbsp;()</a></td>
-	<td class="summary">Sets the components of this vector to zero.</td>
 	</tr>
 </table>
 
@@ -400,6 +427,50 @@
 
 </dd>
     <dt>
+    <a name = "vector2:len"></a>
+    <strong>vector2:len&nbsp;()</strong>
+    </dt>
+    <dd>
+    Computes the length of this vector.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The length of this vector.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "vector2:dot"></a>
+    <strong>vector2:dot&nbsp;(vec)</strong>
+    </dt>
+    <dd>
+    Computes the dot product between this vector and another.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">vec</span>
+            <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
+         The second vector.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+        The dot product between the given vectors.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "vector2:add"></a>
     <strong>vector2:add&nbsp;(a, b)</strong>
     </dt>
@@ -548,25 +619,6 @@
             <span class="types"><span class="type">number</span></span>
          New value for the Y component of this vector.</li>
     </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-          <span class="types"><a class="type" href="../modules/vector2.html#">vector2</a></span>
-        This vector.
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "vector2:zero"></a>
-    <strong>vector2:zero&nbsp;()</strong>
-    </dt>
-    <dd>
-    Sets the components of this vector to zero.
-
 
     <h3>Returns:</h3>
     <ol>

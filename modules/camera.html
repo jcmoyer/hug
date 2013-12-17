@@ -79,7 +79,7 @@
 	<td class="summary">Centers the camera on a point instantly.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#camera:panCenter">camera:panCenter&nbsp;(x, y, dt)</a></td>
+	<td class="name" nowrap><a href="#camera:panCenter">camera:panCenter&nbsp;(x, y, a)</a></td>
 	<td class="summary">Pans the camera towards a point.</td>
 	</tr>
 	<tr>
@@ -87,7 +87,7 @@
 	<td class="summary">Updates the state of the camera.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#camera:shake">camera:shake&nbsp;(duration, magnitude)</a></td>
+	<td class="name" nowrap><a href="#camera:shake">camera:shake&nbsp;(duration [, magnitude=20])</a></td>
 	<td class="summary">Shakes the camera.</td>
 	</tr>
 	<tr>
@@ -160,7 +160,7 @@
 </dd>
     <dt>
     <a name = "camera:panCenter"></a>
-    <strong>camera:panCenter&nbsp;(x, y, dt)</strong>
+    <strong>camera:panCenter&nbsp;(x, y, a)</strong>
     </dt>
     <dd>
     Pans the camera towards a point.
@@ -173,7 +173,7 @@
         <li><span class="parameter">y</span>
             <span class="types"><span class="type">number</span></span>
          Y-coordinate of the point to pan towards.</li>
-        <li><span class="parameter">dt</span>
+        <li><span class="parameter">a</span>
             <span class="types"><span class="type">number</span></span>
          Percent to pan by.</li>
     </ul>
@@ -204,7 +204,7 @@
 </dd>
     <dt>
     <a name = "camera:shake"></a>
-    <strong>camera:shake&nbsp;(duration, magnitude)</strong>
+    <strong>camera:shake&nbsp;(duration [, magnitude=20])</strong>
     </dt>
     <dd>
     Shakes the camera.

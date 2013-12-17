@@ -68,14 +68,14 @@
     <h3>Usage:</h3>
     <ul>
         <pre class="example">
-local filenames = lazy.new(function()
-  return love.filesystem.enumerate(&apos;images/&apos;)
-end)
-...
-for file in ipairs(filenames:get()) do
-  local im = love.graphics.newImage(file)
-  ...
-end</pre>
+ local filenames = lazy.new(function()
+   return love.filesystem.getDirectoryItems(&apos;images/&apos;)
+ end)
+ ...
+ for file in ipairs(filenames:get()) do
+   local im = love.graphics.newImage(file)
+   ...
+ end</pre>
     </ul>
 
 
