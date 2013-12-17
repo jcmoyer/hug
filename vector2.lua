@@ -115,6 +115,14 @@ function vector2:y()
   return self[2]
 end
 
+--- Computes the length of this vector.
+-- @treturn number The length of this vector.
+function vector2:len()
+  local x = self[1]
+  local y = self[2]
+  return math.sqrt(x * x + y * y)
+end
+
 --- Adds another vector to this one.
 -- @tparam vector2|number a If a `vector2` is provided, each of its components
 --   will be added to the components of this vector. If a number is provided

@@ -83,6 +83,13 @@ local function normalize()
   )  
 end
 
+local function len()
+  framework.compare(
+    5,
+    vector2.new(3, 4):len()
+  )
+end
+
 return framework.testall {
   { 'equality', eq },
 
@@ -96,5 +103,6 @@ return framework.testall {
   { 'operator multiplication', opmul },
   { 'operator division', opdiv },
   
-  { 'normalization', normalize }
+  { 'normalization', normalize },
+  { 'length', len }
 }
