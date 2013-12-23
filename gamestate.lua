@@ -31,7 +31,7 @@ local mt = { __index = gamestate }
 --   love.graphics.rectangle('fill', 0, 0, 200, 200)
 -- end
 
-local setmetatable = setmetatable
+local setmetatable, getmetatable = setmetatable, getmetatable
 
 --- List of supported gamestate callbacks.
 -- Each of these callbacks can be implemented on your derived gamestates. This
