@@ -25,7 +25,8 @@ local setmetatable, error = setmetatable, error
 local max = math.max
 local insert, remove = table.insert, table.remove
 
-local callbacks = require('hug.gamestate').callbacks()
+local gamestate = require('hug.gamestate')
+local callbacks = gamestate.callbacks()
 
 --- Constructs a new statemachine object.
 -- @treturn statemachine
@@ -83,9 +84,7 @@ end
 
 --- Pushes a new `gamestate` on top of the statemachine stack.
 function statemachine:push(newstate)
-  if not newstate.isgamestate then
-    error('newstate is not a gamestate')
-  end
+  assert(gamestate.type(newstate) ~= nil, 'newstate is not a gamestate')
   
   local oldstate = self:top()
   

@@ -66,7 +66,27 @@ local callbacks = {
   'joystickremoved'
 }
 
-gamestate.isgamestate = true
+-- Climb the __index chain and see if it contains gamestate's metatable.
+local function isgamestate(t)
+  local tmt = getmetatable(t)
+  if tmt.__index == mt.__index then
+    return true
+  elseif tmt.__index then
+    return isgamestate(tmt.__index)
+  end
+  return false
+end
+
+--- Checks whether `t` is a valid gamestate.
+-- @treturn string|nil The string `'gamestate'` if `t` is a gamestate;
+--   otherwise, `nil`.
+function gamestate.type(t)
+  if isgamestate(t) then
+    return 'gamestate'
+  else
+    return nil
+  end
+end
 
 --- Creates and returns a new gamestate table.
 -- @treturn gamestate A new gamestate.
