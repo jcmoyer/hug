@@ -66,7 +66,7 @@ local callbacks = {
   'joystickremoved'
 }
 
--- Climb the __index chain and see if it contains gamestate's metatable.
+-- Climb the __index chain and see if it contains gamestate.
 local function isgamestate(t)
   local tmt = getmetatable(t)
   if tmt.__index == mt.__index then
