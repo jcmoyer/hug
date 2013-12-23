@@ -77,6 +77,13 @@ local function isgamestate(t)
   return false
 end
 
+--- Default transparency value.
+-- If a `gamestate` is transparent, events will be passed to underlying states
+-- as long as the active state does not explicitly intercept them. This field
+-- is used for all derived gamestates that do not specify their own
+-- `transparent` field.
+gamestate.transparent = false
+
 --- Checks whether `t` is a valid gamestate.
 -- @treturn string|nil The string `'gamestate'` if `t` is a gamestate;
 --   otherwise, `nil`.
@@ -91,9 +98,7 @@ end
 --- Creates and returns a new gamestate table.
 -- @treturn gamestate A new gamestate.
 function gamestate.new()
-  local instance = {
-    transparent = false
-  }
+  local instance = {}
   return setmetatable(instance, mt)
 end
 
