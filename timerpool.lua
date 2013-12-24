@@ -16,6 +16,8 @@
 
 --- Manages a collection of timers.
 
+local timer = require('hug.timer')
+
 local timerpool = {}
 local timers = {}
 
@@ -26,27 +28,9 @@ local remove = table.remove
 -- @func callback Function to run when the timer expires.
 -- @treturn timer The newly started timer.
 function timerpool.start(duration, callback)
-  local remaining = duration
-  local timer = {}
-  function timer.getCallback()
-    return callback
-  end
-  function timer.getRemaining()
-    return remaining
-  end
-  function timer.getDuration()
-    return duration
-  end
-  function timer.update(dt)
-    remaining = remaining - dt
-  end
-  function timer.finished()
-    return remaining <= 0
-  end
-  
-  timers[#timers + 1] = timer
-  
-  return timer
+  local t = timer.new(duration, callback)
+  timers[#timers + 1] = t
+  return t
 end
 
 --- Updates the timerpool.
@@ -57,10 +41,21 @@ end
 function timerpool.update(dt)
   for i = #timers, 1, -1 do
     local t = timers[i]
-    t.update(dt)
-    if t.finished() then
-      local f = t.getCallback()
+    t:update(dt)
+   
+    local status = t:status()
+    
+    -- true if the timer is removable
+    local r = status ~= 'active'
+    
+    -- only invoke callbacks on finished timers
+    if status == 'finished' then
+      local f = t:state()
       if f then f() end
+    end
+    
+    -- remove the dead timer
+    if r then
       remove(timers, i)
     end
   end
