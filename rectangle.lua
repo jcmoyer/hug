@@ -41,6 +41,30 @@ function rectangle.new(x, y, w, h)
   return setmetatable(instance, mt)
 end
 
+--- Returns the X-coordinate of the left side of the rectangle.
+-- @treturn number
+function rectangle:x()
+  return self[1]
+end
+
+--- Returns the Y-coordinate of the top side of the rectangle.
+-- @treturn number
+function rectangle:y()
+  return self[2]
+end
+
+--- Returns the width of the rectangle.
+-- @treturn number
+function rectangle:width()
+  return self[3]
+end
+
+--- Returns the height of the rectangle.
+-- @treturn number
+function rectangle:height()
+  return self[4]
+end
+
 --- Returns the X-coordinate of the right side of the rectangle.
 -- @treturn number
 function rectangle:right()
