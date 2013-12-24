@@ -1,3 +1,5 @@
+local testfmt = '%d test(s) passed out of %d. (%.2f%%)'
+
 local function makeheader(text)
   local header = '== ' .. text .. ' '
   return header .. string.rep('=', 79 - #header)
@@ -9,18 +11,28 @@ local function runtest(name)
   
   local chunk = assert(loadfile('test-' .. name .. '.lua'))
   local passed, total = chunk()
-  print(string.format('%d test(s) passed out of %d. (%.2f%%)', passed, total, 100 * passed / total))
+  print(string.format(testfmt, passed, total, 100 * passed / total))
+  
+  return passed, total
 end
 
 -- calls runtest for each entry in a table
 local function runtests(t)
+  local totalpassed, totaloverall = 0, 0
   for i = 1, #t do
-    runtest(t[i])
+    local passed, total = runtest(t[i])
+    totalpassed = totalpassed + passed
+    totaloverall = totaloverall + total
   end
+  return totalpassed, totaloverall
 end
 
-runtests {
+local passed, total = runtests {
   'vector2',
   'color',
   'rectangle'
 }
+
+local overall = string.format(testfmt, passed, total, 100 * passed / total)
+print(makeheader('Overall Results'))
+print(overall)
