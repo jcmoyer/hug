@@ -21,5 +21,6 @@ end
 
 runtests {
   'vector2',
-  'color'
+  'color',
+  'rectangle'
 }
