@@ -15,7 +15,18 @@
 --
 
 --- Implements a rectangle object.
+-- `rectangle` is implemented as a table with X, Y, width, and height
+-- components residing at the indices `1` to `4` respectively. This design
+-- choice has the following implications:
+--
+-- 1. `unpack` can be used to retreive the components of a rectangle as needed.
+-- 2. Numerical indices give certain performance benefits due to the way tables
+--    are implemented in Lua.
+--
 -- @type rectangle
+-- @usage
+-- local a = rectangle.new(0, 0, 32, 32)
+-- love.graphics.rectangle('fill', unpack(a))
 
 local rectangle = {}
 local mt = {__index = rectangle}
@@ -26,35 +37,30 @@ local mt = {__index = rectangle}
 -- @number w Width of the rectangle.
 -- @number h Height of the rectangle.
 function rectangle.new(x, y, w, h)
-  local instance = {
-    x = x,
-    y = y,
-    w = w,
-    h = h
-  }
+  local instance = { x, y, w, h }
   return setmetatable(instance, mt)
 end
 
 --- Returns the X-coordinate of the right side of the rectangle.
 -- @treturn number
 function rectangle:right()
-  return self.x + self.w
+  return self[1] + self[3]
 end
 
 --- Returns the Y-coordinate of the bottom side of the rectangle.
 -- @treturn number
 function rectangle:bottom()
-  return self.y + self.h
+  return self[2] + self[4]
 end
 
 --- Performs an intersection test with another rectangle.
 -- @tparam rectangle r Rectangle to test with.
 -- @treturn bool True if the rectangles intersect; otherwise, false.
 function rectangle:intersects(r)
-  return not (self:bottom() < r.y or
-              self.y > r:bottom() or
-              self.x > r:right()  or
-              self:right() < r.x)
+  return not (self:bottom() < r[2] or
+              self[2] > r:bottom() or
+              self[1] > r:right()  or
+              self:right() < r[1])
 end
 
 --- Test whether or not a point falls within the bounds of this rectangle.
@@ -63,9 +69,9 @@ end
 -- @treturn bool True if the point is contained by this rectangle; otherwise,
 --   false.
 function rectangle:contains(x, y)
-  return x >= self.x       and
+  return x >= self[1]      and
          x <= self:right() and
-         y >= self.y       and
+         y >= self[2]      and
          y <= self:bottom()
 end
 
@@ -73,16 +79,16 @@ end
 -- @treturn[1] number X-coordinate of the point.
 -- @treturn[2] number Y-coordinate of the point.
 function rectangle:center()
-  return self.x + self.w / 2, self.y + self.h / 2
+  return self[1] + self[3] / 2, self[2] + self[4] / 2
 end
 
---- Unpacks the components that describe this rectangle.
+--- **DEPRECATED**. Unpacks the components that describe this rectangle.
 -- @treturn[1] number X-coordinate of this rectangle's top-left point.
 -- @treturn[2] number Y-coordinate of this rectangle's top-left point.
 -- @treturn[3] number Width of this rectangle.
 -- @treturn[4] number Height of this rectangle.
 function rectangle:unpack()
-  return self.x, self.y, self.w, self.h
+  return self[1], self[2], self[3], self[4]
 end
 
 return rectangle
