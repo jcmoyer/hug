@@ -39,6 +39,15 @@ function mt.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
+--- Implements `tostring` for `rectangle` objects.
+-- Do not use this method for serialization as the format may change in the
+-- future. This method only guarantees that `rectangle` objects can be
+-- converted to a human-readable representation.
+-- @treturn string A `string` representation for this vector.
+function mt:__tostring()
+  return self[1] .. ',' .. self[2] .. ',' .. self[3] .. ',' .. self[4]
+end
+
 --- Constructs a new `rectangle`.
 -- @number x X-coordinate of the rectangle's top-left point.
 -- @number y Y-coordinate of the rectangle's top-left point.
