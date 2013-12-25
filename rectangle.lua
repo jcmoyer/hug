@@ -49,12 +49,12 @@ function mt:__tostring()
 end
 
 --- Constructs a new `rectangle`.
--- @number x X-coordinate of the rectangle's top-left point.
--- @number y Y-coordinate of the rectangle's top-left point.
--- @number w Width of the rectangle.
--- @number h Height of the rectangle.
+-- @number[opt=0] x X-coordinate of the rectangle's top-left point.
+-- @number[opt=0] y Y-coordinate of the rectangle's top-left point.
+-- @number[opt=0] w Width of the rectangle.
+-- @number[opt=0] h Height of the rectangle.
 function rectangle.new(x, y, w, h)
-  local instance = { x, y, w, h }
+  local instance = { x or 0, y or 0, w or 0, h or 0 }
   return setmetatable(instance, mt)
 end
 
