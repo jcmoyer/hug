@@ -123,13 +123,4 @@ function rectangle:center()
   return self[1] + self[3] / 2, self[2] + self[4] / 2
 end
 
---- **DEPRECATED**. Unpacks the components that describe this rectangle.
--- @treturn[1] number X-coordinate of this rectangle's top-left point.
--- @treturn[2] number Y-coordinate of this rectangle's top-left point.
--- @treturn[3] number Width of this rectangle.
--- @treturn[4] number Height of this rectangle.
-function rectangle:unpack()
-  return self[1], self[2], self[3], self[4]
-end
-
 return rectangle
