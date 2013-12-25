@@ -31,6 +31,10 @@
 local rectangle = {}
 local mt = {__index = rectangle}
 
+local function isrectangle(t)
+  return getmetatable(t) == mt
+end
+
 --- Implements binary operator `==` for `rectangle` objects.
 -- @tparam rectangle a Rectangle A.
 -- @tparam rectangle b Rectangle B.
@@ -131,16 +135,22 @@ function rectangle:union(r)
   return rectangle.new(xmin, ymin, xmax - xmin, ymax - ymin)
 end
 
---- Test whether or not a point falls within the bounds of this rectangle.
--- @number x X-coordinate of the point.
--- @number y Y-coordinate of the point.
--- @treturn bool True if the point is contained by this rectangle; otherwise,
---   false.
+--- Determines whether or not this rectangle contains a point or rectangle.
+-- @tparam number|rectangle x If `x` is a number, it is treated as the
+--   X-coordinate of a point. If `x` is a `rectangle`, this function determines
+--   whether or not `x` is completely bounded by this rectangle.
+-- @tparam number|nil y Y-coordinate of the point. This parameter is ignored if
+--   `x` is a `rectangle`.
+-- @treturn bool True if the point or rectangle is contained by this rectangle;
+--   otherwise, false.
 function rectangle:contains(x, y)
-  return x >= self[1]      and
-         x <= self:right() and
-         y >= self[2]      and
-         y <= self:bottom()
+  if isrectangle(x) then
+    return x[1] >= self[1] and x[2] >= self[2] and
+           x:right() <= self:right() and x:bottom() <= self:bottom()
+  else
+    return x >= self[1] and x <= self:right() and
+           y >= self[2] and y <= self:bottom()
+  end
 end
 
 --- Computes the point that lies in the center of this rectangle.

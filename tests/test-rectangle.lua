@@ -81,6 +81,19 @@ local function contains()
   framework.compare(false, r:contains(250, 150))
   framework.compare(true, r:contains(100, 100))
   framework.compare(true, r:contains(200, 200))
+  
+  framework.compare(
+    true,
+    r:contains(rectangle.new(120, 120, 50, 50))
+  )
+  framework.compare(
+    false,
+    r:contains(rectangle.new(120, 120, 50, 200))
+  )
+  framework.compare(
+    false,
+    r:contains(rectangle.new(500, 100, 100, 100))
+  )
 end
 
 local function center()
