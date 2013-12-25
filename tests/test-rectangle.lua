@@ -57,9 +57,19 @@ local function center()
   framework.compare(150, y, 'y')
 end
 
+local function eq()
+  local a = rectangle.new(10, 20, 30, 40)
+  local b = rectangle.new(20, 30, 40, 50)
+  local c = rectangle.new(10, 20, 30, 40)
+  framework.compare(true, a ~= b)
+  framework.compare(true, a == c)
+end
+
 return framework.testall {
   { 'components', components },
   { 'intersects', intersects },
   { 'contains', contains },
-  { 'center', center }
+  { 'center', center },
+  
+  { 'equality', eq }
 }

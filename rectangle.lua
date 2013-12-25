@@ -31,6 +31,14 @@
 local rectangle = {}
 local mt = {__index = rectangle}
 
+--- Implements binary operator `==` for `rectangle` objects.
+-- @tparam rectangle a Rectangle A.
+-- @tparam rectangle b Rectangle B.
+-- @treturn boolean True if the rectangles are equal; otherwise false.
+function mt.__eq(a, b)
+  return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
+end
+
 --- Constructs a new `rectangle`.
 -- @number x X-coordinate of the rectangle's top-left point.
 -- @number y Y-coordinate of the rectangle's top-left point.
