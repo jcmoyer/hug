@@ -94,6 +94,22 @@ function rectangle:bottom()
   return self[2] + self[4]
 end
 
+--- Computes the rectangle formed from the area of two overlapping rectangles.
+-- @tparam rectangle r Rectangle to intersect with.
+-- @treturn rectangle|nil If the rectangles intersect, this function returns
+--   the rectangle formed from the overlapping area between them. If the
+--   given rectangles do not intersect, this function returns `nil`.
+function rectangle:intersect(r)
+  local xmin = math.max(self[1], r[1])
+  local ymin = math.max(self[2], r[2])
+  local xmax = math.min(self:right(), r:right())
+  local ymax = math.min(self:bottom(), r:bottom())
+  if (xmax < xmin or ymax < ymin) then
+    return nil
+  end
+  return rectangle.new(xmin, ymin, xmax - xmin, ymax - ymin)
+end
+
 --- Performs an intersection test with another rectangle.
 -- @tparam rectangle r Rectangle to test with.
 -- @treturn bool True if the rectangles intersect; otherwise, false.

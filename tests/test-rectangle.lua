@@ -13,6 +13,30 @@ local function components()
   framework.compare(true, r:bottom() == 34 + 78, 'bottom side')
 end
 
+local function intersect()
+  local a = rectangle.new(200, 200, 200, 200)
+  local b = rectangle.new(150, 250, 200, 50)
+  
+  framework.compare(
+    rectangle.new(200, 250, 150, 50),
+    a:intersect(b)
+  )
+  framework.compare(
+    rectangle.new(200, 250, 150, 50),
+    b:intersect(a)
+  )
+  
+  local c = rectangle.new(0, 0, 100, 100)
+  framework.compare(
+    nil,
+    a:intersect(c)
+  )
+  framework.compare(
+    nil,
+    c:intersect(a)
+  )
+end
+
 local function intersects()
   local a = rectangle.new(100, 200, 300, 400)
   local b = rectangle.new(400, 800, 100, 100)
@@ -83,6 +107,7 @@ end
 
 return framework.testall {
   { 'components', components },
+  { 'intersect', intersect },
   { 'intersects', intersects },
   { 'contains', contains },
   { 'center', center },
