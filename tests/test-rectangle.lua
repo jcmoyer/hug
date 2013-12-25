@@ -65,11 +65,29 @@ local function eq()
   framework.compare(true, a == c)
 end
 
+local function inflate()
+  local a = rectangle.new(50, 50, 100, 100)
+  local cx1, cy1 = a:center()
+  
+  a:inflate(20, 10)
+  framework.compare(30, a:x())
+  framework.compare(140, a:width())
+  
+  framework.compare(40, a:y())
+  framework.compare(120, a:height())
+  
+  local cx2, cy2 = a:center()
+  framework.compare(cx1, cx2)
+  framework.compare(cy1, cy2)
+end
+
 return framework.testall {
   { 'components', components },
   { 'intersects', intersects },
   { 'contains', contains },
   { 'center', center },
   
-  { 'equality', eq }
+  { 'equality', eq },
+  
+  { 'inflation', inflate }
 }

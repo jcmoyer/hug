@@ -123,4 +123,17 @@ function rectangle:center()
   return self[1] + self[3] / 2, self[2] + self[4] / 2
 end
 
+--- Inflates this rectangle by the specified amount.
+-- The rectangle is enlarged in both directions on each axis by the exact
+-- amount specified. This means that inflating a 20 by 50 rectangle by 10 and
+-- 20 will result in a 40 by 90 rectangle concentric with the original.
+-- @number x Amount to inflate this rectangle on the X-axis.
+-- @number y Amount to inflate this rectangle on the Y-axis.
+function rectangle:inflate(x, y)
+  self[1] = self[1] - x
+  self[3] = self[3] + x * 2
+  self[2] = self[2] - y
+  self[4] = self[4] + y * 2
+end
+
 return rectangle
