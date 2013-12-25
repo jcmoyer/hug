@@ -120,6 +120,17 @@ function rectangle:intersects(r)
               self:right() < r[1])
 end
 
+--- Computes the rectangle that contains two given rectangles.
+-- @tparam rectangle r Rectangle to compute the union rectangle with.
+-- @treturn rectangle The rectangle that contains the given rectangles.
+function rectangle:union(r)
+  local xmin = math.min(self[1], r[1])
+  local ymin = math.min(self[2], r[2])
+  local xmax = math.max(self:right(), r:right())
+  local ymax = math.max(self:bottom(), r:bottom())
+  return rectangle.new(xmin, ymin, xmax - xmin, ymax - ymin)
+end
+
 --- Test whether or not a point falls within the bounds of this rectangle.
 -- @number x X-coordinate of the point.
 -- @number y Y-coordinate of the point.

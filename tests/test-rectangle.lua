@@ -66,6 +66,15 @@ local function intersects()
   framework.compare(true, intabottom:intersects(a), 'bottom-a intersection')
 end
 
+local function union()
+  local a = rectangle.new(0, 0, 100, 100)
+  local b = rectangle.new(200, 100, 100, 100)
+  framework.compare(
+    rectangle.new(0, 0, 300, 200),
+    a:union(b)
+  )
+end
+
 local function contains()
   local r = rectangle.new(100, 100, 100, 100)
   framework.compare(false, r:contains(0, 0))
@@ -116,6 +125,7 @@ return framework.testall {
   { 'components', components },
   { 'intersect', intersect },
   { 'intersects', intersects },
+  { 'union', union },
   { 'contains', contains },
   { 'center', center },
   
