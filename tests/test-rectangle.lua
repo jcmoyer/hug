@@ -105,6 +105,13 @@ local function inflate()
   framework.compare(cy1, cy2)
 end
 
+local function offset()
+  local a = rectangle.new(10, 20, 30, 40)
+  a:offset(10, 20)
+  framework.compare(20, a:x())
+  framework.compare(40, a:y())
+end
+
 return framework.testall {
   { 'components', components },
   { 'intersect', intersect },
@@ -114,5 +121,6 @@ return framework.testall {
   
   { 'equality', eq },
   
-  { 'inflation', inflate }
+  { 'inflation', inflate },
+  { 'offset', offset }
 }
