@@ -51,7 +51,7 @@ function timer:duration()
   return self._duration
 end
 
---- Evaluates the given function using this timer's normalized remaining time.
+--- Evaluates the given function using this timer's percentage to completion.
 -- This is equivalent to `f(1 - timer:remaining() / timer:duration())`.
 -- @func f The function to evaluate.
 -- @treturn any The result of evaluating `f`.
