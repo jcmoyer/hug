@@ -22,7 +22,6 @@ local mt = { __index = timer }
 
 function timer.new(duration, state)
   local instance = {
-    
     _duration = duration,
     _remaining = duration,
     _state = state,
