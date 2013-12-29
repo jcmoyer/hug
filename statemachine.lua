@@ -42,7 +42,7 @@ function statemachine.new()
   return setmetatable(instance, mt)
 end
 
-function statemachine:findBaseState()
+function statemachine:findbase()
   local i = #self.states + 1
   local s
   if i > 0 then
@@ -100,7 +100,7 @@ function statemachine:push(newstate)
   end
   newstate:enter(oldstate)
   
-  self:findBaseState()
+  self:findbase()
 end
 
 --- Pops the topmost `gamestate` from the statemachine stack.
@@ -117,7 +117,7 @@ function statemachine:pop()
     new:enter(old)
   end
   
-  self:findBaseState()
+  self:findbase()
   
   return old
 end
