@@ -15,6 +15,10 @@
 --
 
 --- Implements a finite state machine for handling game states.
+-- **Dependencies:**
+--
+-- * `gamestate`
+--
 -- @type statemachine
 -- @see gamestate
 

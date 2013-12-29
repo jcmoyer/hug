@@ -15,6 +15,10 @@
 --
 
 --- Implements a basic 2D camera.
+-- **Dependencies:**
+--
+-- * `extensions.math`
+--
 -- @type camera
 
 local camera = {}

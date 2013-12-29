@@ -15,6 +15,10 @@
 --
 
 --- Manages a collection of timers.
+-- **Dependencies:**
+--
+-- * `timer`
+--
 
 local timer = require('hug.timer')
 

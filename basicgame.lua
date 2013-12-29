@@ -15,6 +15,11 @@
 --
 
 --- Provides a basic framework for a game.
+-- **Dependencies:**
+--
+-- * `statemachine`
+-- * `timerpool`
+-- * `gamestate`
 
 local statemachine = require('hug.statemachine')
 local timerpool = require('hug.timerpool')

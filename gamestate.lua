@@ -19,6 +19,10 @@ local gamestate = {}
 local mt = { __index = gamestate }
 
 --- Provides a simple abstraction for individual states in a game.
+-- **Dependencies:**
+--
+-- * `extensions.table`
+--
 -- @type gamestate
 -- Typical game state implementation:
 -- @usage

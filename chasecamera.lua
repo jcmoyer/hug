@@ -17,6 +17,10 @@
 -- Adapted from http://gamedev.stackexchange.com/a/18980
 
 --- Implements a 2D camera that chases a target.
+-- **Dependencies:**
+--
+-- * `vector2`
+--
 -- @type chasecamera
 
 local vector2 = require('hug.vector2')
