@@ -30,7 +30,8 @@ end
 local passed, total = runtests {
   'vector2',
   'color',
-  'rectangle'
+  'rectangle',
+  'timerpool'
 }
 
 local overall = string.format(testfmt, passed, total, 100 * passed / total)
