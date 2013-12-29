@@ -91,16 +91,12 @@ function camera:shake(duration, magnitude)
   self.sm = magnitude or 20
 end
 
---- Computes the X coordinate of the camera, taking into account shaking.
--- @treturn number The X coordinate of the top-left point of the camera's viewport.
-function camera:calculatedX()
-  return self.x + self.sx
-end
-
---- Computes the Y coordinate of the camera, taking into account shaking.
--- @treturn number The Y coordinate of the top-left point of the camera's viewport.
-function camera:calculatedY()
-  return self.y + self.sy
+--- Computes the X and Y coordinates of the camera.
+-- This function takes shaking into account.
+-- @treturn[1] number The X coordinate.
+-- @treturn[2] number The Y coordinate.
+function camera:position()
+  return self.x + self.sx, self.y + self.sy
 end
 
 return camera
