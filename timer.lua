@@ -20,6 +20,9 @@
 local timer = {}
 local mt = { __index = timer }
 
+--- Constructs a new timer object.
+-- @number duration The duration of this timer.
+-- @tparam any state User-defined data to attach to this timer.
 function timer.new(duration, state)
   local instance = {
     _duration = duration,
