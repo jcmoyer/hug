@@ -60,7 +60,7 @@ end
 -- @number x X-coordinate of the point to pan towards.
 -- @number y Y-coordinate of the point to pan towards.
 -- @number a Percent to pan by.
-function camera:panCenter(x, y, a)
+function camera:pan(x, y, a)
   local cx = self.x
   local cy = self.y
   self:center(x, y)
