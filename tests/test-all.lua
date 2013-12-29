@@ -31,6 +31,7 @@ local passed, total = runtests {
   'vector2',
   'color',
   'rectangle',
+  'timer',
   'timerpool'
 }
 
