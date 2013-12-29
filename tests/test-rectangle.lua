@@ -1,6 +1,6 @@
 require('path')
 local framework = require('framework')
-local rectangle = require('rectangle')
+local rectangle = require('hug.rectangle')
 
 local function components()
   local r = rectangle.new(12, 34, 56, 78)
@@ -11,6 +11,30 @@ local function components()
   
   framework.compare(true, r:right() == 12 + 56, 'right side')
   framework.compare(true, r:bottom() == 34 + 78, 'bottom side')
+end
+
+local function intersect()
+  local a = rectangle.new(200, 200, 200, 200)
+  local b = rectangle.new(150, 250, 200, 50)
+  
+  framework.compare(
+    rectangle.new(200, 250, 150, 50),
+    a:intersect(b)
+  )
+  framework.compare(
+    rectangle.new(200, 250, 150, 50),
+    b:intersect(a)
+  )
+  
+  local c = rectangle.new(0, 0, 100, 100)
+  framework.compare(
+    nil,
+    a:intersect(c)
+  )
+  framework.compare(
+    nil,
+    c:intersect(a)
+  )
 end
 
 local function intersects()
@@ -42,12 +66,34 @@ local function intersects()
   framework.compare(true, intabottom:intersects(a), 'bottom-a intersection')
 end
 
+local function union()
+  local a = rectangle.new(0, 0, 100, 100)
+  local b = rectangle.new(200, 100, 100, 100)
+  framework.compare(
+    rectangle.new(0, 0, 300, 200),
+    a:union(b)
+  )
+end
+
 local function contains()
   local r = rectangle.new(100, 100, 100, 100)
   framework.compare(false, r:contains(0, 0))
   framework.compare(false, r:contains(250, 150))
   framework.compare(true, r:contains(100, 100))
   framework.compare(true, r:contains(200, 200))
+  
+  framework.compare(
+    true,
+    r:contains(rectangle.new(120, 120, 50, 50))
+  )
+  framework.compare(
+    false,
+    r:contains(rectangle.new(120, 120, 50, 200))
+  )
+  framework.compare(
+    false,
+    r:contains(rectangle.new(500, 100, 100, 100))
+  )
 end
 
 local function center()
@@ -57,9 +103,47 @@ local function center()
   framework.compare(150, y, 'y')
 end
 
+local function eq()
+  local a = rectangle.new(10, 20, 30, 40)
+  local b = rectangle.new(20, 30, 40, 50)
+  local c = rectangle.new(10, 20, 30, 40)
+  framework.compare(true, a ~= b)
+  framework.compare(true, a == c)
+end
+
+local function inflate()
+  local a = rectangle.new(50, 50, 100, 100)
+  local cx1, cy1 = a:center()
+  
+  a:inflate(20, 10)
+  framework.compare(30, a:x())
+  framework.compare(140, a:width())
+  
+  framework.compare(40, a:y())
+  framework.compare(120, a:height())
+  
+  local cx2, cy2 = a:center()
+  framework.compare(cx1, cx2)
+  framework.compare(cy1, cy2)
+end
+
+local function offset()
+  local a = rectangle.new(10, 20, 30, 40)
+  a:offset(10, 20)
+  framework.compare(20, a:x())
+  framework.compare(40, a:y())
+end
+
 return framework.testall {
   { 'components', components },
+  { 'intersect', intersect },
   { 'intersects', intersects },
+  { 'union', union },
   { 'contains', contains },
-  { 'center', center }
+  { 'center', center },
+  
+  { 'equality', eq },
+  
+  { 'inflation', inflate },
+  { 'offset', offset }
 }

@@ -1,6 +1,6 @@
 require('path')
 local framework = require('framework')
-local color     = require('color')
+local color     = require('hug.color')
 
 local function eq()
   local a = color.new(100, 200, 300)
