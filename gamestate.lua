@@ -121,12 +121,12 @@ end
 
 --- Callback invoked when this gamestate becomes the active state in a state machine.
 -- @tab oldstate A reference to the previous state.
-function gamestate:onEnter(oldstate)
+function gamestate:enter(oldstate)
 end
 
 --- Callback invoked when this gamestate is replaced as the active state in a state machine.
 -- @tab newstate A reference to the state being transitioned to.
-function gamestate:onLeave(newstate)
+function gamestate:leave(newstate)
 end
 
 --- Gets or sets the `statemachine` associated with this game state.
