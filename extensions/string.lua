@@ -19,23 +19,6 @@
 
 local extensions = {}
 
-local concat = table.concat
-
---- Joins a table of strings, inserting a delimiter between each one.
--- @tparam string delim Delimiter to insert between each string in `xs`.
--- @tparam table xs Table of strings to join.
--- @treturn string The joined string.
-function extensions.join(delim, xs)
-  local whole = {}
-  for i = 1, #xs do
-    whole[#whole + 1] = xs[i]
-    if i + 1 <= #xs then
-      whole[#whole + 1] = delim
-    end
-  end
-  return concat(whole)
-end
-
 --- Splits a string on a delimiter.
 -- @string s String to split.
 -- @string p Pattern to split on.
