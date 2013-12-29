@@ -49,6 +49,14 @@ function timer:duration()
   return self._duration
 end
 
+--- Evaluates the given function using this timer's normalized remaining time.
+-- This is equivalent to `f(1 - timer:remaining() / timer:duration())`.
+-- @func f The function to evaluate.
+-- @treturn any The result of evaluating `f`.
+function timer:evaluate(f)
+  return f(1 - self._remaining / self._duration)
+end
+
 --- Updates this timer.
 -- @number dt Amount of time elapsed since the last update.
 function timer:update(dt)
