@@ -30,7 +30,7 @@ function timer.new(duration, state)
     _state = state,
     cancelled = false
   }
-  return setmetatable(timer, mt)
+  return setmetatable(instance, mt)
 end
 
 --- Returns the state associated with this timer.
