@@ -175,7 +175,7 @@ end
 
 --- Moves this rectangle by the given vector.
 -- @number x Amount to move this rectangle by on the X-axis.
--- @number x Amount to move this rectangle by on the Y-axis.
+-- @number y Amount to move this rectangle by on the Y-axis.
 function rectangle:offset(x, y)
   self[1] = self[1] + x
   self[2] = self[2] + y
