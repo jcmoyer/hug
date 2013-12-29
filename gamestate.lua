@@ -26,12 +26,18 @@ local mt = { __index = gamestate }
 -- @type gamestate
 -- Typical game state implementation:
 -- @usage
--- local mystate = setmetatable({}, {__index = gamestate})
+-- -- Extend gamestate
+-- local mystate = gamestate.extend()
+-- -- Use mystate as a metatable so mystate methods can be called on mystate
+-- -- instances
 -- mystate.__index = mystate
+-- -- Constructs a new mystate instance
 -- function mystate.new()
---   return setmetatable({}, mystate)
+--   return setmetatable({ color = {255, 0, 0} }, mystate)
 -- end
+-- -- The colon syntax turns draw into a method:
 -- function mystate:draw()
+--   love.graphics.setColor(self.color)
 --   love.graphics.rectangle('fill', 0, 0, 200, 200)
 -- end
 
@@ -104,6 +110,13 @@ end
 function gamestate.new()
   local instance = {}
   return setmetatable(instance, mt)
+end
+
+--- Returns an empty table that indexes gamestate.
+-- This is equivalent to `setmetatable({}, { __index = gamestate})`.
+-- @treturn table A table that indexes gamestate.
+function gamestate.extend()
+  return setmetatable({}, { __index = gamestate})
 end
 
 --- Callback invoked when this gamestate becomes the active state in a state machine.
