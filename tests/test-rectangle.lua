@@ -1,6 +1,6 @@
 require('path')
 local framework = require('framework')
-local rectangle = require('rectangle')
+local rectangle = require('hug.rectangle')
 
 local function components()
   local r = rectangle.new(12, 34, 56, 78)

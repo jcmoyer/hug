@@ -1,6 +1,6 @@
 require('path')
 local framework = require('framework')
-local vector2   = require('vector2')
+local vector2   = require('hug.vector2')
 
 local function eq()
   local a = vector2.new(100, 200)

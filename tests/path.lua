@@ -1,2 +1,2 @@
--- Look for modules in parent directory
-package.path = "../?.lua;" .. package.path
+-- Look for modules in the directory that contains hug
+package.path = "../../?.lua;" .. package.path
