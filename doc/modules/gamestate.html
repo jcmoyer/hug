@@ -68,16 +68,28 @@
 <p>Provides a simple abstraction for individual states in a game.</p>
 <p>
 
+<p> <strong>Dependencies:</strong></p>
+
+<ul>
+    <li><a href="../modules/extensions.table.html#">extensions.table</a> </li>
+</ul>
+
 </p>
     <h3>Usage:</h3>
     <ul>
         <pre class="example">
- local mystate = setmetatable({}, {__index = gamestate})
+ -- Extend gamestate
+ local mystate = gamestate.extend()
+ -- Use mystate as a metatable so mystate methods can be called on mystate
+ -- instances
  mystate.__index = mystate
+ -- Constructs a new mystate instance
  function mystate.new()
-   return setmetatable({}, mystate)
+   return setmetatable({ color = {255, 0, 0} }, mystate)
  end
+ -- The colon syntax turns draw into a method:
  function mystate:draw()
+   love.graphics.setColor(self.color)
    love.graphics.rectangle(&apos;fill&apos;, 0, 0, 200, 200)
  end</pre>
     </ul>
@@ -94,11 +106,15 @@
 	<td class="summary">Creates and returns a new gamestate table.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#gamestate:onEnter">gamestate:onEnter&nbsp;(oldstate)</a></td>
+	<td class="name" nowrap><a href="#extend">extend&nbsp;()</a></td>
+	<td class="summary">Returns an empty table that indexes gamestate.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gamestate:enter">gamestate:enter&nbsp;(oldstate)</a></td>
 	<td class="summary">Callback invoked when this gamestate becomes the active state in a state machine.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#gamestate:onLeave">gamestate:onLeave&nbsp;(newstate)</a></td>
+	<td class="name" nowrap><a href="#gamestate:leave">gamestate:leave&nbsp;(newstate)</a></td>
 	<td class="summary">Callback invoked when this gamestate is replaced as the active state in a state machine.</td>
 	</tr>
 	<tr>
@@ -178,8 +194,28 @@
 
 </dd>
     <dt>
-    <a name = "gamestate:onEnter"></a>
-    <strong>gamestate:onEnter&nbsp;(oldstate)</strong>
+    <a name = "extend"></a>
+    <strong>extend&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns an empty table that indexes gamestate.
+ This is equivalent to <code>setmetatable({}, { __index = gamestate})</code>.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
+        A table that indexes gamestate.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "gamestate:enter"></a>
+    <strong>gamestate:enter&nbsp;(oldstate)</strong>
     </dt>
     <dd>
     Callback invoked when this gamestate becomes the active state in a state machine.
@@ -197,8 +233,8 @@
 
 </dd>
     <dt>
-    <a name = "gamestate:onLeave"></a>
-    <strong>gamestate:onLeave&nbsp;(newstate)</strong>
+    <a name = "gamestate:leave"></a>
+    <strong>gamestate:leave&nbsp;(newstate)</strong>
     </dt>
     <dd>
     Callback invoked when this gamestate is replaced as the active state in a state machine.

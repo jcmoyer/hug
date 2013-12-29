@@ -66,6 +66,12 @@
 <p>Implements a basic 2D camera.</p>
 <p>
 
+<p> <strong>Dependencies:</strong></p>
+
+<ul>
+    <li><a href="../modules/extensions.math.html#">extensions.math</a> </li>
+</ul>
+
 </p>
 
 
@@ -80,7 +86,7 @@
 	<td class="summary">Centers the camera on a point instantly.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#camera:panCenter">camera:panCenter&nbsp;(x, y, a)</a></td>
+	<td class="name" nowrap><a href="#camera:pan">camera:pan&nbsp;(x, y, a)</a></td>
 	<td class="summary">Pans the camera towards a point.</td>
 	</tr>
 	<tr>
@@ -92,12 +98,8 @@
 	<td class="summary">Shakes the camera.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#camera:calculatedX">camera:calculatedX&nbsp;()</a></td>
-	<td class="summary">Computes the X coordinate of the camera, taking into account shaking.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#camera:calculatedY">camera:calculatedY&nbsp;()</a></td>
-	<td class="summary">Computes the Y coordinate of the camera, taking into account shaking.</td>
+	<td class="name" nowrap><a href="#camera:position">camera:position&nbsp;()</a></td>
+	<td class="summary">Computes the X and Y coordinates of the camera.</td>
 	</tr>
 </table>
 
@@ -160,8 +162,8 @@
 
 </dd>
     <dt>
-    <a name = "camera:panCenter"></a>
-    <strong>camera:panCenter&nbsp;(x, y, a)</strong>
+    <a name = "camera:pan"></a>
+    <strong>camera:pan&nbsp;(x, y, a)</strong>
     </dt>
     <dd>
     Pans the camera towards a point.
@@ -226,37 +228,22 @@
 
 </dd>
     <dt>
-    <a name = "camera:calculatedX"></a>
-    <strong>camera:calculatedX&nbsp;()</strong>
+    <a name = "camera:position"></a>
+    <strong>camera:position&nbsp;()</strong>
     </dt>
     <dd>
-    Computes the X coordinate of the camera, taking into account shaking.
+    Computes the X and Y coordinates of the camera.
+ This function takes shaking into account.
 
 
     <h3>Returns:</h3>
     <ol>
-
+        <li>
           <span class="types"><span class="type">number</span></span>
-        The X coordinate of the top-left point of the camera's viewport.
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "camera:calculatedY"></a>
-    <strong>camera:calculatedY&nbsp;()</strong>
-    </dt>
-    <dd>
-    Computes the Y coordinate of the camera, taking into account shaking.
-
-
-    <h3>Returns:</h3>
-    <ol>
-
+        The X coordinate.</li>
+        <li>
           <span class="types"><span class="type">number</span></span>
-        The Y coordinate of the top-left point of the camera's viewport.
+        The Y coordinate.</li>
     </ol>
 
 

@@ -66,6 +66,12 @@
 <p>Implements a finite state machine for handling game states.</p>
 <p>
 
+<p> <strong>Dependencies:</strong></p>
+
+<ul>
+    <li><a href="../modules/gamestate.html#">gamestate</a> </li>
+</ul>
+
 </p>
 
 
@@ -180,9 +186,9 @@
     </dt>
     <dd>
     Pops the topmost <a href="../modules/gamestate.html#">gamestate</a>  from the statemachine stack.
- The state being popped will receive a call to <code>onLeave</code> with the underlying
+ The state being popped will receive a call to <code>leave</code> with the underlying
  state as a parameter. Likewise, the state being transitioned to will receive
- a call to <code>onEnter</code> with the popped state as a parameter.
+ a call to <code>enter</code> with the popped state as a parameter.
 
 
     <h3>Returns:</h3>
