@@ -47,11 +47,12 @@
   <li><a href="../modules/extensions.math.html">extensions.math</a></li>
   <li><a href="../modules/extensions.string.html">extensions.string</a></li>
   <li><a href="../modules/extensions.table.html">extensions.table</a></li>
-  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gameloop.html">gameloop</a></li>
   <li><a href="../modules/gamestate.html">gamestate</a></li>
   <li><a href="../modules/lazy.html">lazy</a></li>
   <li><a href="../modules/rectangle.html">rectangle</a></li>
   <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timer.html">timer</a></li>
   <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
@@ -71,7 +72,7 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#start">start&nbsp;(initialstate [, withexts=false])</a></td>
+	<td class="name" nowrap><a href="#start">start&nbsp;(initialstate)</a></td>
 	<td class="summary">Creates a state machine and hooks it into LÖVE callbacks.</td>
 	</tr>
 </table>
@@ -84,23 +85,14 @@
     <dl class="function">
     <dt>
     <a name = "start"></a>
-    <strong>start&nbsp;(initialstate [, withexts=false])</strong>
+    <strong>start&nbsp;(initialstate)</strong>
     </dt>
     <dd>
     Creates a state machine and hooks it into LÖVE callbacks.
  When this function is called, a state machine will be created and
  <code>initialstate</code> will be pushed onto the top of the stack.
- This function will then set the following callbacks:</p>
-
-<ul>
-    <li><code>love.load</code></li>
-    <li><code>love.draw</code></li>
-    <li><code>love.update</code></li>
-    <li><code>love.keypressed</code></li>
-    <li><code>love.keyreleased</code></li>
-    <li><code>love.mousepressed</code></li>
-    <li><code>love.mousereleased</code></li>
-</ul>
+ This function will then set the LÖVE callbacks listed in
+ <a href="../modules/gamestate.html#callbacks">gamestate.callbacks</a> , plus <code>love.load</code>.</p>
 
 <p> These events will be forwarded to the state machine, which in turn will
  dispatch them to the appropriate game state.
@@ -110,11 +102,6 @@
         <li><span class="parameter">initialstate</span>
             <span class="types"><a class="type" href="../modules/gamestate.html#">gamestate</a></span>
          the state to start the basicgame with</li>
-        <li><span class="parameter">withexts</span>
-            <span class="types"><span class="type">bool</span></span>
-         If true, hug extensions will be installed into
-   global tables. <strong>DEPRECATED</strong>: Prefer installing the extensions yourself,
-   or require them and use them under a different name.</li>
     </ul>
 
 
@@ -123,6 +110,7 @@
     <ul>
          <li><a href="../modules/statemachine.html#">statemachine</a></li>
          <li><a href="../modules/gamestate.html#">gamestate</a></li>
+         <li><a href="../modules/gamestate.html#callbacks">gamestate.callbacks</a></li>
     </ul>
 
 

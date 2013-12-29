@@ -47,11 +47,12 @@
   <li><a href="../modules/extensions.math.html">extensions.math</a></li>
   <li><a href="../modules/extensions.string.html">extensions.string</a></li>
   <li><a href="../modules/extensions.table.html">extensions.table</a></li>
-  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gameloop.html">gameloop</a></li>
   <li><a href="../modules/gamestate.html">gamestate</a></li>
   <li><a href="../modules/lazy.html">lazy</a></li>
   <li><a href="../modules/rectangle.html">rectangle</a></li>
   <li><strong>statemachine</strong></li>
+  <li><a href="../modules/timer.html">timer</a></li>
   <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
@@ -73,30 +74,6 @@
 	<tr>
 	<td class="name" nowrap><a href="#new">new&nbsp;()</a></td>
 	<td class="summary">Constructs a new statemachine object.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#statemachine:update">statemachine:update&nbsp;(dt)</a></td>
-	<td class="summary">Updates each of the states managed by this state machine.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#statemachine:draw">statemachine:draw&nbsp;(a)</a></td>
-	<td class="summary">Draws each of the states managed by this state machine.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#statemachine:keypressed">statemachine:keypressed&nbsp;(key, unicode)</a></td>
-	<td class="summary">Notifies visible states of a keypressed event.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#statemachine:keyreleased">statemachine:keyreleased&nbsp;(key)</a></td>
-	<td class="summary">Notifies visible states of a keyreleased event.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#statemachine:mousepressed">statemachine:mousepressed&nbsp;(x, y, button)</a></td>
-	<td class="summary">Notifies visible states of a mousepressed event.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#statemachine:mousereleased">statemachine:mousereleased&nbsp;(x, y, button)</a></td>
-	<td class="summary">Notifies visible states of a mousereleased event.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#statemachine:any">statemachine:any&nbsp;()</a></td>
@@ -138,144 +115,6 @@
 
 
     </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "statemachine:update"></a>
-    <strong>statemachine:update&nbsp;(dt)</strong>
-    </dt>
-    <dd>
-    Updates each of the states managed by this state machine.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">dt</span>
-            <span class="types"><span class="type">number</span></span>
-         Time elapsed in seconds.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "statemachine:draw"></a>
-    <strong>statemachine:draw&nbsp;(a)</strong>
-    </dt>
-    <dd>
-    Draws each of the states managed by this state machine.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">a</span>
-            <span class="types"><span class="type">number</span></span>
-         Amount to interpolate the render state by.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "statemachine:keypressed"></a>
-    <strong>statemachine:keypressed&nbsp;(key, unicode)</strong>
-    </dt>
-    <dd>
-    Notifies visible states of a keypressed event.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">key</span>
-
-
-</li>
-        <li><span class="parameter">unicode</span>
-
-
-</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "statemachine:keyreleased"></a>
-    <strong>statemachine:keyreleased&nbsp;(key)</strong>
-    </dt>
-    <dd>
-    Notifies visible states of a keyreleased event.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">key</span>
-
-
-</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "statemachine:mousepressed"></a>
-    <strong>statemachine:mousepressed&nbsp;(x, y, button)</strong>
-    </dt>
-    <dd>
-    Notifies visible states of a mousepressed event.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">x</span>
-
-
-</li>
-        <li><span class="parameter">y</span>
-
-
-</li>
-        <li><span class="parameter">button</span>
-
-
-</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "statemachine:mousereleased"></a>
-    <strong>statemachine:mousereleased&nbsp;(x, y, button)</strong>
-    </dt>
-    <dd>
-    Notifies visible states of a mousereleased event.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">x</span>
-
-
-</li>
-        <li><span class="parameter">y</span>
-
-
-</li>
-        <li><span class="parameter">button</span>
-
-
-</li>
-    </ul>
-
 
 
 

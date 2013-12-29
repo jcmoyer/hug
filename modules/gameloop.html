@@ -47,13 +47,13 @@
   <li><a href="../modules/extensions.math.html">extensions.math</a></li>
   <li><a href="../modules/extensions.string.html">extensions.string</a></li>
   <li><a href="../modules/extensions.table.html">extensions.table</a></li>
-  <li><a href="../modules/gameloop.html">gameloop</a></li>
+  <li><strong>gameloop</strong></li>
   <li><a href="../modules/gamestate.html">gamestate</a></li>
   <li><a href="../modules/lazy.html">lazy</a></li>
   <li><a href="../modules/rectangle.html">rectangle</a></li>
   <li><a href="../modules/statemachine.html">statemachine</a></li>
   <li><a href="../modules/timer.html">timer</a></li>
-  <li><strong>timerpool</strong></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
 
@@ -61,9 +61,9 @@
 
 <div id="content">
 
-<h1>Module <code>timerpool</code></h1>
+<h1>Module <code>gameloop</code></h1>
 
-<p>Manages a collection of timers.</p>
+<p>Contains functions that set up various kinds of game loops.</p>
 <p>
 
 </p>
@@ -72,12 +72,8 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#start">start&nbsp;(duration, callback)</a></td>
-	<td class="summary">Starts a new timer.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#update">update&nbsp;(dt)</a></td>
-	<td class="summary">Updates the timerpool.</td>
+	<td class="name" nowrap><a href="#fixint">fixint&nbsp;(updatehz)</a></td>
+	<td class="summary">Sets up a game loop with a fixed timestep and interpolated rendering.</td>
 	</tr>
 </table>
 
@@ -88,48 +84,27 @@
     <h2><a name="Functions"></a>Functions</h2>
     <dl class="function">
     <dt>
-    <a name = "start"></a>
-    <strong>start&nbsp;(duration, callback)</strong>
+    <a name = "fixint"></a>
+    <strong>fixint&nbsp;(updatehz)</strong>
     </dt>
     <dd>
-    Starts a new timer.
+    Sets up a game loop with a fixed timestep and interpolated rendering.
+ <strong>Replaces</strong> the default <code>love.run</code> callback with one that calls
+ <code>love.update</code> <code>updatehz</code> times per second. Additionally, <code>love.draw</code> will
+ receive an argument <code>alpha</code> that tells it how much it needs to interpolate
+ the scene by for this frame. That is, objects in a scene need to be drawn
+ at a position that is <code>alpha</code> percent between the previous and next <em>update</em>
+ frame. This game loop aims to eliminate a visual artifact known as temporal
+ aliasing when used properly.</p>
+
+<p> <code>love.timer</code> is <strong>required</strong> for this game loop to function. If it is
+ disabled, <code>love.run</code> will throw an error.
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">duration</span>
-            <span class="types"><span class="type">number</span></span>
-         Amount of time, in seconds, this timer will expire in.</li>
-        <li><span class="parameter">callback</span>
-            <span class="types"><span class="type">func</span></span>
-         Function to run when the timer expires.</li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-          <span class="types"><a class="type" href="../modules/timer.html#">timer</a></span>
-        The newly started timer.
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "update"></a>
-    <strong>update&nbsp;(dt)</strong>
-    </dt>
-    <dd>
-    Updates the timerpool.
- This updates all the timers that this timerpool is managing. Timers that
- have expired will have their callbacks executed, and the timers themselves
- will be removed from the timerpool.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">dt</span>
-            <span class="types"><span class="type">number</span></span>
-         Time elapsed in seconds.</li>
+        <li><span class="parameter">updatehz</span>
+            <span class="types"><span class="type">int</span></span>
+         How many times to update the game per second.</li>
     </ul>
 
 

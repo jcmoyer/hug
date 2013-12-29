@@ -33,6 +33,8 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
@@ -47,11 +49,12 @@
   <li><a href="../modules/extensions.math.html">extensions.math</a></li>
   <li><a href="../modules/extensions.string.html">extensions.string</a></li>
   <li><a href="../modules/extensions.table.html">extensions.table</a></li>
-  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gameloop.html">gameloop</a></li>
   <li><strong>gamestate</strong></li>
   <li><a href="../modules/lazy.html">lazy</a></li>
   <li><a href="../modules/rectangle.html">rectangle</a></li>
   <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timer.html">timer</a></li>
   <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
@@ -83,6 +86,10 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
+	<td class="name" nowrap><a href="#type">type&nbsp;(t)</a></td>
+	<td class="summary">Checks whether <code>t</code> is a valid gamestate.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#new">new&nbsp;()</a></td>
 	<td class="summary">Creates and returns a new gamestate table.</td>
 	</tr>
@@ -95,32 +102,26 @@
 	<td class="summary">Callback invoked when this gamestate is replaced as the active state in a state machine.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#gamestate:keypressed">gamestate:keypressed&nbsp;(key, unicode)</a></td>
-	<td class="summary">Callback invoked when a key is pressed.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#gamestate:keyreleased">gamestate:keyreleased&nbsp;(key)</a></td>
-	<td class="summary">Callback invoked when a key is released.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#gamestate:mousepressed">gamestate:mousepressed&nbsp;(x, y, button)</a></td>
-	<td class="summary">Callback invoked when a mouse button is pressed.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#gamestate:mousereleased">gamestate:mousereleased&nbsp;(x, y, button)</a></td>
-	<td class="summary">Callback invoked when a mouse button is released.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#gamestate:update">gamestate:update&nbsp;(dt)</a></td>
-	<td class="summary">Callback invoked when this gamestate needs to update its state.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#gamestate:draw">gamestate:draw&nbsp;()</a></td>
-	<td class="summary">Callback invoked when this gamestate needs to draw itself.</td>
-	</tr>
-	<tr>
 	<td class="name" nowrap><a href="#gamestate:sm">gamestate:sm&nbsp;(who)</a></td>
 	<td class="summary">Gets or sets the <a href="../modules/statemachine.html#">statemachine</a>  associated with this game state.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#callbacks">callbacks&nbsp;()</a></td>
+	<td class="summary">Returns a copy of the callbacks table.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#callbacks">callbacks</a></td>
+	<td class="summary">List of supported gamestate callbacks.</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#transparent">transparent</a></td>
+	<td class="summary">Default transparency value.</td>
 	</tr>
 </table>
 
@@ -130,6 +131,33 @@
 
     <h2><a name="Functions"></a>Functions</h2>
     <dl class="function">
+    <dt>
+    <a name = "type"></a>
+    <strong>type&nbsp;(t)</strong>
+    </dt>
+    <dd>
+    Checks whether <code>t</code> is a valid gamestate.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+
+
+</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a> or <span class="type">nil</span></span>
+        The string <code>'gamestate'</code> if <code>t</code> is a gamestate;
+   otherwise, <code>nil</code>.
+    </ol>
+
+
+
+
+</dd>
     <dt>
     <a name = "new"></a>
     <strong>new&nbsp;()</strong>
@@ -188,129 +216,6 @@
 
 </dd>
     <dt>
-    <a name = "gamestate:keypressed"></a>
-    <strong>gamestate:keypressed&nbsp;(key, unicode)</strong>
-    </dt>
-    <dd>
-    Callback invoked when a key is pressed.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">key</span>
-            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-         Character of the key pressed.</li>
-        <li><span class="parameter">unicode</span>
-            <span class="types"><span class="type">number</span></span>
-         The unicode number of the key pressed.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "gamestate:keyreleased"></a>
-    <strong>gamestate:keyreleased&nbsp;(key)</strong>
-    </dt>
-    <dd>
-    Callback invoked when a key is released.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">key</span>
-            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-         Character of the key released.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "gamestate:mousepressed"></a>
-    <strong>gamestate:mousepressed&nbsp;(x, y, button)</strong>
-    </dt>
-    <dd>
-    Callback invoked when a mouse button is pressed.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">x</span>
-            <span class="types"><span class="type">number</span></span>
-         Mouse X position.</li>
-        <li><span class="parameter">y</span>
-            <span class="types"><span class="type">number</span></span>
-         Mouse Y position.</li>
-        <li><span class="parameter">button</span>
-            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-         Mouse button pressed.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "gamestate:mousereleased"></a>
-    <strong>gamestate:mousereleased&nbsp;(x, y, button)</strong>
-    </dt>
-    <dd>
-    Callback invoked when a mouse button is released.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">x</span>
-            <span class="types"><span class="type">number</span></span>
-         Mouse X position.</li>
-        <li><span class="parameter">y</span>
-            <span class="types"><span class="type">number</span></span>
-         Mouse Y position.</li>
-        <li><span class="parameter">button</span>
-            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
-         Mouse button released.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "gamestate:update"></a>
-    <strong>gamestate:update&nbsp;(dt)</strong>
-    </dt>
-    <dd>
-    Callback invoked when this gamestate needs to update its state.
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">dt</span>
-            <span class="types"><span class="type">number</span></span>
-         Time elapsed in seconds.</li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "gamestate:draw"></a>
-    <strong>gamestate:draw&nbsp;()</strong>
-    </dt>
-    <dd>
-    Callback invoked when this gamestate needs to draw itself.
-
-
-
-
-
-
-</dd>
-    <dt>
     <a name = "gamestate:sm"></a>
     <strong>gamestate:sm&nbsp;(who)</strong>
     </dt>
@@ -331,6 +236,155 @@
           <span class="types">optional <a class="type" href="../modules/statemachine.html#">statemachine</a></span>
         The <a href="../modules/statemachine.html#">statemachine</a>  associated with this game state.
     </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "callbacks"></a>
+    <strong>callbacks&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns a copy of the callbacks table.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
+        A copy of the callbacks table.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Tables"></a>Tables</h2>
+    <dl class="function">
+    <dt>
+    <a name = "callbacks"></a>
+    <strong>callbacks</strong>
+    </dt>
+    <dd>
+    List of supported gamestate callbacks.
+ Each of these callbacks can be implemented on your derived gamestates. This
+ list is a one-to-one mapping of the LÖVE callbacks found
+ <a href="http://love2d.org/wiki/love#Callbacks">here</a>. Note that <code>errhand</code>, <a href="http://www.lua.org/manual/5.2/manual.html#pdf-load">load</a> ,
+ <code>run</code>, and <code>threaderror</code> are omitted.</p>
+
+<p> This table cannot be directly accessed. Use <code>gamestate.callbacks()</code> to
+ retreive a clone of this table.
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">draw</span>
+
+
+</li>
+        <li><span class="parameter">focus</span>
+
+
+</li>
+        <li><span class="parameter">keypressed</span>
+
+
+</li>
+        <li><span class="parameter">keyreleased</span>
+
+
+</li>
+        <li><span class="parameter">mousefocus</span>
+
+
+</li>
+        <li><span class="parameter">mousepressed</span>
+
+
+</li>
+        <li><span class="parameter">mousereleased</span>
+
+
+</li>
+        <li><span class="parameter">quit</span>
+
+
+</li>
+        <li><span class="parameter">resize</span>
+
+
+</li>
+        <li><span class="parameter">textinput</span>
+
+
+</li>
+        <li><span class="parameter">update</span>
+
+
+</li>
+        <li><span class="parameter">visible</span>
+
+
+</li>
+        <li><span class="parameter">gamepadaxis</span>
+
+
+</li>
+        <li><span class="parameter">gamepadpressed</span>
+
+
+</li>
+        <li><span class="parameter">gamepadreleased</span>
+
+
+</li>
+        <li><span class="parameter">joystickadded</span>
+
+
+</li>
+        <li><span class="parameter">joystickaxis</span>
+
+
+</li>
+        <li><span class="parameter">joystickhat</span>
+
+
+</li>
+        <li><span class="parameter">joystickpressed</span>
+
+
+</li>
+        <li><span class="parameter">joystickreleased</span>
+
+
+</li>
+        <li><span class="parameter">joystickremoved</span>
+
+
+</li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Fields"></a>Fields</h2>
+    <dl class="function">
+    <dt>
+    <a name = "transparent"></a>
+    <strong>transparent</strong>
+    </dt>
+    <dd>
+    Default transparency value.
+ If a <a href="../modules/gamestate.html#">gamestate</a>  is transparent, events will be passed to underlying states
+ as long as the active state does not explicitly intercept them. This field
+ is used for all derived gamestates that do not specify their own
+ <a href="../modules/gamestate.html#transparent">transparent</a>  field.
+
+
 
 
 

@@ -47,11 +47,12 @@
   <li><a href="../modules/extensions.math.html">extensions.math</a></li>
   <li><a href="../modules/extensions.string.html">extensions.string</a></li>
   <li><a href="../modules/extensions.table.html">extensions.table</a></li>
-  <li><a href="../modules/fontpool.html">fontpool</a></li>
+  <li><a href="../modules/gameloop.html">gameloop</a></li>
   <li><a href="../modules/gamestate.html">gamestate</a></li>
   <li><a href="../modules/lazy.html">lazy</a></li>
   <li><strong>rectangle</strong></li>
   <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><a href="../modules/timer.html">timer</a></li>
   <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
@@ -65,14 +66,54 @@
 <p>Implements a rectangle object.</p>
 <p>
 
+<p> <a href="../modules/rectangle.html#">rectangle</a>  is implemented as a table with X, Y, width, and height
+ components residing at the indices <code>1</code> to <code>4</code> respectively. This design
+ choice has the following implications:</p>
+
+<ol>
+    <li><code>unpack</code> can be used to retreive the components of a rectangle as needed.</li>
+    <li>Numerical indices give certain performance benefits due to the way tables
+    are implemented in Lua.</li>
+</ol>
+
 </p>
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">
+ local a = rectangle.new(0, 0, 32, 32)
+ love.graphics.rectangle(&apos;fill&apos;, unpack(a))</pre>
+    </ul>
 
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#new">new&nbsp;(x, y, w, h)</a></td>
+	<td class="name" nowrap><a href="#mt.__eq">mt.__eq&nbsp;(a, b)</a></td>
+	<td class="summary">Implements binary operator <code>==</code> for <a href="../modules/rectangle.html#">rectangle</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mt:__tostring">mt:__tostring&nbsp;()</a></td>
+	<td class="summary">Implements <a href="http://www.lua.org/manual/5.2/manual.html#pdf-tostring">tostring</a>  for <a href="../modules/rectangle.html#">rectangle</a>  objects.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;( [x=0 [, y=0 [, w=0 [, h=0]]]])</a></td>
 	<td class="summary">Constructs a new <a href="../modules/rectangle.html#">rectangle</a> .</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:x">rectangle:x&nbsp;()</a></td>
+	<td class="summary">Returns the X-coordinate of the left side of the rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:y">rectangle:y&nbsp;()</a></td>
+	<td class="summary">Returns the Y-coordinate of the top side of the rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:width">rectangle:width&nbsp;()</a></td>
+	<td class="summary">Returns the width of the rectangle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:height">rectangle:height&nbsp;()</a></td>
+	<td class="summary">Returns the height of the rectangle.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#rectangle:right">rectangle:right&nbsp;()</a></td>
@@ -83,20 +124,32 @@
 	<td class="summary">Returns the Y-coordinate of the bottom side of the rectangle.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#rectangle:intersect">rectangle:intersect&nbsp;(r)</a></td>
+	<td class="summary">Computes the rectangle formed from the area of two overlapping rectangles.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#rectangle:intersects">rectangle:intersects&nbsp;(r)</a></td>
 	<td class="summary">Performs an intersection test with another rectangle.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#rectangle:union">rectangle:union&nbsp;(r)</a></td>
+	<td class="summary">Computes the rectangle that contains two given rectangles.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#rectangle:contains">rectangle:contains&nbsp;(x, y)</a></td>
-	<td class="summary">Test whether or not a point falls within the bounds of this rectangle.</td>
+	<td class="summary">Determines whether or not this rectangle contains a point or rectangle.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#rectangle:center">rectangle:center&nbsp;()</a></td>
 	<td class="summary">Computes the point that lies in the center of this rectangle.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#rectangle:unpack">rectangle:unpack&nbsp;()</a></td>
-	<td class="summary">Unpacks the components that describe this rectangle.</td>
+	<td class="name" nowrap><a href="#rectangle:inflate">rectangle:inflate&nbsp;(x, y)</a></td>
+	<td class="summary">Inflates this rectangle by the specified amount.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#rectangle:offset">rectangle:offset&nbsp;(x, y)</a></td>
+	<td class="summary">Moves this rectangle by the given vector.</td>
 	</tr>
 </table>
 
@@ -107,8 +160,58 @@
     <h2><a name="Functions"></a>Functions</h2>
     <dl class="function">
     <dt>
+    <a name = "mt.__eq"></a>
+    <strong>mt.__eq&nbsp;(a, b)</strong>
+    </dt>
+    <dd>
+    Implements binary operator <code>==</code> for <a href="../modules/rectangle.html#">rectangle</a>  objects.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">a</span>
+            <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+         Rectangle A.</li>
+        <li><span class="parameter">b</span>
+            <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+         Rectangle B.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">boolean</span></span>
+        True if the rectangles are equal; otherwise false.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mt:__tostring"></a>
+    <strong>mt:__tostring&nbsp;()</strong>
+    </dt>
+    <dd>
+    Implements <a href="http://www.lua.org/manual/5.2/manual.html#pdf-tostring">tostring</a>  for <a href="../modules/rectangle.html#">rectangle</a>  objects.
+ Do not use this method for serialization as the format may change in the
+ future. This method only guarantees that <a href="../modules/rectangle.html#">rectangle</a>  objects can be
+ converted to a human-readable representation.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a></span>
+        A <a href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a>  representation for this vector.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "new"></a>
-    <strong>new&nbsp;(x, y, w, h)</strong>
+    <strong>new&nbsp;( [x=0 [, y=0 [, w=0 [, h=0]]]])</strong>
     </dt>
     <dd>
     Constructs a new <a href="../modules/rectangle.html#">rectangle</a> .
@@ -129,6 +232,90 @@
          Height of the rectangle.</li>
     </ul>
 
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:x"></a>
+    <strong>rectangle:x&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the X-coordinate of the left side of the rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:y"></a>
+    <strong>rectangle:y&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the Y-coordinate of the top side of the rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:width"></a>
+    <strong>rectangle:width&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the width of the rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:height"></a>
+    <strong>rectangle:height&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the height of the rectangle.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
 
 
 
@@ -177,6 +364,33 @@
 
 </dd>
     <dt>
+    <a name = "rectangle:intersect"></a>
+    <strong>rectangle:intersect&nbsp;(r)</strong>
+    </dt>
+    <dd>
+    Computes the rectangle formed from the area of two overlapping rectangles.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+            <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+         Rectangle to intersect with.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a> or <span class="type">nil</span></span>
+         If the rectangles intersect, this function returns
+   the rectangle formed from the overlapping area between them. If the
+   given rectangles do not intersect, this function returns <code>nil</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "rectangle:intersects"></a>
     <strong>rectangle:intersects&nbsp;(r)</strong>
     </dt>
@@ -202,28 +416,56 @@
 
 </dd>
     <dt>
+    <a name = "rectangle:union"></a>
+    <strong>rectangle:union&nbsp;(r)</strong>
+    </dt>
+    <dd>
+    Computes the rectangle that contains two given rectangles.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">r</span>
+            <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+         Rectangle to compute the union rectangle with.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+        The rectangle that contains the given rectangles.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "rectangle:contains"></a>
     <strong>rectangle:contains&nbsp;(x, y)</strong>
     </dt>
     <dd>
-    Test whether or not a point falls within the bounds of this rectangle.
+    Determines whether or not this rectangle contains a point or rectangle.
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">x</span>
-            <span class="types"><span class="type">number</span></span>
-         X-coordinate of the point.</li>
+            <span class="types"><span class="type">number</span> or <a class="type" href="../modules/rectangle.html#">rectangle</a></span>
+         If <code>x</code> is a number, it is treated as the
+   X-coordinate of a point. If <code>x</code> is a <a href="../modules/rectangle.html#">rectangle</a> , this function determines
+   whether or not <code>x</code> is completely bounded by this rectangle.</li>
         <li><span class="parameter">y</span>
-            <span class="types"><span class="type">number</span></span>
-         Y-coordinate of the point.</li>
+            <span class="types"><span class="type">number</span> or <span class="type">nil</span></span>
+         Y-coordinate of the point. This parameter is ignored if
+   <code>x</code> is a <a href="../modules/rectangle.html#">rectangle</a> .</li>
     </ul>
 
     <h3>Returns:</h3>
     <ol>
 
           <span class="types"><span class="type">bool</span></span>
-        True if the point is contained by this rectangle; otherwise,
-   false.
+        True if the point or rectangle is contained by this rectangle;
+   otherwise, false.
     </ol>
 
 
@@ -253,28 +495,47 @@
 
 </dd>
     <dt>
-    <a name = "rectangle:unpack"></a>
-    <strong>rectangle:unpack&nbsp;()</strong>
+    <a name = "rectangle:inflate"></a>
+    <strong>rectangle:inflate&nbsp;(x, y)</strong>
     </dt>
     <dd>
-    Unpacks the components that describe this rectangle.
+    Inflates this rectangle by the specified amount.
+ The rectangle is enlarged in both directions on each axis by the exact
+ amount specified. This means that inflating a 20 by 50 rectangle by 10 and
+ 20 will result in a 40 by 90 rectangle concentric with the original.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to inflate this rectangle on the X-axis.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to inflate this rectangle on the Y-axis.</li>
+    </ul>
 
 
-    <h3>Returns:</h3>
-    <ol>
-        <li>
-          <span class="types"><span class="type">number</span></span>
-        X-coordinate of this rectangle's top-left point.</li>
-        <li>
-          <span class="types"><span class="type">number</span></span>
-        Y-coordinate of this rectangle's top-left point.</li>
-        <li>
-          <span class="types"><span class="type">number</span></span>
-        Width of this rectangle.</li>
-        <li>
-          <span class="types"><span class="type">number</span></span>
-        Height of this rectangle.</li>
-    </ol>
+
+
+
+</dd>
+    <dt>
+    <a name = "rectangle:offset"></a>
+    <strong>rectangle:offset&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Moves this rectangle by the given vector.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to move this rectangle by on the X-axis.</li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount to move this rectangle by on the Y-axis.</li>
+    </ul>
+
 
 
 

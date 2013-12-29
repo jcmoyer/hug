@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>hug - Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>hug</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/basicgame.html">basicgame</a></li>
+  <li><a href="../modules/cache.html">cache</a></li>
+  <li><a href="../modules/camera.html">camera</a></li>
+  <li><a href="../modules/chasecamera.html">chasecamera</a></li>
+  <li><a href="../modules/color.html">color</a></li>
+  <li><a href="../modules/extensions.extension.html">extensions.extension</a></li>
+  <li><a href="../modules/extensions.math.html">extensions.math</a></li>
+  <li><a href="../modules/extensions.string.html">extensions.string</a></li>
+  <li><a href="../modules/extensions.table.html">extensions.table</a></li>
+  <li><a href="../modules/gameloop.html">gameloop</a></li>
+  <li><a href="../modules/gamestate.html">gamestate</a></li>
+  <li><a href="../modules/lazy.html">lazy</a></li>
+  <li><a href="../modules/rectangle.html">rectangle</a></li>
+  <li><a href="../modules/statemachine.html">statemachine</a></li>
+  <li><strong>timer</strong></li>
+  <li><a href="../modules/timerpool.html">timerpool</a></li>
+  <li><a href="../modules/vector2.html">vector2</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>timer</code></h1>
+
+<p>Implements a timer object.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new&nbsp;(duration, state)</a></td>
+	<td class="summary">Constructs a new timer object.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:state">timer:state&nbsp;()</a></td>
+	<td class="summary">Returns the state associated with this timer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:remaining">timer:remaining&nbsp;()</a></td>
+	<td class="summary">Returns how much time remains before this timer is finished.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:duration">timer:duration&nbsp;()</a></td>
+	<td class="summary">Returns the original duration of this timer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:evaluate">timer:evaluate&nbsp;(f)</a></td>
+	<td class="summary">Evaluates the given function using this timer's normalized remaining time.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:update">timer:update&nbsp;(dt)</a></td>
+	<td class="summary">Updates this timer.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:status">timer:status&nbsp;()</a></td>
+	<td class="summary">Determines whether or not this timer has finished running.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timer:cancel">timer:cancel&nbsp;()</a></td>
+	<td class="summary">Flags this timer as cancelled.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new&nbsp;(duration, state)</strong>
+    </dt>
+    <dd>
+    Constructs a new timer object.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">duration</span>
+            <span class="types"><span class="type">number</span></span>
+         The duration of this timer.</li>
+        <li><span class="parameter">state</span>
+            <span class="types"><span class="type">any</span></span>
+         User-defined data to attach to this timer.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:state"></a>
+    <strong>timer:state&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the state associated with this timer.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">any</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:remaining"></a>
+    <strong>timer:remaining&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns how much time remains before this timer is finished.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:duration"></a>
+    <strong>timer:duration&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the original duration of this timer.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">number</span></span>
+
+
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:evaluate"></a>
+    <strong>timer:evaluate&nbsp;(f)</strong>
+    </dt>
+    <dd>
+    Evaluates the given function using this timer's normalized remaining time.
+ This is equivalent to <code>f(1 - timer:remaining() / timer:duration())</code>.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">f</span>
+            <span class="types"><span class="type">func</span></span>
+         The function to evaluate.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">any</span></span>
+        The result of evaluating <code>f</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:update"></a>
+    <strong>timer:update&nbsp;(dt)</strong>
+    </dt>
+    <dd>
+    Updates this timer.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dt</span>
+            <span class="types"><span class="type">number</span></span>
+         Amount of time elapsed since the last update.</li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:status"></a>
+    <strong>timer:status&nbsp;()</strong>
+    </dt>
+    <dd>
+    Determines whether or not this timer has finished running.
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><span class="type">str</span></span>
+         The string 'active' if this timer should still be running. If
+   the timer has been cancelled, then this function returns 'cancelled'. If
+   the timer's duration has passed without this timer being cancelled, this
+   function returns 'finished'.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timer:cancel"></a>
+    <strong>timer:cancel&nbsp;()</strong>
+    </dt>
+    <dd>
+    Flags this timer as cancelled.
+ Cancelled timers will always have the status of 'cancelled'.
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
