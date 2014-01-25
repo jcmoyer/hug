@@ -50,7 +50,7 @@ local setmetatable, getmetatable = setmetatable, getmetatable
 -- `run`, and `threaderror` are omitted.
 --
 -- This table cannot be directly accessed. Use `gamestate.callbacks()` to
--- retreive a clone of this table.
+-- retrieve a clone of this table.
 local callbacks = {
   'draw',
   'focus',

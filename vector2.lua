@@ -19,7 +19,7 @@
 -- indices `1` and `2`, respectively. This design choice has the following
 -- implications:
 --
--- 1. `unpack` can be used to retreive the components of a vector as needed.
+-- 1. `unpack` can be used to retrieve the components of a vector as needed.
 -- 2. Numerical indices give certain performance benefits due to the way tables
 --    are implemented in Lua.
 --
