@@ -19,6 +19,17 @@
 --
 -- * `gamestate`
 --
+-- The `statemachine` module generates _methods_ with the same names as those
+-- defined in `gamestate.callbacks` at runtime. Consult the LÖVE documentation
+-- to see what parameters these functions take. When one of these methods is
+-- called, the parameters you give it are forwarded to the corresponding method
+-- in the currently active `gamestate`. If the gamestate's method returns a
+-- truthy value (e.g. anything that is not `false` or `nil`), and the gamestate
+-- is flagged as transparent, the same parameters will be forwarded to the
+-- underlying gamestate in the statemachine's stack. This process will continue
+-- down the stack until the bottommost state is reached or one of the methods
+-- returns a falsy value or one of the states is not flagged as transparent.
+
 -- @type statemachine
 -- @see gamestate
 
@@ -33,6 +44,8 @@ local gamestate = require('hug.gamestate')
 local callbacks = gamestate.callbacks()
 
 --- Constructs a new statemachine object.
+-- 
+-- `gamestate.callbacks`, plus `love.load`.
 -- @treturn statemachine
 function statemachine.new()
   local instance = {
