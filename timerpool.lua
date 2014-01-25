@@ -29,7 +29,10 @@ local remove = table.remove
 
 --- Starts a new timer.
 -- @number duration Amount of time, in seconds, this timer will expire in.
--- @func callback Function to run when the timer expires.
+-- @func callback Function to run when the timer expires. The callback will
+--   receive the expiring timer as a parameter. If you need to associate extra
+--   information with the callback, consider providing a table with a `__call`
+--   metamethod for this parameter.
 -- @treturn timer The newly started timer.
 function timerpool.start(duration, callback)
   local t = timer.new(duration, callback)
@@ -55,7 +58,7 @@ function timerpool.update(dt)
     -- only invoke callbacks on finished timers
     if status == 'finished' then
       local f = t:state()
-      if f then f() end
+      if f then f(t) end
     end
     
     -- remove the dead timer
