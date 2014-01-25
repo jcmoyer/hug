@@ -5,6 +5,8 @@ description = 'Minimalistic utility library for LÖVE'
 format = 'markdown'
 boilerplate = true
 
+topics = { 'doc/01-state-transparency.md' }
+
 file = {
   '.',
   exclude = {
