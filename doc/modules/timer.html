@@ -56,6 +56,10 @@
   <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
+<h2>Topics</h2>
+<ul>
+  <li><a href="../topics/01-state-transparency.md.html">01-state-transparency.md</a></li>
+</ul>
 
 </div>
 
@@ -89,7 +93,7 @@
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#timer:evaluate">timer:evaluate&nbsp;(f)</a></td>
-	<td class="summary">Evaluates the given function using this timer's normalized remaining time.</td>
+	<td class="summary">Evaluates the given function using this timer's percentage to completion.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#timer:update">timer:update&nbsp;(dt)</a></td>
@@ -201,7 +205,7 @@
     <strong>timer:evaluate&nbsp;(f)</strong>
     </dt>
     <dd>
-    Evaluates the given function using this timer's normalized remaining time.
+    Evaluates the given function using this timer's percentage to completion.
  This is equivalent to <code>f(1 - timer:remaining() / timer:duration())</code>.
 
     <h3>Parameters:</h3>

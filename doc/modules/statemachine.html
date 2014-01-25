@@ -56,6 +56,10 @@
   <li><a href="../modules/timerpool.html">timerpool</a></li>
   <li><a href="../modules/vector2.html">vector2</a></li>
 </ul>
+<h2>Topics</h2>
+<ul>
+  <li><a href="../topics/01-state-transparency.md.html">01-state-transparency.md</a></li>
+</ul>
 
 </div>
 
@@ -64,15 +68,22 @@
 <h1>Module <code>statemachine</code></h1>
 
 <p>Implements a finite state machine for handling game states.</p>
-<p>
-
 <p> <strong>Dependencies:</strong></p>
 
 <ul>
     <li><a href="../modules/gamestate.html#">gamestate</a> </li>
 </ul>
 
-</p>
+<p> The <a href="../modules/statemachine.html#">statemachine</a>  module generates <em>methods</em> with the same names as those
+ defined in <a href="../modules/gamestate.html#callbacks">gamestate.callbacks</a>  at runtime. Consult the LÖVE documentation
+ to see what parameters these functions take. When one of these methods is
+ called, the parameters you give it are forwarded to the corresponding method
+ in the currently active <a href="../modules/gamestate.html#">gamestate</a> . If the gamestate's method returns a
+ truthy value (e.g. anything that is not <code>false</code> or <code>nil</code>), and the gamestate
+ is flagged as transparent, the same parameters will be forwarded to the
+ underlying gamestate in the statemachine's stack. This process will continue
+ down the stack until the bottommost state is reached or one of the methods
+ returns a falsy value or one of the states is not flagged as transparent.</p>
 
 
 <h2><a href="#Functions">Functions</a></h2>
