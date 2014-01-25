@@ -44,8 +44,6 @@ local gamestate = require('hug.gamestate')
 local callbacks = gamestate.callbacks()
 
 --- Constructs a new statemachine object.
--- 
--- `gamestate.callbacks`, plus `love.load`.
 -- @treturn statemachine
 function statemachine.new()
   local instance = {
