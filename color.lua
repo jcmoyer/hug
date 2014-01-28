@@ -118,6 +118,21 @@ function mt:__tostring()
   end
 end
 
+--- Determines what kind of color the given table is.
+-- @tab t Table to test.
+-- @treturn string|nil If `t` is a color, `'rgb'` or `'rgba'`; otherwise,
+--   `nil`.
+function color.type(t)
+  if checkcolor(t) then
+    if #t == 3 then
+      return 'rgb'
+    elseif #t == 4 then
+      return 'rgba'
+    end
+  end
+  return nil
+end
+
 --- Creates a new color object.
 -- @tparam int|table r Red value. Accepted values fall in the range of [0..255].
 --   Alternatively, you can pass a table with 3 or more numerical components
