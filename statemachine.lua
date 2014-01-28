@@ -36,7 +36,8 @@
 local statemachine = {}
 local mt = { __index = statemachine }
 
-local setmetatable, error = setmetatable, error
+local assert, error = assert, error
+local setmetatable = setmetatable
 local max = math.max
 local insert, remove = table.insert, table.remove
 
