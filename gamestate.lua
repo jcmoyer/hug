@@ -108,8 +108,7 @@ end
 --- Creates and returns a new gamestate table.
 -- @treturn gamestate A new gamestate.
 function gamestate.new()
-  local instance = {}
-  return setmetatable(instance, mt)
+  return setmetatable({}, mt)
 end
 
 --- Returns an empty table that indexes gamestate.
