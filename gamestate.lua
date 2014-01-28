@@ -148,7 +148,7 @@ end
 -- set up empty functions for all the supported callbacks
 for i = 1, #callbacks do
   local name = callbacks[i]
-  gamestate[name] = function(...)
+  gamestate[name] = function()
   end
 end
 
