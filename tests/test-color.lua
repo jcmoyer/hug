@@ -49,6 +49,14 @@ local function opadd()
     color.new(100, 200, 100),
     color.new(40, 100, 60) + color.new(60, 100, 40)
   )
+  
+  framework.ensureerror(function()
+    return color.new(100, 200, 100) + 5
+  end, 'invalid operation: color + number')
+
+  framework.ensureerror(function()
+    return 5 + color.new(100, 200, 100)
+  end, 'invalid operation: number + color')
 end
 
 local function opsub()
@@ -56,6 +64,14 @@ local function opsub()
     color.new(100, 100, 100),
     color.new(200, 150, 100) - color.new(100, 50, 0)
   )
+  
+  framework.ensureerror(function()
+    return color.new(100, 200, 100) - 5
+  end, 'invalid operation: color - number')
+
+  framework.ensureerror(function()
+    return 5 - color.new(100, 200, 100)
+  end, 'invalid operation: number - color')
 end
 
 local function opmul()
@@ -69,6 +85,10 @@ local function opmul()
     10 * color.new(10, 15, 20),
     'scalar * color'
   )
+  
+  framework.ensureerror(function()
+    return color.new(100, 200, 100) * color.new(1, 2, 3)
+  end, 'invalid operation: color * color')
 end
 
 local function opdiv()
@@ -77,6 +97,10 @@ local function opdiv()
     color.new(200, 150, 100) / 2,
     'color / scalar'
   )
+  
+  framework.ensureerror(function()
+    return color.new(100, 200, 100) / color.new(1, 2, 3)
+  end, 'invalid operation: color / color')
 end
 
 local function invert()
