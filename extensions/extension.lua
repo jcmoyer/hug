@@ -18,19 +18,16 @@
 
 local extension = {}
 
-local type, error, pairs = type, error, pairs
+local assert, type, error, pairs = assert, type, error, pairs
 
 --- Installs the members of one table into another.
 -- An error will be raised if there is a name conflict.
 -- @tab ext Source table.
 -- @tab t Destination table.
 function extension.install(ext, t)
-  if type(ext) ~= 'table' then
-    error('ext must be a table')
-  end
-  if type(t) ~= 'table' then
-    error('t must be a table')
-  end
+  assert(type(ext) == 'table', 'ext must be a table')
+  assert(type(t) == 'table', 't must be a table')
+  
   for k,v in pairs(ext) do
     if t[k] then
       error('(extension) duplicate key: "' .. k .. '"')

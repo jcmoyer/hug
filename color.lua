@@ -23,7 +23,8 @@
 local color = {}
 local mt = { __index = color }
 
-local getmetatable, setmetatable, type, error = getmetatable, setmetatable, type, error
+local assert, error = assert, error
+local getmetatable, setmetatable, type = getmetatable, setmetatable, type
 
 local function clampcolor(a)
   if a < 0 then
@@ -152,9 +153,7 @@ end
 -- @tparam color b Color to add.
 -- @treturn color This color.
 function color:add(b)
-  if not checkcolor(b) then
-    error('cannot add a ' .. type(b) .. ' to a color')
-  end
+  assert(checkcolor(b), 'cannot add a ' .. type(b) .. ' to a color')
   -- All colors will have at least three components
   self[1] = clampcolor(self[1] + b[1])
   self[2] = clampcolor(self[2] + b[2])
@@ -169,9 +168,7 @@ end
 -- @tparam color b Color to subtract.
 -- @treturn color This color.
 function color:sub(b)
-  if not checkcolor(b) then
-    error('cannot subtract a ' .. type(b) .. ' from a color')
-  end
+  assert(checkcolor(b), 'cannot subtract a ' .. type(b) .. ' from a color')
   -- All colors will have at least three components
   self[1] = clampcolor(self[1] - b[1])
   self[2] = clampcolor(self[2] - b[2])
@@ -187,9 +184,7 @@ end
 -- @number b Amount to scale the color by.
 -- @treturn color This color.
 function color:mul(b)
-  if type(b) ~= 'number' then
-    error('cannot multiply a color by a ' .. type(b))
-  end
+  assert(type(b) == 'number', 'cannot multiply a ' .. type(b) .. ' by a color')
   self[1] = clampcolor(self[1] * b)
   self[2] = clampcolor(self[2] * b)
   self[3] = clampcolor(self[3] * b)
@@ -203,9 +198,7 @@ end
 -- @number b Amount to scale the color by.
 -- @treturn color This color.
 function color:div(b)
-  if type(b) ~= 'number' then
-    error('cannot divide a color by a ' .. type(b))
-  end
+  assert(type(b) == 'number', 'cannot divide a ' .. type(b) .. ' by a color')
   self[1] = clampcolor(self[1] / b)
   self[2] = clampcolor(self[2] / b)
   self[3] = clampcolor(self[3] / b)

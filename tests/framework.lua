@@ -44,9 +44,7 @@ local function testall(t)
     if not name then
       name = 'unknown'
     end
-    if not f then
-      error('no test function given for ' .. name)
-    end
+    assert(f, 'no test function given for ' .. name)
     if test(name, f) then
       passed = passed + 1
     end
