@@ -99,7 +99,7 @@ end
 
 --- Pushes a new `gamestate` on top of the statemachine stack.
 function statemachine:push(newstate)
-  assert(gamestate.type(newstate) ~= nil, 'newstate is not a gamestate')
+  assert(gamestate.type(newstate), 'newstate is not a gamestate')
   
   local oldstate = self:top()
   
