@@ -4,12 +4,13 @@ all = true
 description = 'Minimalistic utility library for LÖVE'
 format = 'markdown'
 boilerplate = true
+dir = 'out'
 
-topics = { 'doc/01-state-transparency.md' }
+topics = { '01-state-transparency.md' }
 
 file = {
-  '.',
+  '..',
   exclude = {
-    'tests'
+    '../tests'
   }
 }
