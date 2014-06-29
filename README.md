@@ -1,4 +1,4 @@
-﻿# hug
+﻿# hug [![Build Status](https://travis-ci.org/jcmoyer/hug.png?branch=master)](https://travis-ci.org/jcmoyer/hug)
 
 Minimalistic utility library for LÖVE. Documentation can be [read online](http://jcmoyer.github.io/hug/doc/) or compiled manually using [LDoc](https://github.com/stevedonovan/LDoc).
 
