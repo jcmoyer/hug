@@ -38,3 +38,5 @@ local passed, total = runtests {
 local overall = string.format(testfmt, passed, total, 100 * passed / total)
 print(makeheader('Overall Results'))
 print(overall)
+
+os.exit(passed == total)
