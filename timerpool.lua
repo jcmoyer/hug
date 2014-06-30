@@ -40,6 +40,15 @@ function timerpool:start(duration, callback)
   return t
 end
 
+--- Clears the timerpool's internal collection of timers.
+-- This function is useful if you need a fresh timerpool, but you don't want to
+-- allocate a new one.
+function timerpool:clear()
+  for i = 1, #self.timers do
+    self.timers[i] = nil
+  end
+end
+
 --- Updates the timerpool.
 -- This updates all the timers that this timerpool is managing. Timers that
 -- have expired will have their callbacks executed, and the timers themselves

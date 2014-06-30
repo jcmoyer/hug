@@ -36,6 +36,15 @@ local function cancelled()
   framework.compare(0, n)
 end
 
+local function clear()
+  local pool = timerpool.new()
+  pool:start(5, function() end)
+  pool:clear()
+  
+  -- TODO: accessor function
+  framework.compare(0, #pool.timers)
+end
+
 local function overstep()
   local n = 0
   local function inc()
@@ -52,5 +61,6 @@ end
 return framework.testall {
   { 'simple', simple },
   { 'cancelled', cancelled },
+  { 'clear', clear },
   { 'overstep', overstep }
 }
