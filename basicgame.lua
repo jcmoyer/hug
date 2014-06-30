@@ -18,11 +18,9 @@
 -- **Dependencies:**
 --
 -- * `statemachine`
--- * `timerpool`
 -- * `gamestate`
 
 local statemachine = require('hug.statemachine')
-local timerpool = require('hug.timerpool')
 local gamestate = require('hug.gamestate')
 
 local basicgame = {}
@@ -56,7 +54,6 @@ function basicgame.start(initialstate)
   end
   
   function love.update(dt, ...)
-    timerpool.update(dt)
     sm:update(dt, ...)
   end
 end
