@@ -8,13 +8,15 @@ local function simple()
     n = n + 1
   end
   
+  local pool = timerpool.new()
+  
   -- start timers with varying durations
   for i = 1, 5 do
-    timerpool.start(i, inc)
+    pool:start(i, inc)
   end
   
   for i = 1, 5 do
-    timerpool.update(1)
+    pool:update(1)
     framework.compare(i, n)
   end
 end
@@ -25,12 +27,30 @@ local function cancelled()
     n = n + 1
   end
   
-  local t = timerpool.start(2, inc)
-  timerpool.update(1)
+  local pool = timerpool.new()
+  local t = pool:start(2, inc)
+  pool:update(1)
   t:cancel()
-  timerpool.update(1)
+  pool:update(1)
   
   framework.compare(0, n)
+end
+
+local function clear()
+  local pool = timerpool.new()
+  pool:start(5, function() end)
+  pool:clear()
+  
+  framework.compare(0, pool:size())
+end
+
+local function size()
+  local pool = timerpool.new()
+  framework.compare(0, pool:size())
+  pool:start(5, function() end)
+  framework.compare(1, pool:size())
+  pool:start(5, function() end)
+  framework.compare(2, pool:size())
 end
 
 local function overstep()
@@ -39,8 +59,9 @@ local function overstep()
     n = n + 1
   end
   
-  timerpool.start(1, inc)
-  timerpool.update(math.huge)
+  local pool = timerpool.new()
+  pool:start(1, inc)
+  pool:update(math.huge)
   
   framework.compare(1, n)
 end
@@ -48,5 +69,7 @@ end
 return framework.testall {
   { 'simple', simple },
   { 'cancelled', cancelled },
+  { 'clear', clear },
+  { 'size', size },
   { 'overstep', overstep }
 }

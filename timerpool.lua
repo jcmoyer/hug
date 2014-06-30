@@ -23,9 +23,16 @@
 local timer = require('hug.timer')
 
 local timerpool = {}
-local timers = {}
+local mt = { __index = timerpool }
 
 local remove = table.remove
+
+function timerpool.new()
+  local instance = {
+    timers = {}
+  }
+  return setmetatable(instance, mt)
+end
 
 --- Starts a new timer.
 -- @number duration Amount of time, in seconds, this timer will expire in.
@@ -34,10 +41,24 @@ local remove = table.remove
 --   information with the callback, consider providing a table with a `__call`
 --   metamethod for this parameter.
 -- @treturn timer The newly started timer.
-function timerpool.start(duration, callback)
+function timerpool:start(duration, callback)
   local t = timer.new(duration, callback)
-  timers[#timers + 1] = t
+  self.timers[#self.timers + 1] = t
   return t
+end
+
+--- Clears the timerpool's internal collection of timers.
+-- This function is useful if you need a fresh timerpool, but you don't want to
+-- allocate a new one.
+function timerpool:clear()
+  for i = 1, #self.timers do
+    self.timers[i] = nil
+  end
+end
+
+--- Returns the number of timers in this timerpool.
+function timerpool:size()
+  return #self.timers
 end
 
 --- Updates the timerpool.
@@ -45,9 +66,9 @@ end
 -- have expired will have their callbacks executed, and the timers themselves
 -- will be removed from the timerpool.
 -- @number dt Time elapsed in seconds.
-function timerpool.update(dt)
-  for i = #timers, 1, -1 do
-    local t = timers[i]
+function timerpool:update(dt)
+  for i = #self.timers, 1, -1 do
+    local t = self.timers[i]
     t:update(dt)
    
     local status = t:status()
@@ -63,7 +84,7 @@ function timerpool.update(dt)
     
     -- remove the dead timer
     if r then
-      remove(timers, i)
+      remove(self.timers, i)
     end
   end
 end
