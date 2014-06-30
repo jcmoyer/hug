@@ -49,6 +49,11 @@ function timerpool:clear()
   end
 end
 
+--- Returns the number of timers in this timerpool.
+function timerpool:size()
+  return #self.timers
+end
+
 --- Updates the timerpool.
 -- This updates all the timers that this timerpool is managing. Timers that
 -- have expired will have their callbacks executed, and the timers themselves

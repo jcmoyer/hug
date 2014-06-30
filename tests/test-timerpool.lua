@@ -45,6 +45,15 @@ local function clear()
   framework.compare(0, #pool.timers)
 end
 
+local function size()
+  local pool = timerpool.new()
+  framework.compare(0, pool:size())
+  pool:start(5, function() end)
+  framework.compare(1, pool:size())
+  pool:start(5, function() end)
+  framework.compare(2, pool:size())
+end
+
 local function overstep()
   local n = 0
   local function inc()
@@ -62,5 +71,6 @@ return framework.testall {
   { 'simple', simple },
   { 'cancelled', cancelled },
   { 'clear', clear },
+  { 'size', size },
   { 'overstep', overstep }
 }
