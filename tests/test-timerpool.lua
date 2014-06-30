@@ -41,8 +41,7 @@ local function clear()
   pool:start(5, function() end)
   pool:clear()
   
-  -- TODO: accessor function
-  framework.compare(0, #pool.timers)
+  framework.compare(0, pool:size())
 end
 
 local function size()
