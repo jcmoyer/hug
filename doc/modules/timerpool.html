@@ -82,11 +82,19 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#start">start&nbsp;(duration, callback)</a></td>
+	<td class="name" nowrap><a href="#timerpool:start">timerpool:start&nbsp;(duration, callback)</a></td>
 	<td class="summary">Starts a new timer.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#update">update&nbsp;(dt)</a></td>
+	<td class="name" nowrap><a href="#timerpool:clear">timerpool:clear&nbsp;()</a></td>
+	<td class="summary">Clears the timerpool's internal collection of timers.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timerpool:size">timerpool:size&nbsp;()</a></td>
+	<td class="summary">Returns the number of timers in this timerpool.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#timerpool:update">timerpool:update&nbsp;(dt)</a></td>
 	<td class="summary">Updates the timerpool.</td>
 	</tr>
 </table>
@@ -98,8 +106,8 @@
     <h2><a name="Functions"></a>Functions</h2>
     <dl class="function">
     <dt>
-    <a name = "start"></a>
-    <strong>start&nbsp;(duration, callback)</strong>
+    <a name = "timerpool:start"></a>
+    <strong>timerpool:start&nbsp;(duration, callback)</strong>
     </dt>
     <dd>
     Starts a new timer.
@@ -129,8 +137,36 @@
 
 </dd>
     <dt>
-    <a name = "update"></a>
-    <strong>update&nbsp;(dt)</strong>
+    <a name = "timerpool:clear"></a>
+    <strong>timerpool:clear&nbsp;()</strong>
+    </dt>
+    <dd>
+    Clears the timerpool's internal collection of timers.
+ This function is useful if you need a fresh timerpool, but you don't want to
+ allocate a new one.
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timerpool:size"></a>
+    <strong>timerpool:size&nbsp;()</strong>
+    </dt>
+    <dd>
+    Returns the number of timers in this timerpool.
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "timerpool:update"></a>
+    <strong>timerpool:update&nbsp;(dt)</strong>
     </dt>
     <dd>
     Updates the timerpool.

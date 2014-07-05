@@ -110,8 +110,16 @@
 	<td class="summary">Implements <a href="http://www.lua.org/manual/5.2/manual.html#pdf-tostring">tostring</a>  for <a href="../modules/color.html#">color</a>  objects.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#new">new&nbsp;(r, g, b, a)</a></td>
-	<td class="summary">Creates a new color object.</td>
+	<td class="name" nowrap><a href="#type">type&nbsp;(t)</a></td>
+	<td class="summary">Determines what kind of color the given table is.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fromrgba">fromrgba&nbsp;(r, g, b, a)</a></td>
+	<td class="summary">Creates a new color object given RGBA values.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fromtable">fromtable&nbsp;(t)</a></td>
+	<td class="summary">Creates a new color object from a table.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#color:clone">color:clone&nbsp;()</a></td>
@@ -357,29 +365,78 @@
 
 </dd>
     <dt>
-    <a name = "new"></a>
-    <strong>new&nbsp;(r, g, b, a)</strong>
+    <a name = "type"></a>
+    <strong>type&nbsp;(t)</strong>
     </dt>
     <dd>
-    Creates a new color object.
+    Determines what kind of color the given table is.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><span class="type">tab</span></span>
+         Table to test.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.4">string</a> or <span class="type">nil</span></span>
+        If <code>t</code> is a color, <code>'rgb'</code> or <code>'rgba'</code>; otherwise,
+   <code>nil</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fromrgba"></a>
+    <strong>fromrgba&nbsp;(r, g, b, a)</strong>
+    </dt>
+    <dd>
+    Creates a new color object given RGBA values.
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">r</span>
-            <span class="types"><span class="type">int</span> or <a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
-         Red value. Accepted values fall in the range of [0..255].
-   Alternatively, you can pass a table with 3 or more numerical components
-   and omit the rest of the parameters.</li>
+            <span class="types"><span class="type">int</span></span>
+         Red value. Accepted values fall in the range of [0..255].</li>
         <li><span class="parameter">g</span>
-            <span class="types"><span class="type">int</span> or <span class="type">nil</span></span>
+            <span class="types"><span class="type">int</span></span>
          Green value. Accepted values fall in the range of [0..255].</li>
         <li><span class="parameter">b</span>
-            <span class="types"><span class="type">int</span> or <span class="type">nil</span></span>
+            <span class="types"><span class="type">int</span></span>
          Blue value. Accepted values fall in the range of [0..255].</li>
         <li><span class="parameter">a</span>
-            <span class="types"><span class="type">int</span> or <span class="type">nil</span></span>
+            <span class="types">optional <span class="type">int</span></span>
          Alpha value. Accepted values fall in the range of
    [0..255]. This component is not required.</li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+          <span class="types"><a class="type" href="../modules/color.html#">color</a></span>
+        A new color object with the specified component values.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "fromtable"></a>
+    <strong>fromtable&nbsp;(t)</strong>
+    </dt>
+    <dd>
+    Creates a new color object from a table.
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="http://www.lua.org/manual/5.2/manual.html#6.5">table</a></span>
+         A sequence table containing RGBA components in slots 1 to 4.</li>
     </ul>
 
     <h3>Returns:</h3>
