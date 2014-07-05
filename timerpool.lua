@@ -72,9 +72,7 @@ function timerpool:update(dt)
     t:update(dt)
    
     local status = t:status()
-    
-    -- true if the timer is removable
-    local r = status ~= 'active'
+    local removable = status ~= 'active'
     
     -- only invoke callbacks on finished timers
     if status == 'finished' then
@@ -82,8 +80,7 @@ function timerpool:update(dt)
       if f then f(t) end
     end
     
-    -- remove the dead timer
-    if r then
+    if removable then
       remove(self.timers, i)
     end
   end
