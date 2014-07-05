@@ -25,6 +25,7 @@ local mt = { __index = color }
 
 local assert, error = assert, error
 local getmetatable, setmetatable, type = getmetatable, setmetatable, type
+local unpack = unpack
 
 local function clampcolor(a)
   if a < 0 then
@@ -133,29 +134,36 @@ function color.type(t)
   return nil
 end
 
---- Creates a new color object.
--- @tparam int|table r Red value. Accepted values fall in the range of [0..255].
---   Alternatively, you can pass a table with 3 or more numerical components
---   and omit the rest of the parameters.
--- @tparam int|nil g Green value. Accepted values fall in the range of [0..255].
--- @tparam int|nil b Blue value. Accepted values fall in the range of [0..255].
--- @tparam ?int|nil a Alpha value. Accepted values fall in the range of
+--- Creates a new color object given RGBA values.
+-- @tparam int r Red value. Accepted values fall in the range of [0..255].
+-- @tparam int g Green value. Accepted values fall in the range of [0..255].
+-- @tparam int b Blue value. Accepted values fall in the range of [0..255].
+-- @tparam ?int a Alpha value. Accepted values fall in the range of
 --   [0..255]. This component is not required.
 -- @treturn color A new color object with the specified component values.
-function color.new(r, g, b, a)
-  -- support creation from table
-  if type(r) == 'table' and #r >= 3 then
-    a = r[4]
-    b = r[3]
-    g = r[2]
-    r = r[1]
-  end
-  -- ensure all parameters are numbers
-  if type(r) == 'number' and type(g) == 'number' and type(b) == 'number' and (type(a) == 'nil' or type(a) == 'number') then
-    return setmetatable({ clampcolor(r), clampcolor(g), clampcolor(b), a and clampcolor(a) }, mt)
-  else
-    error('a color requires at least three numerical components')  
-  end
+function color.fromrgba(r, g, b, a)
+  assert(type(r) == 'number')
+  assert(type(g) == 'number')
+  assert(type(b) == 'number')
+  assert(type(a) == 'number' or type(a) == 'nil')
+  
+  local instance = {
+    clampcolor(r),
+    clampcolor(g),
+    clampcolor(b),
+    a and clampcolor(a)
+  }
+  return setmetatable(instance, mt)
+end
+
+--- Creates a new color object from a table.
+-- @tparam table t A sequence table containing RGBA components in slots 1 to 4.
+-- @treturn color A new color object with the specified component values.
+function color.fromtable(t)
+  assert(type(t) == 'table', 'table required')
+  assert(#t >= 3, 'a color requires at least three numerical components')
+  
+  return color.fromrgba(unpack(t))
 end
 
 --- Clones a color object.
