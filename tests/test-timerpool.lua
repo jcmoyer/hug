@@ -1,5 +1,5 @@
 require('path')
-local framework = require('framework')
+local framework = require('tt')
 local timerpool = require('hug.timerpool')
 
 local function simple()

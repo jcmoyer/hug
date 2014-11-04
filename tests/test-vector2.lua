@@ -1,5 +1,5 @@
 require('path')
-local framework = require('framework')
+local framework = require('tt')
 local vector2   = require('hug.vector2')
 
 local function eq()

@@ -1,5 +1,5 @@
 require('path')
-local framework = require('framework')
+local framework = require('tt')
 local timer = require('hug.timer')
 
 local function overstep()

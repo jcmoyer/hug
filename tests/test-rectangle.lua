@@ -1,5 +1,5 @@
 require('path')
-local framework = require('framework')
+local framework = require('tt')
 local rectangle = require('hug.rectangle')
 
 local function components()
