@@ -23,6 +23,17 @@ local function get()
     squarecache:get(4),
     'multiple calls with the same key'
   )
+
+  local function g(n)
+    return {n=n}
+  end
+
+  local tablecache = cache.new(g)
+  framework.compare(
+    true,
+    tablecache:get(1) == tablecache:get(1),
+    'same reference'
+  )
 end
 
 return framework.testall {
