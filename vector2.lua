@@ -113,6 +113,16 @@ function vector2.new(x, y)
   return setmetatable(instance, mt)
 end
 
+--- Creates a new vector2 object from polar coordinates.
+-- @number r The radial coordinate.
+-- @number phi The polar angle.
+-- @treturn vector2 A new vector 2 object with the specified radial coordinate and angle.
+function vector2.frompolar(r, phi)
+  local x = r * math.cos(phi)
+  local y = r * math.sin(phi)
+  return vector2.new(x, y)
+end
+
 --- Clones this vector2 and returns it.
 -- @treturn vector2
 function vector2:clone()
