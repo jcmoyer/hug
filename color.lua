@@ -25,7 +25,8 @@ local mt = { __index = color }
 
 local assert, error = assert, error
 local getmetatable, setmetatable, type = getmetatable, setmetatable, type
-local unpack = unpack
+-- 5.2+ compatibility
+local unpack = unpack or table.unpack
 
 local function clampcolor(a)
   if a < 0 then
