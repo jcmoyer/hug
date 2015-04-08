@@ -57,6 +57,7 @@ local callbacks = {
   'keypressed',
   'keyreleased',
   'mousefocus',
+  'mousemoved',
   'mousepressed',
   'mousereleased',
   'quit',
