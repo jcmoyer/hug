@@ -83,6 +83,7 @@ local function restart()
   pool:update(1.5)
   framework.compare(1, n)
   framework.compare('active', t:status())
+  framework.compare(1, pool:size())
 end
 
 return framework.testall {
