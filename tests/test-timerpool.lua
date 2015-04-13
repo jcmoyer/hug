@@ -66,10 +66,30 @@ local function overstep()
   framework.compare(1, n)
 end
 
+local function restart()
+  local n = 0
+  local pool = timerpool.new()
+  local function callback(t)
+    n = n + 1
+    t:restart()
+  end
+  local t = pool:start(1, callback)
+
+  framework.compare('active', t:status())
+  framework.compare(0, n)
+  pool:update(0.5)
+  framework.compare(0, n)
+  framework.compare('active', t:status())
+  pool:update(1.5)
+  framework.compare(1, n)
+  framework.compare('active', t:status())
+end
+
 return framework.testall {
   { 'simple', simple },
   { 'cancelled', cancelled },
   { 'clear', clear },
   { 'size', size },
-  { 'overstep', overstep }
+  { 'overstep', overstep },
+  { 'restart', restart }
 }

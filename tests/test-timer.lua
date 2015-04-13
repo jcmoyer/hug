@@ -23,7 +23,17 @@ local function evaluate()
   framework.compare(1.0, t:evaluate(id))
 end
 
+local function restart()
+  local t = timer.new(1)
+  framework.compare('active', t:status())
+  t:update(1)
+  framework.compare('finished', t:status())
+  t:restart()
+  framework.compare('active', t:status())
+end
+
 return framework.testall {
   { 'overstep', overstep },
-  { 'evaluate', evaluate }
+  { 'evaluate', evaluate },
+  { 'restart', restart }
 }

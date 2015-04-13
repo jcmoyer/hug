@@ -80,6 +80,16 @@ function timer:status()
   end
 end
 
+--- Restarts the timer.
+-- Clears the cancellation status and resets the remaining time to `duration`
+-- if it is present, or the duration the timer was created with.
+-- @tparam number duration Duration of the timer.
+function timer:restart(duration)
+  self.cancelled = false
+  self._duration = duration or self._duration
+  self._remaining = self._duration
+end
+
 --- Flags this timer as cancelled.
 -- Cancelled timers will always have the status of 'cancelled'.
 function timer:cancel()
