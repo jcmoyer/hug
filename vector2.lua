@@ -38,7 +38,7 @@
 local vector2 = {}
 local mt = {__index = vector2}
 
-local function checkvec2(v)
+local function isvector2(v)
   return getmetatable(v) == mt
 end
 
@@ -64,7 +64,7 @@ end
 -- @treturn vector2 The result of multiplying `a` by `b`.
 function mt.__mul(a, b)
   local result
-  if checkvec2(a) then
+  if isvector2(a) then
     result = a:clone()
     result:mul(b)
   else
@@ -166,7 +166,7 @@ end
 --   `a` is not a `vector2`.
 -- @treturn vector2 This vector.
 function vector2:add(a, b)
-  if checkvec2(a) then
+  if isvector2(a) then
     self[1] = self[1] + a[1]
     self[2] = self[2] + a[2]
   else
@@ -184,7 +184,7 @@ end
 --   required if `a` is not a `vector2`.
 -- @treturn vector2 This vector.
 function vector2:sub(a, b)
-  if checkvec2(a) then
+  if isvector2(a) then
     self[1] = self[1] - a[1]
     self[2] = self[2] - a[2]
   else

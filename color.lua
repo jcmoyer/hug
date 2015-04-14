@@ -38,7 +38,7 @@ local function clampcolor(a)
   end
 end
 
-local function checkcolor(a)
+local function iscolor(a)
   return getmetatable(a) == mt
 end
 
@@ -68,10 +68,10 @@ end
 -- @treturn color The result of multiplying `a` and `b`.
 function mt.__mul(a, b)
   local result
-  if checkcolor(a) then
+  if iscolor(a) then
     result = a:clone()
     result:mul(b)
-  elseif checkcolor(b) then
+  elseif iscolor(b) then
     result = b:clone()
     result:mul(a)
   else
@@ -125,7 +125,7 @@ end
 -- @treturn string|nil If `t` is a color, `'rgb'` or `'rgba'`; otherwise,
 --   `nil`.
 function color.type(t)
-  if checkcolor(t) then
+  if iscolor(t) then
     if #t == 3 then
       return 'rgb'
     elseif #t == 4 then
@@ -177,7 +177,7 @@ end
 -- @tparam color b Color to add.
 -- @treturn color This color.
 function color:add(b)
-  assert(checkcolor(b), 'cannot add a ' .. type(b) .. ' to a color')
+  assert(iscolor(b), 'cannot add a ' .. type(b) .. ' to a color')
   -- All colors will have at least three components
   self[1] = clampcolor(self[1] + b[1])
   self[2] = clampcolor(self[2] + b[2])
@@ -192,7 +192,7 @@ end
 -- @tparam color b Color to subtract.
 -- @treturn color This color.
 function color:sub(b)
-  assert(checkcolor(b), 'cannot subtract a ' .. type(b) .. ' from a color')
+  assert(iscolor(b), 'cannot subtract a ' .. type(b) .. ' from a color')
   -- All colors will have at least three components
   self[1] = clampcolor(self[1] - b[1])
   self[2] = clampcolor(self[2] - b[2])
