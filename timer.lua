@@ -17,8 +17,9 @@
 --- Implements a timer object.
 -- @type timer
 
-local timer = {}
-local mt = { __index = timer }
+local module = require('hug.module')
+
+local timer = module.new()
 
 --- Constructs a new timer object.
 -- @number duration The duration of this timer.
@@ -30,7 +31,7 @@ function timer.new(duration, state)
     _state = state,
     cancelled = false
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, timer)
 end
 
 --- Returns the state associated with this timer.

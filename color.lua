@@ -20,8 +20,9 @@
 -- local red = color.new(255, 0, 0)
 -- love.graphics.setColor(red)
 
-local color = {}
-local mt = { __index = color }
+local module = require('hug.module')
+
+local color = module.new()
 
 local assert, error = assert, error
 local getmetatable, setmetatable, type = getmetatable, setmetatable, type
@@ -39,7 +40,7 @@ local function clampcolor(a)
 end
 
 local function iscolor(a)
-  return getmetatable(a) == mt
+  return getmetatable(a) == color
 end
 
 --- Implements binary operator `+` for colors.
@@ -47,7 +48,7 @@ end
 -- @tparam color a
 -- @tparam color b
 -- @treturn color The result of adding colors `a` and `b`.
-function mt.__add(a, b)
+function color.__add(a, b)
   return a:clone():add(b)
 end
 
@@ -56,7 +57,7 @@ end
 -- @tparam color a
 -- @tparam color b
 -- @treturn color The result of subtracting `b` from `a`.
-function mt.__sub(a, b)
+function color.__sub(a, b)
   return a:clone():sub(b)
 end
 
@@ -66,7 +67,7 @@ end
 -- @tparam color|number a
 -- @tparam number|color b
 -- @treturn color The result of multiplying `a` and `b`.
-function mt.__mul(a, b)
+function color.__mul(a, b)
   local result
   if iscolor(a) then
     result = a:clone()
@@ -85,7 +86,7 @@ end
 -- @tparam color a
 -- @number b
 -- @treturn color The result of dividing `a` by `b`.
-function mt.__div(a, b)
+function color.__div(a, b)
   return a:clone():div(b)
 end
 
@@ -93,7 +94,7 @@ end
 -- This is equivalent to `a:clone():invert()`.
 -- @tparam color a
 -- @treturn color The result of inverting `a`.
-function mt.__unm(a)
+function color.__unm(a)
   return a:clone():invert()
 end
 
@@ -101,7 +102,7 @@ end
 -- @tparam color a Color A.
 -- @tparam color b Color B.
 -- @treturn boolean True if the colors are equal; otherwise false.
-function mt.__eq(a, b)
+function color.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
@@ -110,7 +111,7 @@ end
 -- future. This method only guarantees that `color` objects can be converted
 -- to a human-readable representation.
 -- @treturn string A `string` representation for this color.
-function mt:__tostring()
+function color:__tostring()
   if #self == 3 then
     return string.format('rgb(%d,%d,%d)', self[1], self[2], self[3])
   elseif #self == 4 then
@@ -154,7 +155,7 @@ function color.fromrgba(r, g, b, a)
     clampcolor(b),
     a and clampcolor(a)
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, color)
 end
 
 --- Creates a new color object from a table.
@@ -170,7 +171,7 @@ end
 --- Clones a color object.
 -- @treturn color A new color object with the same values as the source color.
 function color:clone()
-  return setmetatable({self[1], self[2], self[3], self[4]}, mt)
+  return setmetatable({self[1], self[2], self[3], self[4]}, color)
 end
 
 --- Adds another color to this one.

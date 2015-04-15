@@ -23,10 +23,10 @@
 --
 -- @type chasecamera
 
+local module = require('hug.module')
 local vector2 = require('hug.vector2')
 
-local chasecamera = {}
-local mt = {__index = chasecamera}
+local chasecamera = module.new()
 
 --- Creates a new chasecamera.
 -- @number width Width of the camera's viewport.
@@ -54,7 +54,7 @@ function chasecamera.new(width, height, stiffness, damping, mass)
     shakemag  = 0,
     shakevec  = vector2.new()
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, chasecamera)
 end
 
 --- Computes the left side of the camera's viewport.

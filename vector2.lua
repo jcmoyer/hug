@@ -35,18 +35,19 @@
 -- -- unpack allows you to pass vector components into functions:
 -- love.graphics.translate(unpack(c))
 
-local vector2 = {}
-local mt = {__index = vector2}
+local module = require('hug.module')
+
+local vector2 = module.new()
 
 local function isvector2(v)
-  return getmetatable(v) == mt
+  return getmetatable(v) == vector2
 end
 
 --- Implements binary operator `+` for `vector2` objects.
 -- @tparam vector2 a The first vector.
 -- @tparam vector2 b The second vector.
 -- @treturn vector2 The result of adding `a` and `b`.
-function mt.__add(a, b)
+function vector2.__add(a, b)
   return a:clone():add(b)
 end
 
@@ -54,7 +55,7 @@ end
 -- @tparam vector2 a The first vector.
 -- @tparam vector2 b The second vector.
 -- @treturn vector2 The result of subtracting `b` from `a`.
-function mt.__sub(a, b)
+function vector2.__sub(a, b)
   return a:clone():sub(b)
 end
 
@@ -62,7 +63,7 @@ end
 -- @tparam vector2|number a The first vector or scalar.
 -- @tparam number|vector2 b The second vector or scalar.
 -- @treturn vector2 The result of multiplying `a` by `b`.
-function mt.__mul(a, b)
+function vector2.__mul(a, b)
   local result
   if isvector2(a) then
     result = a:clone()
@@ -78,7 +79,7 @@ end
 -- @tparam vector2 a The vector.
 -- @number b The scalar.
 -- @treturn vector2 A new `vector2` containing the results of the division.
-function mt.__div(a, b)
+function vector2.__div(a, b)
   return a:clone():div(b)
 end
 
@@ -86,7 +87,7 @@ end
 -- @tparam vector2 a Vector A.
 -- @tparam vector2 b Vector B.
 -- @treturn boolean True if the vectors are equal; otherwise false.
-function mt.__eq(a, b)
+function vector2.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2]
 end
 
@@ -95,7 +96,7 @@ end
 -- future. This method only guarantees that `vector2` objects can be converted
 -- to a human-readable representation.
 -- @treturn string A `string` representation for this vector.
-function mt:__tostring()
+function vector2:__tostring()
   return string.format('<%f,%f>', self[1], self[2])
 end
 
@@ -110,7 +111,7 @@ function vector2.new(x, y)
     x or 0,
     y or 0
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, vector2)
 end
 
 --- Creates a new vector2 object from polar coordinates.
@@ -126,7 +127,7 @@ end
 --- Clones this vector2 and returns it.
 -- @treturn vector2
 function vector2:clone()
-  return setmetatable({self[1], self[2]}, mt)
+  return setmetatable({self[1], self[2]}, vector2)
 end
 
 --- Returns the X component of this vector.

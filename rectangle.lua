@@ -28,18 +28,19 @@
 -- local a = rectangle.new(0, 0, 32, 32)
 -- love.graphics.rectangle('fill', unpack(a))
 
-local rectangle = {}
-local mt = {__index = rectangle}
+local module = require('hug.module')
+
+local rectangle = module.new()
 
 local function isrectangle(t)
-  return getmetatable(t) == mt
+  return getmetatable(t) == rectangle
 end
 
 --- Implements binary operator `==` for `rectangle` objects.
 -- @tparam rectangle a Rectangle A.
 -- @tparam rectangle b Rectangle B.
 -- @treturn boolean True if the rectangles are equal; otherwise false.
-function mt.__eq(a, b)
+function rectangle.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
@@ -48,7 +49,7 @@ end
 -- future. This method only guarantees that `rectangle` objects can be
 -- converted to a human-readable representation.
 -- @treturn string A `string` representation for this vector.
-function mt:__tostring()
+function rectangle:__tostring()
   return self[1] .. ',' .. self[2] .. ',' .. self[3] .. ',' .. self[4]
 end
 
@@ -59,7 +60,7 @@ end
 -- @number[opt=0] h Height of the rectangle.
 function rectangle.new(x, y, w, h)
   local instance = { x or 0, y or 0, w or 0, h or 0 }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, rectangle)
 end
 
 --- Returns the X-coordinate of the left side of the rectangle.

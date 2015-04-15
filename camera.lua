@@ -21,8 +21,9 @@
 --
 -- @type camera
 
-local camera = {}
-local mt = { __index = camera }
+local module = require('hug.module')
+
+local camera = module.new()
 
 local setmetatable = setmetatable
 local random = math.random
@@ -45,7 +46,7 @@ function camera.new(width, height)
     w = width,
     h = height
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, camera)
 end
 
 --- Centers the camera on a point instantly.

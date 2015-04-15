@@ -33,8 +33,9 @@
 -- @type statemachine
 -- @see gamestate
 
-local statemachine = {}
-local mt = { __index = statemachine }
+local module = require('hug.module')
+
+local statemachine = module.new()
 
 local assert = assert
 local setmetatable = setmetatable
@@ -51,7 +52,7 @@ function statemachine.new()
     states = {},
     base = 0
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, statemachine)
 end
 
 function statemachine:findbase()

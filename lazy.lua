@@ -28,8 +28,9 @@
 --   ...
 -- end
 
-local lazy = {}
-local mt = { __index = lazy }
+local module = require('hug.module')
+
+local lazy = module.new()
 
 local setmetatable = setmetatable
 
@@ -41,7 +42,7 @@ function lazy.new(factory)
     factory = factory,
     wasinit = false
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, lazy)
 end
 
 --- Returns the value associated with this `lazy` instance.
