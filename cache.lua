@@ -22,8 +22,9 @@
 -- local im2 = imagecache:get('foo.png')
 -- assert(im1 == im2)
 
-local cache = {}
-local mt = { __index = cache }
+local module = require('hug.module')
+
+local cache = module.new()
 
 --- Creates a cache from a factory function.
 -- @func factory An unary function that produces a different value for each
@@ -34,7 +35,7 @@ function cache.new(factory)
     factory = factory,
     entries = {}
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, cache)
 end
 
 --- Returns the value associated with a given key.

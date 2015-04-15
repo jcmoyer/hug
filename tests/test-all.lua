@@ -28,6 +28,7 @@ local function runtests(t)
 end
 
 local passed, total = runtests {
+  'module',
   'vector2',
   'color',
   'rectangle',

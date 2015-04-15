@@ -20,10 +20,10 @@
 -- * `timer`
 --
 
+local module = require('hug.module')
 local timer = require('hug.timer')
 
-local timerpool = {}
-local mt = { __index = timerpool }
+local timerpool = module.new()
 
 local remove = table.remove
 
@@ -31,7 +31,7 @@ function timerpool.new()
   local instance = {
     timers = {}
   }
-  return setmetatable(instance, mt)
+  return setmetatable(instance, timerpool)
 end
 
 --- Starts a new timer.

@@ -13,10 +13,11 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 --
+
+local module = require('hug.module')
 local tablex = require('hug.extensions.table')
 
-local gamestate = {}
-local mt = { __index = gamestate }
+local gamestate = module.new()
 
 --- Provides a simple abstraction for individual states in a game.
 -- **Dependencies:**
@@ -80,7 +81,7 @@ local callbacks = {
 -- Climb the __index chain and see if it contains gamestate.
 local function isgamestate(t)
   local tmt = getmetatable(t)
-  if tmt.__index == mt.__index then
+  if tmt.__index == gamestate.__index then
     return true
   elseif tmt.__index then
     return isgamestate(tmt.__index)
@@ -109,7 +110,7 @@ end
 --- Creates and returns a new gamestate table.
 -- @treturn gamestate A new gamestate.
 function gamestate.new()
-  return setmetatable({}, mt)
+  return setmetatable({}, gamestate)
 end
 
 --- Returns an empty table that indexes gamestate.
