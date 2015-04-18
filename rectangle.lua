@@ -182,4 +182,9 @@ function rectangle:offset(x, y)
   self[2] = self[2] + y
 end
 
+-- Clones this rectangle and returns the clone.
+function rectangle:clone()
+  return rectangle.new(unpack(self))
+end
+
 return rectangle
