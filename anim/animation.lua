@@ -19,9 +19,11 @@ local frame = require('hug.anim.frame')
 
 local animation = module.new()
 
--- Returns the number of frames in this animation.
+-- Returns the number of frames in this animation. NOTE: This metamethod is not
+-- available in love2d due to the way luajit is compiled. Use animation:len()
+-- instead.
 function animation:__len()
-  return #self.frames
+  return self:len()
 end
 
 -- Creates a new animation and returns it.
@@ -42,6 +44,11 @@ end
 -- frame `n`, this method returns nil.
 function animation:frame(n)
   return self.frames[n]
+end
+
+-- Returns the number of frames in this animation.
+function animation:len()
+  return #self.frames
 end
 
 return animation

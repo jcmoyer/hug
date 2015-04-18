@@ -19,9 +19,11 @@ local animation = require('hug.anim.animation')
 
 local set = module.new()
 
--- Returns the number of animations in this animation set.
+-- Returns the number of animations in this animation set. NOTE: This
+-- metamethod is not available in love2d due to the way luajit is compiled. Use
+-- set:len() instead.
 function set:__len()
-  return #self.animations
+  return self:len()
 end
 
 -- Creates a new animation set and returns it.
@@ -48,6 +50,11 @@ end
 -- Returns the first animation in the set.
 function set:first()
   return self.animations[1]
+end
+
+-- Returns the number of animations in this animation set.
+function set:len()
+  return #self.animations
 end
 
 return set
