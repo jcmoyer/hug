@@ -22,7 +22,7 @@ local animator = module.new()
 -- required to 
 function animator.new(set)
   assert(set, 'animation set must be provided')
-  assert(#set > 0, 'animation set must have at least one animation')
+  assert(set:len() > 0, 'animation set must have at least one animation')
   local instance = {
     set = set,
     anim = set:first(),
