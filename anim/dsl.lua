@@ -18,6 +18,8 @@ local set = require('hug.anim.set')
 local animation = require('hug.anim.animation')
 local frame = require('hug.anim.frame')
 local rectangle = require('hug.rectangle')
+local tablex = require('hug.extensions.table')
+local vector2 = require('hug.vector2')
 
 local dsl = {}
 
@@ -35,16 +37,22 @@ else
 end
 
 local function dslframef(t)
-  local attachments = {}
+  local userdata
+  if t.userdata then
+    userdata = tablex.deepclone(t.userdata)
+  else
+    userdata = {}
+  end
+  userdata.attachments = {}
   for k,v in pairs(t) do
     if (type(v) == 'table' and v._attachment) then
-      table.insert(attachments, v)
+      userdata.attachments[v.name] = vector2.new(v[1], v[2])
     end
   end
   return {
     source = t.source,
     duration = t.duration,
-    attachments = attachments,
+    userdata = userdata,
     _frame = true
   }
 end
@@ -116,7 +124,7 @@ function dsl.run(f)
           fr.source[3],
           fr.source[4],
           fr.duration,
-          fr.attachments))
+          fr.userdata))
       end
     end
   end

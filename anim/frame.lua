@@ -32,19 +32,8 @@ local frame = module.new(rectangle, true)
 -- milliseconds). If `duration` is `nil`, the frame will be interpreted as
 -- lasting indefinitely.
 --
--- `attachments` should be a sequence table of points with a `name` field. For
--- example: `{10, 20, name = 'left-hand'}` would be an attachment named
--- `'left-hand'` located at (10, 20).
---
--- Example:
---
--- ```
--- local f = frame.new(0, 0, 32, 32, '500ms', {
---   {name = 'left-hand', 10, 20},
---   {name = 'right-hand', 22, 20}
--- })
--- ```
-function frame.new(x, y, w, h, duration, attachments)
+-- `userdata` is a table containing arbitrary data.
+function frame.new(x, y, w, h, duration, userdata)
   -- at some point this should be put into a different module
   if type(duration) == 'string' then
     local n, unit = duration:match('^([%d%.]+)(%a+)$')
@@ -57,25 +46,30 @@ function frame.new(x, y, w, h, duration, attachments)
     end
   end
 
-  local attachmentmap = {}
-  for i = 1,#attachments do
-    local attachment = attachments[i]
-    attachmentmap[attachment.name] = vector2.new(attachment[1], attachment[2])
-  end
-
   local instance = {
     x, y, w, h,
     duration = duration,
-    attachments = attachmentmap
+    _userdata = userdata or {}
   }
 
   return setmetatable(instance, frame)
 end
 
 -- Returns the attachment named `name`, or `nil` if it doesn't exist. The value
--- returned is a `vector2`.
+-- returned is a `vector2`. This is syntactic sugar to access the userdata
+-- named 'attachments'.
 function frame:attachment(name)
-  return self.attachments[name]
+  local attachments = self:userdata('attachments')
+  if attachments then
+    return attachments[name]
+  else
+    return nil
+  end
+end
+
+-- Returns the userdata named `name`, or `nil` if it doesn't exist.
+function frame:userdata(name)
+  return self._userdata[name]
 end
 
 -- Creates a copy of this frame and returns it.
@@ -86,7 +80,7 @@ function frame:clone()
     self[3], -- w
     self[4], -- h
     self.duration,
-    tablex.deepclone(self.attachments))
+    tablex.deepclone(self.userdata))
 end
 
 return frame
