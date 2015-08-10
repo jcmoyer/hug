@@ -27,7 +27,9 @@ function animator.new(set)
     set = set,
     anim = set:first(),
     time = 0,
-    frameidx = 1
+    frameidx = 1,
+    -- 'playing' | 'paused' | 'stopped'
+    state = 'stopped'
   }
   return setmetatable(instance, animator)
 end
@@ -35,6 +37,7 @@ end
 -- Switches the currently playing animation to `name`. If `name` is already
 -- playing, this function does nothing.
 function animator:play(name)
+  self.state = 'playing'
   local anim = self.set:animation(name)
   if self.anim == anim then
     return
@@ -48,6 +51,20 @@ end
 function animator:restart()
   self.time = 0
   self.frameidx = 1
+  self.state = 'playing'
+end
+
+-- Pauses the currently playing animation.
+function animator:pause()
+  self.state = 'paused'
+end
+
+-- Stops the currently playing animation and immediately returns to the first
+-- frame.
+function animator:stop()
+  self.time = 0
+  self.frameidx = 1
+  self.state = 'stopped'
 end
 
 -- Updates this animator, switching the currently active frame if enough time
@@ -56,6 +73,9 @@ end
 -- NOTE: If a frame doesn't have a duration, the animator will stop changing
 -- frames.
 function animator:update(dt)
+  if self.state ~= 'playing' then
+    return
+  end
   local frame = self:frame()
   if not frame then
     return
@@ -95,6 +115,17 @@ function animator:attachment(name)
     return nil
   end
   return f:attachment(name)
+end
+
+-- Returns the status of this animator; it is one of the following values:
+--
+-- * 'stopped' - the animator is stopped; playing it will start it from the
+--   beginning
+-- * 'playing' - the animator is currently playing
+-- * 'paused' - the animator is currently paused; playing it will resume
+--   animation from the point it was paused at
+function animator:status()
+  return self.state
 end
 
 return animator
