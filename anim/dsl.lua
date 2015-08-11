@@ -20,6 +20,7 @@ local frame = require('hug.anim.frame')
 local rectangle = require('hug.rectangle')
 local tablex = require('hug.extensions.table')
 local vector2 = require('hug.vector2')
+local extension = require('hug.extensions.extension')
 
 local dsl = {}
 
@@ -106,7 +107,29 @@ end
 --   }
 -- end)
 -- ```
-function dsl.run(f)
+--
+-- You can inject your own values into the environment by passing a table as
+-- `envext`. For example:
+--
+-- ```
+-- local function minutes(n)
+--   return string.format('%dms', n*60*1000)
+-- end
+-- local as = dsl.run(function(_ENV)
+--   animation 'idle' {
+--     frame {
+--       duration = minutes(2)
+--     },
+--     frame {
+--       duration = minutes(1)
+--     }
+--   }
+-- end, {minutes = minutes})
+-- ```
+--
+-- Attempting to override existing DSL functions will result in an error being
+-- raised.
+function dsl.run(f, envext)
   local as = set.new()
 
   -- this needs to close over `as` so it can be modified
@@ -135,6 +158,11 @@ function dsl.run(f)
     attachment = dslattachmentf,
     rectangle = dslrectanglef
   }
+
+  -- inject user-defined values into env
+  if envext then
+    extension.install(envext, env)
+  end
 
   runenv(f, env)
 
