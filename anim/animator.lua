@@ -86,15 +86,20 @@ function animator:update(dt)
   self.time = self.time + dt
   while self.time >= frame:duration() do
     self.time = self.time - frame:duration()
-    -- advance frame
-    self.frameidx = self.frameidx + 1
-    frame = self:frame()
-    -- we're past the last frame; go back to frame 1
-    if not frame then
-      self.frameidx = 1
-      frame = self:frame()
-    end
+    frame = self:advance()
   end
+end
+
+-- Advances the animation by one frame and returns the new frame.
+function animator:advance()
+  self.frameidx = self.frameidx + 1
+  local frame = self:frame()
+  -- we're past the last frame; go back to frame 1
+  if not frame then
+    self.frameidx = 1
+    frame = self:frame()
+  end
+  return frame
 end
 
 -- Returns the currently active frame for this animator. If there are no frames
