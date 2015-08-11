@@ -80,12 +80,12 @@ function animator:update(dt)
   if not frame then
     return
   end
-  if not frame.duration then
+  if not frame:duration() then
     return
   end
   self.time = self.time + dt
-  while self.time >= frame.duration do
-    self.time = self.time - frame.duration
+  while self.time >= frame:duration() do
+    self.time = self.time - frame:duration()
     -- advance frame
     self.frameidx = self.frameidx + 1
     frame = self:frame()

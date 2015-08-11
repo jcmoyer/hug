@@ -48,11 +48,16 @@ function frame.new(x, y, w, h, duration, userdata)
 
   local instance = {
     x, y, w, h,
-    duration = duration,
+    _duration = duration,
     _userdata = userdata or {}
   }
 
   return setmetatable(instance, frame)
+end
+
+-- Returns the duration of this frame in milliseconds.
+function frame:duration()
+  return self._duration
 end
 
 -- Returns the attachment named `name`, or `nil` if it doesn't exist. The value
@@ -79,7 +84,7 @@ function frame:clone()
     self[2], -- y
     self[3], -- w
     self[4], -- h
-    self.duration,
+    self._duration,
     tablex.deepclone(self.userdata))
 end
 
