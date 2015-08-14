@@ -66,10 +66,10 @@ local function emitter()
   framework.compare(1, n)
   e:emit('decrement')
   framework.compare(0, n)
-  e:remove('increment', increment)
+  e:removelistener('increment', increment)
   e:emit('increment')
   framework.compare(0, n)
-  e:clear('decrement')
+  e:clearlisteners('decrement')
   e:emit('decrement')
   framework.compare(0, n)
 end
@@ -88,9 +88,20 @@ local function emitter_composition()
 
   local a = obj.new()
   local n = 0
-  a:on('tick', function()
+  local function tickcb()
     n = n + 1
-  end)
+  end
+
+  a:on('tick', tickcb)
+  a:tick()
+  framework.compare(1, n)
+
+  a:clearlisteners('tick')
+  a:tick()
+  framework.compare(1, n)
+
+  a:on('tick', tickcb)
+  a:removelistener('tick', tickcb)
   a:tick()
   framework.compare(1, n)
 end

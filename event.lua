@@ -86,7 +86,7 @@ local eventproxy = {
   end
 }
 
-local emitterfns = {'emit', 'on', 'remove', 'clear'}
+local emitterfns = {'emit', 'on', 'removelistener', 'clearlisteners'}
 
 function emitter.new()
   local instance = {
@@ -165,12 +165,12 @@ function emitter:on(name, f)
 end
 
 -- Removes `f` from the list of listeners `name` events.
-function emitter:remove(name, f)
+function emitter:removelistener(name, f)
   self.events[name]:remove(f)
 end
 
 -- Clears all listeners for `name` events.
-function emitter:clear(name)
+function emitter:clearlisteners(name)
   self.events[name]:clear()
 end
 
