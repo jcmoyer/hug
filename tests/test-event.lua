@@ -105,11 +105,43 @@ local function emitter_composition()
   framework.compare(1, n)
 end
 
+local function emitter_inheritance()
+  local obj = module.new(event.emitter)
+  function obj.new()
+    local instance = setmetatable({}, obj)
+    event.emitter.construct(instance)
+    return instance
+  end
+  function obj:tick()
+    self:emit('tick')
+  end
+
+  local a = obj.new()
+  local n = 0
+  local function tickcb()
+    n = n + 1
+  end
+
+  a:on('tick', tickcb)
+  a:tick()
+  framework.compare(1, n)
+
+  a:clearlisteners('tick')
+  a:tick()
+  framework.compare(1, n)
+
+  a:on('tick', tickcb)
+  a:removelistener('tick', tickcb)
+  a:tick()
+  framework.compare(1, n)
+end
+
 return framework.testall {
   { 'add', add },
   { 'remove', remove },
   { 'raise', raise },
   { 'len', len },
   { 'emitter', emitter },
-  { 'emitter composition', emitter_composition }
+  { 'emitter composition', emitter_composition },
+  { 'emitter inheritance', emitter_inheritance }
 }

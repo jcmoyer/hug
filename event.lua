@@ -89,10 +89,7 @@ local eventproxy = {
 local emitterfns = {'emit', 'on', 'removelistener', 'clearlisteners'}
 
 function emitter.new()
-  local instance = {
-    events = setmetatable({}, eventproxy)
-  }
-  return setmetatable(instance, emitter)
+  return setmetatable(emitter.construct(), emitter)
 end
 
 -- Inserts an emitter object into the table `t` named `_emitter`. When
@@ -100,6 +97,19 @@ end
 -- Returns `t` for convenience.
 function emitter.compose(t)
   t._emitter = emitter.new()
+  return t
+end
+
+-- Inserts an event table into the table `t` named `_events`. If `t` is `nil`,
+-- an empty table will be used. When instantiating an object, use this function
+-- to inherit emitter functionality. This is suitable for use with
+-- `module.new(event.emitter)`. Returns `t` for convenience. If `t` is `nil`,
+-- this function returns the constructed table.
+function emitter.construct(t)
+  if t == nil then
+    t = {}
+  end
+  t._events = setmetatable({}, eventproxy)
   return t
 end
 
@@ -159,22 +169,22 @@ end
 -- Emits a `name` event. All listeners for `name` will be called with any
 -- additional parameters.
 function emitter:emit(name, ...)
-  self.events[name]:raise(...)
+  self._events[name]:raise(...)
 end
 
 -- Adds `f` as a listener for `name` events.
 function emitter:on(name, f)
-  self.events[name]:add(f)
+  self._events[name]:add(f)
 end
 
 -- Removes `f` from the list of listeners `name` events.
 function emitter:removelistener(name, f)
-  self.events[name]:remove(f)
+  self._events[name]:remove(f)
 end
 
 -- Clears all listeners for `name` events.
 function emitter:clearlisteners(name)
-  self.events[name]:clear()
+  self._events[name]:clear()
 end
 
 -- expose `emitter` through the `event` module
