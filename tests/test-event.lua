@@ -75,7 +75,7 @@ local function emitter()
 end
 
 local function emitter_composition()
-  local obj = module.new()
+  local obj = event.emitter.declare(module.new())
   function obj.new()
     local instance = setmetatable({}, obj)
     event.emitter.compose(instance)
@@ -84,7 +84,6 @@ local function emitter_composition()
   function obj:tick()
     self:emit('tick')
   end
-  event.emitter.declare(obj)
 
   local a = obj.new()
   local n = 0

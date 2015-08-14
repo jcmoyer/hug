@@ -137,6 +137,8 @@ end
 -- t:tick() -- 'timer has ticked 1 time(s)'
 -- t:tick() -- 'timer has ticked 2 time(s)'
 -- ```
+--
+-- This function returns `t` for convenience.
 function emitter.declare(t)
   -- declare wrapper functions on `t`
   for i = 1,#emitterfns do
@@ -151,6 +153,7 @@ function emitter.declare(t)
       return emitter[name](emitter, ...)
     end
   end
+  return t
 end
 
 -- Emits a `name` event. All listeners for `name` will be called with any
