@@ -92,10 +92,14 @@ function emitter.new()
   return setmetatable(emitter.construct(), emitter)
 end
 
--- Inserts an emitter object into the table `t` named `_emitter`. When
--- instantiating an object, use this function to compose emitter functionality.
--- Returns `t` for convenience.
+-- Inserts an emitter object into the table `t` named `_emitter`. If `t` is
+-- `nil`, an empty table will be used. When instantiating an object, use this
+-- function to compose emitter functionality. Returns `t` for convenience. If
+-- `t` is `nil`, this function returns the constructed table.
 function emitter.compose(t)
+  if t == nil then
+    t = {}
+  end
   t._emitter = emitter.new()
   return t
 end
