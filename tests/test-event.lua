@@ -41,14 +41,9 @@ end
 local function len()
   local e = event.new()
   e:add(function() end)
-  framework.compare(1, e:len())
+  framework.compare(1, #e)
   e:add(function() end)
-  framework.compare(2, e:len())
-  -- __len not supported on tables in 5.1 and, by extension, luajit with
-  -- default compilation options
-  if _VERSION ~= 'Lua 5.1' then
-    framework.compare(2, #e)
-  end
+  framework.compare(2, #e)
 end
 
 local function emitter()

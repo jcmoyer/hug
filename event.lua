@@ -23,52 +23,41 @@ function event:__call(...)
   return self:raise(...)
 end
 
--- Syntactic sugar for `event:len()`. NOTE: This metamethod is not available in
--- love2d. Use `event:len()` instead.
-function event:__len()
-  return self:len()
-end
-
--- Constructs a new event.
+-- Constructs a new event and returns it. An event table directly contains
+-- callbacks in the sequence part of the table, so standard table operations
+-- can be used.
 function event.new()
-  local instance = {
-    callbacks = {}
-  }
+  local instance = {}
   return setmetatable(instance, event)
 end
 
 -- Adds `f` to the list of listeners for this event. When this event is raised,
 -- `f` will be called with the same parameters passed to `raise`.
 function event:add(f)
-  table.insert(self.callbacks, f)
+  table.insert(self, f)
 end
 
 -- Removes `f` from this event.
 function event:remove(f)
-  for i = 1, #self.callbacks do
-    if self.callbacks[i] == f then
-      return table.remove(self.callbacks, i)
+  for i = 1, #self do
+    if self[i] == f then
+      return table.remove(self, i)
     end
   end
 end
 
 -- Removes all listeners from this event.
 function event:clear()
-  for i = #self.callbacks, 1, -1 do
-    table.remove(self.callbacks, i)
+  for i = #self, 1, -1 do
+    table.remove(self, i)
   end
-end
-
--- Returns the number of listeners associated with this event.
-function event:len()
-  return #self.callbacks
 end
 
 -- Raises this event. All listeners connected to this event will be called with
 -- the same parameters passed to `event:raise()`.
 function event:raise(...)
-  for i = 1, #self.callbacks do
-    self.callbacks[i](...)
+  for i = 1, #self do
+    self[i](...)
   end
 end
 
