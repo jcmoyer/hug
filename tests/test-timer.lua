@@ -32,8 +32,20 @@ local function restart()
   framework.compare('active', t:status())
 end
 
+local function events()
+  local t = timer.new(1)
+  local n = 0
+  t:on('expire', function() n = n + 1 end)
+  t:update(1)
+  framework.compare(1, n)
+  -- expire should only fire once
+  t:update(1)
+  framework.compare(1, n)
+end
+
 return framework.testall {
   { 'overstep', overstep },
   { 'evaluate', evaluate },
-  { 'restart', restart }
+  { 'restart', restart },
+  { 'events', events }
 }

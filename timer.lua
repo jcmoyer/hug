@@ -18,8 +18,9 @@
 -- @type timer
 
 local module = require('hug.module')
+local event = require('hug.event')
 
-local timer = module.new()
+local timer = module.new(event.emitter)
 
 --- Constructs a new timer object.
 -- @number duration The duration of this timer.
@@ -31,6 +32,7 @@ function timer.new(duration, state)
     _state = state,
     cancelled = false
   }
+  event.emitter.construct(instance)
   return setmetatable(instance, timer)
 end
 
@@ -63,7 +65,12 @@ end
 --- Updates this timer.
 -- @number dt Amount of time elapsed since the last update.
 function timer:update(dt)
+  local ostat = self:status()
   self._remaining = math.max(self._remaining - dt, 0)
+  local nstat = self:status()
+  if nstat ~= ostat and nstat == 'finished' then
+    self:emit('expire', self)
+  end
 end
 
 --- Determines whether or not this timer has finished running.
