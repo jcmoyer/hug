@@ -63,6 +63,8 @@ function timer:evaluate(f)
 end
 
 --- Updates this timer.
+-- If this timer's remaining time reaches zero after the update, an `expire`
+-- event will be emitted with the timer as a parameter.
 -- @number dt Amount of time elapsed since the last update.
 function timer:update(dt)
   local ostat = self:status()
