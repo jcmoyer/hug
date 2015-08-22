@@ -15,8 +15,9 @@
 --
 
 local module = require('hug.module')
+local event = require('hug.event')
 
-local animator = module.new()
+local animator = module.new(event.emitter)
 
 -- Constructs and returns a new animator. An animator contains all the state
 -- required to 
@@ -31,6 +32,7 @@ function animator.new(set)
     -- 'playing' | 'paused' | 'stopped'
     state = 'stopped'
   }
+  event.emitter.construct(instance)
   return setmetatable(instance, animator)
 end
 
@@ -70,6 +72,9 @@ end
 -- Updates this animator, switching the currently active frame if enough time
 -- has passed. `dt` is delta time.
 --
+-- Emits an `end` event if the animation has reached the final frame and needs
+-- to loop around. The animator will be passed as a parameter.
+--
 -- NOTE: If a frame doesn't have a duration, the animator will stop changing
 -- frames.
 function animator:update(dt)
@@ -91,6 +96,8 @@ function animator:update(dt)
 end
 
 -- Advances the animation by one frame and returns the new frame.
+-- Emits an `end` event if the animation has reached the final frame and needs
+-- to loop around. The animator will be passed as a parameter.
 function animator:advance()
   self.frameidx = self.frameidx + 1
   local frame = self:frame()
@@ -98,6 +105,7 @@ function animator:advance()
   if not frame then
     self.frameidx = 1
     frame = self:frame()
+    self:emit('end', self)
   end
   return frame
 end
