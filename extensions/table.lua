@@ -32,4 +32,17 @@ function extensions.clone(t)
   return setmetatable(r, getmetatable(t))
 end
 
+-- Deeply clones a table `t`.
+function extensions.deepclone(t)
+  local r = {}
+  for k,v in pairs(t) do
+    if type(v) == 'table' then
+      r[k] = extensions.deepclone(v)
+    else
+      r[k] = v
+    end
+  end
+  return setmetatable(r, getmetatable(t))
+end
+
 return extensions
