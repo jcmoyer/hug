@@ -34,7 +34,8 @@ local passed, total = runtests {
   'rectangle',
   'timer',
   'timerpool',
-  'cache'
+  'cache',
+  'event'
 }
 
 local overall = string.format(testfmt, passed, total, 100 * passed / total)
