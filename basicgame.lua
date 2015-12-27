@@ -53,10 +53,6 @@ function basicgame.start(initialstate)
   function love.load()
     sm:push(initialstate)
   end
-  
-  function love.update(dt, ...)
-    sm:update(dt, ...)
-  end
 
   return sm
 end
