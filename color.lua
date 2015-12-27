@@ -171,7 +171,7 @@ end
 --- Clones a color object.
 -- @treturn color A new color object with the same values as the source color.
 function color:clone()
-  return setmetatable({self[1], self[2], self[3], self[4]}, color)
+  return color.fromrgba(unpack(self))
 end
 
 --- Adds another color to this one.
