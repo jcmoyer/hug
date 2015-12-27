@@ -134,6 +134,12 @@ local function offset()
   framework.compare(40, a:y())
 end
 
+local function clone()
+  local a = rectangle.new(1, 2, 3, 4)
+  local b = a:clone()
+  framework.compare(a, b)
+end
+
 return framework.testall {
   { 'components', components },
   { 'intersect', intersect },
@@ -145,5 +151,7 @@ return framework.testall {
   { 'equality', eq },
   
   { 'inflation', inflate },
-  { 'offset', offset }
+  { 'offset', offset },
+
+  { 'clone', clone }
 }
