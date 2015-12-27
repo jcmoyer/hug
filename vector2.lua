@@ -127,7 +127,7 @@ end
 --- Clones this vector2 and returns it.
 -- @treturn vector2
 function vector2:clone()
-  return setmetatable({self[1], self[2]}, vector2)
+  return vector2.new(unpack(self))
 end
 
 --- Returns the X component of this vector.
