@@ -35,6 +35,7 @@ local basicgame = {}
 -- dispatch them to the appropriate game state.
 --
 -- @tparam gamestate initialstate the state to start the basicgame with
+-- @treturn statemachine the created state machine
 -- @see statemachine
 -- @see gamestate
 -- @see gamestate.callbacks
@@ -56,6 +57,8 @@ function basicgame.start(initialstate)
   function love.update(dt, ...)
     sm:update(dt, ...)
   end
+
+  return sm
 end
 
 return basicgame
