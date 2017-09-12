@@ -36,11 +36,19 @@
 -- love.graphics.translate(unpack(c))
 
 local module = require('hug.module')
+local ffi = require('ffi')
+
+ffi.cdef [[
+  typedef struct {
+    double x, y;
+  } vector2;
+]]
 
 local vector2 = module.new()
+vector2.ctype = ffi.metatype('vector2', vector2)
 
 local function isvector2(v)
-  return getmetatable(v) == vector2
+  return ffi.istype(vector2.ctype, v)
 end
 
 --- Implements binary operator `+` for `vector2` objects.
@@ -88,7 +96,7 @@ end
 -- @tparam vector2 b Vector B.
 -- @treturn boolean True if the vectors are equal; otherwise false.
 function vector2.__eq(a, b)
-  return a[1] == b[1] and a[2] == b[2]
+  return a.x == b.x and a.y == b.y
 end
 
 --- Implements `tostring` for `vector2` objects.
@@ -97,7 +105,7 @@ end
 -- to a human-readable representation.
 -- @treturn string A `string` representation for this vector.
 function vector2:__tostring()
-  return string.format('<%f,%f>', self[1], self[2])
+  return string.format('<%f,%f>', self.x, self.y)
 end
 
 --- Creates a new vector2 object.
@@ -107,11 +115,10 @@ end
 --   provided.
 -- @treturn vector2 A new vector 2 object with the specified magnitude.
 function vector2.new(x, y)
-  local instance = {
-    x or 0,
-    y or 0
-  }
-  return setmetatable(instance, vector2)
+  local instance = ffi.new(vector2.ctype)
+  instance.x = x or 0
+  instance.y = y or 0
+  return instance
 end
 
 --- Creates a new vector2 object from polar coordinates.
@@ -127,28 +134,28 @@ end
 --- Clones this vector2 and returns it.
 -- @treturn vector2
 function vector2:clone()
-  return vector2.new(unpack(self))
+  return vector2.new(self.x, self.y)
 end
 
 --- Returns the X component of this vector.
--- This is equivalent to vector[1].
+-- This is equivalent to vector.x.
 -- @treturn number The X component of this vector.
 function vector2:x()
-  return self[1]
+  return self.x
 end
 
 --- Returns the Y component of this vector.
--- This is equivalent to vector[2].
+-- This is equivalent to vector.y.
 -- @treturn number The Y component of this vector.
 function vector2:y()
-  return self[2]
+  return self.y
 end
 
 --- Computes the length of this vector.
 -- @treturn number The length of this vector.
 function vector2:len()
-  local x = self[1]
-  local y = self[2]
+  local x = self.x
+  local y = self.y
   return math.sqrt(x * x + y * y)
 end
 
@@ -156,7 +163,7 @@ end
 -- @tparam vector2 vec The second vector.
 -- @treturn number The dot product between the given vectors.
 function vector2:dot(vec)
-  return self[1] * vec[1] + self[2] * vec[2]
+  return self.x * vec.x + self.y * vec.y
 end
 
 --- Adds another vector to this one.
@@ -168,11 +175,11 @@ end
 -- @treturn vector2 This vector.
 function vector2:add(a, b)
   if isvector2(a) then
-    self[1] = self[1] + a[1]
-    self[2] = self[2] + a[2]
+    self.x = self.x + a.x
+    self.y = self.y + a.y
   else
-    self[1] = self[1] + a
-    self[2] = self[2] + b
+    self.x = self.x + a
+    self.y = self.y + b
   end
   return self
 end
@@ -186,11 +193,11 @@ end
 -- @treturn vector2 This vector.
 function vector2:sub(a, b)
   if isvector2(a) then
-    self[1] = self[1] - a[1]
-    self[2] = self[2] - a[2]
+    self.x = self.x - a.x
+    self.y = self.y - a.y
   else
-    self[1] = self[1] - a
-    self[2] = self[2] - b
+    self.x = self.x - a
+    self.y = self.y - b
   end
   return self
 end
@@ -199,8 +206,8 @@ end
 -- @number a Amount to multiply this vector by.
 -- @treturn vector2 This vector.
 function vector2:mul(a)
-  self[1] = self[1] * a
-  self[2] = self[2] * a
+  self.x = self.x * a
+  self.y = self.y * a
   return self
 end
 
@@ -208,8 +215,8 @@ end
 -- @number a Amount to divide this vector by.
 -- @treturn vector2 This vector.
 function vector2:div(a)
-  self[1] = self[1] / a
-  self[2] = self[2] / a
+  self.x = self.x / a
+  self.y = self.y / a
   return self
 end
 
@@ -218,11 +225,11 @@ end
 -- vector.
 -- @treturn vector2 This vector.
 function vector2:normalize()
-  local x = self[1]
-  local y = self[2]
+  local x = self.x
+  local y = self.y
   local l = math.sqrt(x * x + y * y)
-  self[1] = x / l
-  self[2] = y / l
+  self.x = x / l
+  self.y = y / l
   return self
 end
 
@@ -231,8 +238,8 @@ end
 -- @number y New value for the Y component of this vector.
 -- @treturn vector2 This vector.
 function vector2:set(x, y)
-  self[1] = x
-  self[2] = y
+  self.x = x
+  self.y = y
   return self
 end
 
