@@ -14,14 +14,14 @@
 -- limitations under the License.
 --
 
---- Provides extra table functions.
+-- Provides extra table functions.
 -- @alias extensions
 
 local extensions = {}
 
 local getmetatable, setmetatable, pairs = getmetatable, setmetatable, pairs
 
---- Shallowly clones a table.
+-- Shallowly clones a table.
 -- @tparam table t Table to clone.
 -- @treturn table A new table containing all of the data in `t`.
 function extensions.clone(t)

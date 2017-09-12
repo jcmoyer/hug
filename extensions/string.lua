@@ -14,12 +14,12 @@
 -- limitations under the License.
 --
 
---- Provides extra string functions.
+-- Provides extra string functions.
 -- @alias extensions
 
 local extensions = {}
 
---- Splits a string on a delimiter.
+-- Splits a string on a delimiter.
 -- @string s String to split.
 -- @string p Pattern to split on.
 -- @bool[opt=false] noempty If true, the resulting table will have any empty

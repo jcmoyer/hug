@@ -16,9 +16,9 @@
 
 local gameloop = {}
 
---- Contains functions that set up various kinds of game loops.
+-- Contains functions that set up various kinds of game loops.
 
---- Sets up a game loop with a fixed timestep and interpolated rendering.
+-- Sets up a game loop with a fixed timestep and interpolated rendering.
 -- **Replaces** the default `love.run` callback with one that calls
 -- `love.update` `updatehz` times per second. Additionally, `love.draw` will
 -- receive an argument `alpha` that tells it how much it needs to interpolate

@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a finite state machine for handling game states.
+-- Implements a finite state machine for handling game states.
 -- **Dependencies:**
 --
 -- * `gamestate`
@@ -45,7 +45,7 @@ local insert, remove = table.insert, table.remove
 local gamestate = require('hug.gamestate')
 local callbacks = gamestate.callbacks()
 
---- Constructs a new statemachine object.
+-- Constructs a new statemachine object.
 -- @treturn statemachine
 function statemachine.new()
   local instance = {
@@ -88,18 +88,18 @@ function statemachine:draw(...)
 end
 -- end of callback implementations
 
---- Determines if this state machine is managing any states.
+-- Determines if this state machine is managing any states.
 function statemachine:any()
   return #self.states > 0
 end
 
---- Returns the topmost state.
+-- Returns the topmost state.
 -- @treturn gamestate
 function statemachine:top()
   return self.states[#self.states]
 end
 
---- Pushes a new `gamestate` on top of the statemachine stack.
+-- Pushes a new `gamestate` on top of the statemachine stack.
 function statemachine:push(newstate)
   assert(gamestate.type(newstate), 'newstate is not a gamestate')
   
@@ -116,7 +116,7 @@ function statemachine:push(newstate)
   self:findbase()
 end
 
---- Pops the topmost `gamestate` from the statemachine stack.
+-- Pops the topmost `gamestate` from the statemachine stack.
 -- The state being popped will receive a call to `leave` with the underlying
 -- state as a parameter. Likewise, the state being transitioned to will receive
 -- a call to `enter` with the popped state as a parameter.

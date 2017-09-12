@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Manages a collection of timers.
+-- Manages a collection of timers.
 -- **Dependencies:**
 --
 -- * `timer`
@@ -34,7 +34,7 @@ function timerpool.new()
   return setmetatable(instance, timerpool)
 end
 
---- Starts a new timer.
+-- Starts a new timer.
 -- @number duration Amount of time, in seconds, this timer will expire in.
 -- @func callback Function to run when the timer expires. The callback will
 --   receive the expiring timer as a parameter. If you need to associate extra
@@ -47,7 +47,7 @@ function timerpool:start(duration, callback)
   return t
 end
 
---- Clears the timerpool's internal collection of timers.
+-- Clears the timerpool's internal collection of timers.
 -- This function is useful if you need a fresh timerpool, but you don't want to
 -- allocate a new one.
 function timerpool:clear()
@@ -56,12 +56,12 @@ function timerpool:clear()
   end
 end
 
---- Returns the number of timers in this timerpool.
+-- Returns the number of timers in this timerpool.
 function timerpool:size()
   return #self.timers
 end
 
---- Updates the timerpool.
+-- Updates the timerpool.
 -- This updates all the timers that this timerpool is managing. Timers that
 -- have expired will have their callbacks executed, and the timers themselves
 -- will be removed from the timerpool.

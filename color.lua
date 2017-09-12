@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a basic color object compatible with LÖVE graphics functions.
+-- Implements a basic color object compatible with LÖVE graphics functions.
 -- @type color
 -- @usage
 -- local red = color.new(255, 0, 0)
@@ -43,7 +43,7 @@ local function iscolor(a)
   return getmetatable(a) == color
 end
 
---- Implements binary operator `+` for colors.
+-- Implements binary operator `+` for colors.
 -- This is equivalent to `a:clone():add(b)`.
 -- @tparam color a
 -- @tparam color b
@@ -52,7 +52,7 @@ function color.__add(a, b)
   return a:clone():add(b)
 end
 
---- Implements binary operator `-` for colors.
+-- Implements binary operator `-` for colors.
 -- This is equivalent to `a:clone():sub(b)`.
 -- @tparam color a
 -- @tparam color b
@@ -61,7 +61,7 @@ function color.__sub(a, b)
   return a:clone():sub(b)
 end
 
---- Implements binary operator `*` for colors.
+-- Implements binary operator `*` for colors.
 -- This is equivalent to `a:clone():mul(b)` or `b:clone():mul(a)` depending on
 --   the order of the parameters.
 -- @tparam color|number a
@@ -81,7 +81,7 @@ function color.__mul(a, b)
   return result
 end
 
---- Implements binary operator `/` for colors.
+-- Implements binary operator `/` for colors.
 -- This is equivalent to `a:clone():div(b)`.
 -- @tparam color a
 -- @number b
@@ -90,7 +90,7 @@ function color.__div(a, b)
   return a:clone():div(b)
 end
 
---- Implements unary operator `-` for colors.
+-- Implements unary operator `-` for colors.
 -- This is equivalent to `a:clone():invert()`.
 -- @tparam color a
 -- @treturn color The result of inverting `a`.
@@ -98,7 +98,7 @@ function color.__unm(a)
   return a:clone():invert()
 end
 
---- Implements binary operator `==` for `color` objects.
+-- Implements binary operator `==` for `color` objects.
 -- @tparam color a Color A.
 -- @tparam color b Color B.
 -- @treturn boolean True if the colors are equal; otherwise false.
@@ -106,7 +106,7 @@ function color.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
---- Implements `tostring` for `color` objects.
+-- Implements `tostring` for `color` objects.
 -- Do not use this method for serialization as the format may change in the
 -- future. This method only guarantees that `color` objects can be converted
 -- to a human-readable representation.
@@ -121,7 +121,7 @@ function color:__tostring()
   end
 end
 
---- Determines what kind of color the given table is.
+-- Determines what kind of color the given table is.
 -- @tab t Table to test.
 -- @treturn string|nil If `t` is a color, `'rgb'` or `'rgba'`; otherwise,
 --   `nil`.
@@ -136,7 +136,7 @@ function color.type(t)
   return nil
 end
 
---- Creates a new color object given RGBA values.
+-- Creates a new color object given RGBA values.
 -- @tparam int r Red value. Accepted values fall in the range of [0..255].
 -- @tparam int g Green value. Accepted values fall in the range of [0..255].
 -- @tparam int b Blue value. Accepted values fall in the range of [0..255].
@@ -158,7 +158,7 @@ function color.fromrgba(r, g, b, a)
   return setmetatable(instance, color)
 end
 
---- Creates a new color object from a table.
+-- Creates a new color object from a table.
 -- @tparam table t A sequence table containing RGBA components in slots 1 to 4.
 -- @treturn color A new color object with the specified component values.
 function color.fromtable(t)
@@ -168,13 +168,13 @@ function color.fromtable(t)
   return color.fromrgba(unpack(t))
 end
 
---- Clones a color object.
+-- Clones a color object.
 -- @treturn color A new color object with the same values as the source color.
 function color:clone()
   return color.fromrgba(unpack(self))
 end
 
---- Adds another color to this one.
+-- Adds another color to this one.
 -- @tparam color b Color to add.
 -- @treturn color This color.
 function color:add(b)
@@ -189,7 +189,7 @@ function color:add(b)
   return self
 end
 
---- Subtracts another color from this one.
+-- Subtracts another color from this one.
 -- @tparam color b Color to subtract.
 -- @treturn color This color.
 function color:sub(b)
@@ -204,7 +204,7 @@ function color:sub(b)
   return self
 end
 
---- Multiplies this color by a number.
+-- Multiplies this color by a number.
 -- This operation works the same way as vector-scalar multiplication.
 -- @number b Amount to scale the color by.
 -- @treturn color This color.
@@ -219,7 +219,7 @@ function color:mul(b)
   return self
 end
 
---- Divides this color by a number.
+-- Divides this color by a number.
 -- @number b Amount to scale the color by.
 -- @treturn color This color.
 function color:div(b)
@@ -233,7 +233,7 @@ function color:div(b)
   return self
 end
 
---- Inverts this color.
+-- Inverts this color.
 -- @treturn color This color.
 function color:invert()
   self[1] = 255 - self[1]

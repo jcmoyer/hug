@@ -19,7 +19,7 @@ local tablex = require('hug.extensions.table')
 
 local gamestate = module.new()
 
---- Provides a simple abstraction for individual states in a game.
+-- Provides a simple abstraction for individual states in a game.
 -- **Dependencies:**
 --
 -- * `extensions.table`
@@ -44,7 +44,7 @@ local gamestate = module.new()
 
 local setmetatable, getmetatable = setmetatable, getmetatable
 
---- List of supported gamestate callbacks.
+-- List of supported gamestate callbacks.
 -- Each of these callbacks can be implemented on your derived gamestates. This
 -- list is a one-to-one mapping of the LÖVE callbacks found
 -- [here](http://love2d.org/wiki/love#Callbacks). Note that `errhand`, `load`,
@@ -94,14 +94,14 @@ local function isgamestate(t)
   return false
 end
 
---- Default transparency value.
+-- Default transparency value.
 -- If a `gamestate` is transparent, events will be passed to underlying states
 -- as long as the active state does not explicitly intercept them. This field
 -- is used for all derived gamestates that do not specify their own
 -- `transparent` field.
 gamestate.transparent = false
 
---- Checks whether `t` is a valid gamestate.
+-- Checks whether `t` is a valid gamestate.
 -- @treturn string|nil The string `'gamestate'` if `t` is a gamestate;
 --   otherwise, `nil`.
 function gamestate.type(t)
@@ -112,30 +112,30 @@ function gamestate.type(t)
   end
 end
 
---- Creates and returns a new gamestate table.
+-- Creates and returns a new gamestate table.
 -- @treturn gamestate A new gamestate.
 function gamestate.new()
   return setmetatable({}, gamestate)
 end
 
---- Returns an empty table that indexes gamestate.
+-- Returns an empty table that indexes gamestate.
 -- This is equivalent to `setmetatable({}, { __index = gamestate})`.
 -- @treturn table A table that indexes gamestate.
 function gamestate.extend()
   return setmetatable({}, { __index = gamestate})
 end
 
---- Callback invoked when this gamestate becomes the active state in a state machine.
+-- Callback invoked when this gamestate becomes the active state in a state machine.
 -- @tab oldstate A reference to the previous state.
 function gamestate:enter(oldstate)
 end
 
---- Callback invoked when this gamestate is replaced as the active state in a state machine.
+-- Callback invoked when this gamestate is replaced as the active state in a state machine.
 -- @tab newstate A reference to the state being transitioned to.
 function gamestate:leave(newstate)
 end
 
---- Gets or sets the `statemachine` associated with this game state.
+-- Gets or sets the `statemachine` associated with this game state.
 -- @tparam ?statemachine who If provided, `who` will be stored with this game
 --   state.
 -- @treturn ?statemachine The `statemachine` associated with this game state.
@@ -146,7 +146,7 @@ function gamestate:sm(who)
   return self.statemachine
 end
 
---- Returns a copy of the callbacks table.
+-- Returns a copy of the callbacks table.
 -- @treturn table A copy of the callbacks table.
 function gamestate.callbacks()
   return tablex.clone(callbacks)

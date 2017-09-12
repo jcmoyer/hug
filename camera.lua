@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a basic 2D camera.
+-- Implements a basic 2D camera.
 -- **Dependencies:**
 --
 -- * `extensions.math`
@@ -30,7 +30,7 @@ local random = math.random
 local mathex = require('hug.extensions.math')
 local lerp = mathex.lerp
 
---- Creates a new camera.
+-- Creates a new camera.
 -- @number width Width of the camera's viewport.
 -- @number height Height of the camera's viewport.
 -- @treturn camera
@@ -49,7 +49,7 @@ function camera.new(width, height)
   return setmetatable(instance, camera)
 end
 
---- Centers the camera on a point instantly.
+-- Centers the camera on a point instantly.
 -- @number x X-coordinate of the point to center on.
 -- @number y Y-coordinate of the point to center on.
 function camera:center(x, y)
@@ -57,7 +57,7 @@ function camera:center(x, y)
   self.y = y - self.h / 2
 end
 
---- Pans the camera towards a point.
+-- Pans the camera towards a point.
 -- @number x X-coordinate of the point to pan towards.
 -- @number y Y-coordinate of the point to pan towards.
 -- @number a Percent to pan by.
@@ -69,7 +69,7 @@ function camera:pan(x, y, a)
   self.y = lerp(cy, self.y, a)
 end
 
---- Updates the state of the camera.
+-- Updates the state of the camera.
 -- @number dt Delta time to run simulations for, in seconds.
 function camera:update(dt)
   self.st = self.st - dt
@@ -83,7 +83,7 @@ function camera:update(dt)
   end
 end
 
---- Shakes the camera.
+-- Shakes the camera.
 -- @number duration Time to shake the camera for, in seconds.
 -- @number[opt=20] magnitude How violently the camera should shake.
 function camera:shake(duration, magnitude)
@@ -92,7 +92,7 @@ function camera:shake(duration, magnitude)
   self.sm = magnitude or 20
 end
 
---- Computes the X and Y coordinates of the camera.
+-- Computes the X and Y coordinates of the camera.
 -- This function takes shaking into account.
 -- @treturn[1] number The X coordinate.
 -- @treturn[2] number The Y coordinate.

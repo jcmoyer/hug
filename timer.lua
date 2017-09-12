@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a timer object.
+-- Implements a timer object.
 -- @type timer
 
 local module = require('hug.module')
@@ -22,7 +22,7 @@ local event = require('hug.event')
 
 local timer = module.new(event.emitter)
 
---- Constructs a new timer object.
+-- Constructs a new timer object.
 -- @number duration The duration of this timer.
 -- @tparam any state User-defined data to attach to this timer.
 function timer.new(duration, state)
@@ -36,25 +36,25 @@ function timer.new(duration, state)
   return setmetatable(instance, timer)
 end
 
---- Returns the state associated with this timer.
+-- Returns the state associated with this timer.
 -- @treturn any
 function timer:state()
   return self._state
 end
 
---- Returns how much time remains before this timer is finished.
+-- Returns how much time remains before this timer is finished.
 -- @treturn number
 function timer:remaining()
   return self._remaining
 end
 
---- Returns the original duration of this timer.
+-- Returns the original duration of this timer.
 -- @treturn number
 function timer:duration()
   return self._duration
 end
 
---- Evaluates the given function using this timer's percentage to completion.
+-- Evaluates the given function using this timer's percentage to completion.
 -- This is equivalent to `f(1 - timer:remaining() / timer:duration())`.
 -- @func f The function to evaluate.
 -- @treturn any The result of evaluating `f`.
@@ -62,7 +62,7 @@ function timer:evaluate(f)
   return f(1 - self._remaining / self._duration)
 end
 
---- Updates this timer.
+-- Updates this timer.
 -- If this timer's remaining time reaches zero after the update, an `expire`
 -- event will be emitted with the timer as a parameter.
 -- @number dt Amount of time elapsed since the last update.
@@ -75,7 +75,7 @@ function timer:update(dt)
   end
 end
 
---- Determines whether or not this timer has finished running.
+-- Determines whether or not this timer has finished running.
 -- @treturn str The string 'active' if this timer should still be running. If
 --   the timer has been cancelled, then this function returns 'cancelled'. If
 --   the timer's duration has passed without this timer being cancelled, this
@@ -90,7 +90,7 @@ function timer:status()
   end
 end
 
---- Restarts the timer.
+-- Restarts the timer.
 -- Clears the cancellation status and resets the remaining time to `duration`
 -- if it is present, or the duration the timer was created with.
 -- @tparam number duration Duration of the timer.
@@ -100,7 +100,7 @@ function timer:restart(duration)
   self._remaining = self._duration
 end
 
---- Flags this timer as cancelled.
+-- Flags this timer as cancelled.
 -- Cancelled timers will always have the status of 'cancelled'.
 function timer:cancel()
   self.cancelled = true

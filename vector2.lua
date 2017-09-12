@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a 2D vector type.
+-- Implements a 2D vector type.
 -- `vector2` is implemented as a table with X and Y components residing at
 -- indices `1` and `2`, respectively. This design choice has the following
 -- implications:
@@ -43,7 +43,7 @@ local function isvector2(v)
   return getmetatable(v) == vector2
 end
 
---- Implements binary operator `+` for `vector2` objects.
+-- Implements binary operator `+` for `vector2` objects.
 -- @tparam vector2 a The first vector.
 -- @tparam vector2 b The second vector.
 -- @treturn vector2 The result of adding `a` and `b`.
@@ -51,7 +51,7 @@ function vector2.__add(a, b)
   return a:clone():add(b)
 end
 
---- Implements binary operator `-` for `vector2` objects.
+-- Implements binary operator `-` for `vector2` objects.
 -- @tparam vector2 a The first vector.
 -- @tparam vector2 b The second vector.
 -- @treturn vector2 The result of subtracting `b` from `a`.
@@ -59,7 +59,7 @@ function vector2.__sub(a, b)
   return a:clone():sub(b)
 end
 
---- Implements binary operator `*` for `vector2` objects.
+-- Implements binary operator `*` for `vector2` objects.
 -- @tparam vector2|number a The first vector or scalar.
 -- @tparam number|vector2 b The second vector or scalar.
 -- @treturn vector2 The result of multiplying `a` by `b`.
@@ -75,7 +75,7 @@ function vector2.__mul(a, b)
   return result
 end
 
---- Implements binary operator `/` for `vector2` objects.
+-- Implements binary operator `/` for `vector2` objects.
 -- @tparam vector2 a The vector.
 -- @number b The scalar.
 -- @treturn vector2 A new `vector2` containing the results of the division.
@@ -83,7 +83,7 @@ function vector2.__div(a, b)
   return a:clone():div(b)
 end
 
---- Implements binary operator `==` for `vector2` objects.
+-- Implements binary operator `==` for `vector2` objects.
 -- @tparam vector2 a Vector A.
 -- @tparam vector2 b Vector B.
 -- @treturn boolean True if the vectors are equal; otherwise false.
@@ -91,7 +91,7 @@ function vector2.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2]
 end
 
---- Implements `tostring` for `vector2` objects.
+-- Implements `tostring` for `vector2` objects.
 -- Do not use this method for serialization as the format may change in the
 -- future. This method only guarantees that `vector2` objects can be converted
 -- to a human-readable representation.
@@ -100,7 +100,7 @@ function vector2:__tostring()
   return string.format('<%f,%f>', self[1], self[2])
 end
 
---- Creates a new vector2 object.
+-- Creates a new vector2 object.
 -- @number[opt=0] x The X component for this vector. Defaults to 0 if none is
 --   provided.
 -- @number[opt=0] y The Y component for this vector. Defaults to 0 if none is
@@ -114,7 +114,7 @@ function vector2.new(x, y)
   return setmetatable(instance, vector2)
 end
 
---- Creates a new vector2 object from polar coordinates.
+-- Creates a new vector2 object from polar coordinates.
 -- @number r The radial coordinate.
 -- @number phi The polar angle.
 -- @treturn vector2 A new vector 2 object with the specified radial coordinate and angle.
@@ -124,27 +124,27 @@ function vector2.frompolar(r, phi)
   return vector2.new(x, y)
 end
 
---- Clones this vector2 and returns it.
+-- Clones this vector2 and returns it.
 -- @treturn vector2
 function vector2:clone()
   return vector2.new(unpack(self))
 end
 
---- Returns the X component of this vector.
+-- Returns the X component of this vector.
 -- This is equivalent to vector[1].
 -- @treturn number The X component of this vector.
 function vector2:x()
   return self[1]
 end
 
---- Returns the Y component of this vector.
+-- Returns the Y component of this vector.
 -- This is equivalent to vector[2].
 -- @treturn number The Y component of this vector.
 function vector2:y()
   return self[2]
 end
 
---- Computes the length of this vector.
+-- Computes the length of this vector.
 -- @treturn number The length of this vector.
 function vector2:len()
   local x = self[1]
@@ -152,14 +152,14 @@ function vector2:len()
   return math.sqrt(x * x + y * y)
 end
 
---- Computes the dot product between this vector and another.
+-- Computes the dot product between this vector and another.
 -- @tparam vector2 vec The second vector.
 -- @treturn number The dot product between the given vectors.
 function vector2:dot(vec)
   return self[1] * vec[1] + self[2] * vec[2]
 end
 
---- Adds another vector to this one.
+-- Adds another vector to this one.
 -- @tparam vector2|number a If a `vector2` is provided, each of its components
 --   will be added to the components of this vector. If a number is provided
 --   instead, it will be added to the X component of this vector.
@@ -177,7 +177,7 @@ function vector2:add(a, b)
   return self
 end
 
---- Subtracts another vector from this one.
+-- Subtracts another vector from this one.
 -- @tparam vector2|number a If a `vector2` is provided, its components will be
 --   subtracted from the components of this vector. If a number is provided
 --   instead, it will be subtracted from the X component of this vector.
@@ -195,7 +195,7 @@ function vector2:sub(a, b)
   return self
 end
 
---- Multiplies this vector by a scalar amount.
+-- Multiplies this vector by a scalar amount.
 -- @number a Amount to multiply this vector by.
 -- @treturn vector2 This vector.
 function vector2:mul(a)
@@ -204,7 +204,7 @@ function vector2:mul(a)
   return self
 end
 
---- Divides this vector by a scalar amount.
+-- Divides this vector by a scalar amount.
 -- @number a Amount to divide this vector by.
 -- @treturn vector2 This vector.
 function vector2:div(a)
@@ -213,7 +213,7 @@ function vector2:div(a)
   return self
 end
 
---- Normalizes this vector.
+-- Normalizes this vector.
 -- This vector will become a unit vector codirectional with the original
 -- vector.
 -- @treturn vector2 This vector.
@@ -226,7 +226,7 @@ function vector2:normalize()
   return self
 end
 
---- Sets the individual components of this vector.
+-- Sets the individual components of this vector.
 -- @number x New value for the X component of this vector.
 -- @number y New value for the Y component of this vector.
 -- @treturn vector2 This vector.

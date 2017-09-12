@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements lazily initialized values.
+-- Implements lazily initialized values.
 -- Lazy values are not produced until they are first requested. This allows you
 -- to delay a potentially expensive computation until the moment it is needed.
 -- @type lazy
@@ -34,7 +34,7 @@ local lazy = module.new()
 
 local setmetatable = setmetatable
 
---- Creates a new lazily initialized value.
+-- Creates a new lazily initialized value.
 -- @func factory Function that produces a value.
 -- @treturn lazy
 function lazy.new(factory)
@@ -45,7 +45,7 @@ function lazy.new(factory)
   return setmetatable(instance, lazy)
 end
 
---- Returns the value associated with this `lazy` instance.
+-- Returns the value associated with this `lazy` instance.
 -- @treturn any
 function lazy:get()
   if self.wasinit == false then

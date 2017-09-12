@@ -14,12 +14,12 @@
 -- limitations under the License.
 --
 
---- Provides extra math functions.
+-- Provides extra math functions.
 -- @alias extensions
 
 local extensions = {}
 
---- Linearly interpolates between two values.
+-- Linearly interpolates between two values.
 -- @tparam number v0 First value.
 -- @tparam number v1 Second value.
 -- @tparam number t Percent to interpolate by.
@@ -28,7 +28,7 @@ function extensions.lerp(v0, v1, t)
   return v0 + (v1 - v0) * t
 end
 
---- Clamps a number between two values.
+-- Clamps a number between two values.
 -- @tparam number x Value to clamp.
 -- @tparam number min Minimum value.
 -- @tparam number max Maximum value.

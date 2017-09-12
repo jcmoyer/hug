@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a rectangle object.
+-- Implements a rectangle object.
 -- `rectangle` is implemented as a table with X, Y, width, and height
 -- components residing at the indices `1` to `4` respectively. This design
 -- choice has the following implications:
@@ -36,7 +36,7 @@ local function isrectangle(t)
   return getmetatable(t) == rectangle
 end
 
---- Implements binary operator `==` for `rectangle` objects.
+-- Implements binary operator `==` for `rectangle` objects.
 -- @tparam rectangle a Rectangle A.
 -- @tparam rectangle b Rectangle B.
 -- @treturn boolean True if the rectangles are equal; otherwise false.
@@ -44,7 +44,7 @@ function rectangle.__eq(a, b)
   return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
 end
 
---- Implements `tostring` for `rectangle` objects.
+-- Implements `tostring` for `rectangle` objects.
 -- Do not use this method for serialization as the format may change in the
 -- future. This method only guarantees that `rectangle` objects can be
 -- converted to a human-readable representation.
@@ -53,7 +53,7 @@ function rectangle:__tostring()
   return self[1] .. ',' .. self[2] .. ',' .. self[3] .. ',' .. self[4]
 end
 
---- Constructs a new `rectangle`.
+-- Constructs a new `rectangle`.
 -- @number[opt=0] x X-coordinate of the rectangle's top-left point.
 -- @number[opt=0] y Y-coordinate of the rectangle's top-left point.
 -- @number[opt=0] w Width of the rectangle.
@@ -63,43 +63,43 @@ function rectangle.new(x, y, w, h)
   return setmetatable(instance, rectangle)
 end
 
---- Returns the X-coordinate of the left side of the rectangle.
+-- Returns the X-coordinate of the left side of the rectangle.
 -- @treturn number
 function rectangle:x()
   return self[1]
 end
 
---- Returns the Y-coordinate of the top side of the rectangle.
+-- Returns the Y-coordinate of the top side of the rectangle.
 -- @treturn number
 function rectangle:y()
   return self[2]
 end
 
---- Returns the width of the rectangle.
+-- Returns the width of the rectangle.
 -- @treturn number
 function rectangle:width()
   return self[3]
 end
 
---- Returns the height of the rectangle.
+-- Returns the height of the rectangle.
 -- @treturn number
 function rectangle:height()
   return self[4]
 end
 
---- Returns the X-coordinate of the right side of the rectangle.
+-- Returns the X-coordinate of the right side of the rectangle.
 -- @treturn number
 function rectangle:right()
   return self[1] + self[3]
 end
 
---- Returns the Y-coordinate of the bottom side of the rectangle.
+-- Returns the Y-coordinate of the bottom side of the rectangle.
 -- @treturn number
 function rectangle:bottom()
   return self[2] + self[4]
 end
 
---- Computes the rectangle formed from the area of two overlapping rectangles.
+-- Computes the rectangle formed from the area of two overlapping rectangles.
 -- @tparam rectangle r Rectangle to intersect with.
 -- @treturn rectangle|nil If the rectangles intersect, this function returns
 --   the rectangle formed from the overlapping area between them. If the
@@ -115,7 +115,7 @@ function rectangle:intersect(r)
   return rectangle.new(xmin, ymin, xmax - xmin, ymax - ymin)
 end
 
---- Performs an intersection test with another rectangle.
+-- Performs an intersection test with another rectangle.
 -- @tparam rectangle r Rectangle to test with.
 -- @treturn bool True if the rectangles intersect; otherwise, false.
 function rectangle:intersects(r)
@@ -125,7 +125,7 @@ function rectangle:intersects(r)
               self:right() < r[1])
 end
 
---- Computes the rectangle that contains two given rectangles.
+-- Computes the rectangle that contains two given rectangles.
 -- @tparam rectangle r Rectangle to compute the union rectangle with.
 -- @treturn rectangle The rectangle that contains the given rectangles.
 function rectangle:union(r)
@@ -136,7 +136,7 @@ function rectangle:union(r)
   return rectangle.new(xmin, ymin, xmax - xmin, ymax - ymin)
 end
 
---- Determines whether or not this rectangle contains a point or rectangle.
+-- Determines whether or not this rectangle contains a point or rectangle.
 -- @tparam number|rectangle x If `x` is a number, it is treated as the
 --   X-coordinate of a point. If `x` is a `rectangle`, this function determines
 --   whether or not `x` is completely bounded by this rectangle.
@@ -154,14 +154,14 @@ function rectangle:contains(x, y)
   end
 end
 
---- Computes the point that lies in the center of this rectangle.
+-- Computes the point that lies in the center of this rectangle.
 -- @treturn[1] number X-coordinate of the point.
 -- @treturn[2] number Y-coordinate of the point.
 function rectangle:center()
   return self[1] + self[3] / 2, self[2] + self[4] / 2
 end
 
---- Inflates this rectangle by the specified amount.
+-- Inflates this rectangle by the specified amount.
 -- The rectangle is enlarged in both directions on each axis by the exact
 -- amount specified. This means that inflating a 20 by 50 rectangle by 10 and
 -- 20 will result in a 40 by 90 rectangle concentric with the original.
@@ -174,7 +174,7 @@ function rectangle:inflate(x, y)
   self[4] = self[4] + y * 2
 end
 
---- Moves this rectangle by the given vector.
+-- Moves this rectangle by the given vector.
 -- @number x Amount to move this rectangle by on the X-axis.
 -- @number y Amount to move this rectangle by on the Y-axis.
 function rectangle:offset(x, y)

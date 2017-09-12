@@ -14,13 +14,13 @@
 -- limitations under the License.
 --
 
---- Provides functions that help manage extensions.
+-- Provides functions that help manage extensions.
 
 local extension = {}
 
 local assert, type, error, pairs = assert, type, error, pairs
 
---- Installs the members of one table into another.
+-- Installs the members of one table into another.
 -- An error will be raised if there is a name conflict.
 -- @tab ext Source table.
 -- @tab t Destination table.

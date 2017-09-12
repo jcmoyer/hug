@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Provides a basic framework for a game.
+-- Provides a basic framework for a game.
 -- **Dependencies:**
 --
 -- * `statemachine`
@@ -25,7 +25,7 @@ local gamestate = require('hug.gamestate')
 
 local basicgame = {}
 
---- Creates a state machine and hooks it into LÖVE callbacks.
+-- Creates a state machine and hooks it into LÖVE callbacks.
 -- When this function is called, a state machine will be created and
 -- `initialstate` will be pushed onto the top of the stack.
 -- This function will then set the LÖVE callbacks listed in

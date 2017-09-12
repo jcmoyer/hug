@@ -14,7 +14,7 @@
 -- limitations under the License.
 --
 
---- Implements a generalized data cache.
+-- Implements a generalized data cache.
 -- @type cache
 -- @usage
 -- local imagecache = require('hug.cache').new(love.graphics.newImage)
@@ -26,7 +26,7 @@ local module = require('hug.module')
 
 local cache = module.new()
 
---- Creates a cache from a factory function.
+-- Creates a cache from a factory function.
 -- @func factory An unary function that produces a different value for each
 --   unique input.
 -- @return A new cache.
@@ -38,7 +38,7 @@ function cache.new(factory)
   return setmetatable(instance, cache)
 end
 
---- Returns the value associated with a given key.
+-- Returns the value associated with a given key.
 -- In the event that there is no value associated with `key`, the factory
 -- function will be called to generate a value.
 -- @tparam any key The key to lookup a value for.

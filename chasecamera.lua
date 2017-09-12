@@ -16,7 +16,7 @@
 
 -- Adapted from http://gamedev.stackexchange.com/a/18980
 
---- Implements a 2D camera that chases a target.
+-- Implements a 2D camera that chases a target.
 -- **Dependencies:**
 --
 -- * `vector2`
@@ -28,7 +28,7 @@ local vector2 = require('hug.vector2')
 
 local chasecamera = module.new()
 
---- Creates a new chasecamera.
+-- Creates a new chasecamera.
 -- @number width Width of the camera's viewport.
 -- @number height Height of the camera viewport.
 -- @number stiffness How stiff the camera feels.
@@ -57,35 +57,35 @@ function chasecamera.new(width, height, stiffness, damping, mass)
   return setmetatable(instance, chasecamera)
 end
 
---- Computes the left side of the camera's viewport.
+-- Computes the left side of the camera's viewport.
 -- @treturn number The X-coordinate of the line segment that runs along the
 --   left side of the camera's viewport.
 function chasecamera:left()
   return self.position:x() - self.width / 2
 end
 
---- Computes the right side of the camera's viewport.
+-- Computes the right side of the camera's viewport.
 -- @treturn number The X-coordinate of the line segment that runs along the
 --   right side of the camera's viewport.
 function chasecamera:right()
   return self.position:x() + self.width / 2
 end
 
---- Computes the top side of the camera's viewport.
+-- Computes the top side of the camera's viewport.
 -- @treturn number The Y-coordinate of the line segment that runs along the
 --   top side of the camera's viewport.
 function chasecamera:top()
   return self.position:y() - self.height / 2
 end
 
---- Computes the bottom side of the camera's viewport.
+-- Computes the bottom side of the camera's viewport.
 -- @treturn number The Y-coordinate of the line segment that runs along the
 --   bottom side of the camera's viewport.
 function chasecamera:bottom()
   return self.position:y() + self.height / 2
 end
 
---- Centers the camera on a point instantly.
+-- Centers the camera on a point instantly.
 -- @number x X-coordinate of the point to center on.
 -- @number y Y-coordinate of the point to center on.
 function chasecamera:center(x, y)
@@ -93,7 +93,7 @@ function chasecamera:center(x, y)
   self.position[2] = y
 end
 
---- Shakes the camera.
+-- Shakes the camera.
 -- @number duration Time to shake the camera for, in seconds.
 -- @number[opt=20] magnitude How violently the camera should shake.
 function chasecamera:shake(duration, magnitude)
@@ -102,7 +102,7 @@ function chasecamera:shake(duration, magnitude)
   self.shakemag  = magnitude or 20
 end
 
---- Clamps the camera's viewport within a rectangle.
+-- Clamps the camera's viewport within a rectangle.
 -- The camera's viewport will not be allowed outside of this rectangle.
 -- @number x X-coordinate of the rectangle.
 -- @number y Y-coordinate of the rectangle.
@@ -130,7 +130,7 @@ function chasecamera:clamp(x, y, r, b)
   end
 end
 
---- Updates the state of the camera.
+-- Updates the state of the camera.
 -- @number dt Time elapsed, in seconds.
 -- @tparam vector2 target Point to chase.
 -- @see vector2
@@ -158,7 +158,7 @@ function chasecamera:update(dt, target)
   end
 end
 
---- Predicts where the camera will be at a point in the future.
+-- Predicts where the camera will be at a point in the future.
 -- @number dt Time elapsed, in seconds.
 -- @tparam vector2 target Point to chase.
 -- @number a Percent to interpolate by.
