@@ -35,6 +35,7 @@
 -- -- unpack allows you to pass vector components into functions:
 -- love.graphics.translate(unpack(c))
 
+local mathx = require('hug.extensions.math')
 local module = require('hug.module')
 
 local vector2 = module.new()
@@ -231,9 +232,20 @@ end
 -- @number y New value for the Y component of this vector.
 -- @treturn vector2 This vector.
 function vector2:set(x, y)
-  self[1] = x
-  self[2] = y
+  if isvector2(x) then
+    self[1] = x[1]
+    self[2] = x[2]
+  else
+    self[1] = x
+    self[2] = y
+  end
   return self
+end
+
+--- Linearly interpolates between two vectors and writes the result to `output`.
+function vector2.lerp(from, to, t, output)
+  output[1] = mathx.lerp(from[1], to[1], t)
+  output[2] = mathx.lerp(from[2], to[2], t)
 end
 
 return vector2
