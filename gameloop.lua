@@ -87,7 +87,7 @@ function gameloop.fixint(updatehz)
         end
       end
       
-      if love.window and love.graphics and love.window.isCreated() then
+      if love.window and love.graphics and love.window.isOpen() then
         love.graphics.clear()
         love.graphics.origin()
         if love.draw then
