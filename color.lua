@@ -17,7 +17,7 @@
 --- Implements a basic color object compatible with LÖVE graphics functions.
 -- @type color
 -- @usage
--- local red = color.new(255, 0, 0)
+-- local red = color.new(1, 0, 0)
 -- love.graphics.setColor(red)
 
 local module = require('hug.module')
@@ -32,8 +32,8 @@ local unpack = unpack or table.unpack
 local function clampcolor(a)
   if a < 0 then
     return 0
-  elseif a > 255 then
-    return 255
+  elseif a > 1 then
+    return 1
   else
     return a
   end
@@ -41,6 +41,10 @@ end
 
 local function iscolor(a)
   return getmetatable(a) == color
+end
+
+local function fcmp(x, y)
+  return math.abs(x - y) <= 0.0001
 end
 
 --- Implements binary operator `+` for colors.
@@ -103,7 +107,15 @@ end
 -- @tparam color b Color B.
 -- @treturn boolean True if the colors are equal; otherwise false.
 function color.__eq(a, b)
-  return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
+  --return a[1] == b[1] and a[2] == b[2] and a[3] == b[3] and a[4] == b[4]
+  if #a == #b then
+    if #a == 3 then
+      return fcmp(a[1], b[1]) and fcmp(a[2], b[2]) and fcmp(a[3], b[3])
+    else
+      return fcmp(a[1], b[1]) and fcmp(a[2], b[2]) and fcmp(a[3], b[3]) and fcmp(a[4], b[4])
+    end
+  end
+  return false
 end
 
 --- Implements `tostring` for `color` objects.
@@ -137,11 +149,11 @@ function color.type(t)
 end
 
 --- Creates a new color object given RGBA values.
--- @tparam int r Red value. Accepted values fall in the range of [0..255].
--- @tparam int g Green value. Accepted values fall in the range of [0..255].
--- @tparam int b Blue value. Accepted values fall in the range of [0..255].
+-- @tparam int r Red value. Accepted values fall in the range of [0..1].
+-- @tparam int g Green value. Accepted values fall in the range of [0..1].
+-- @tparam int b Blue value. Accepted values fall in the range of [0..1].
 -- @tparam ?int a Alpha value. Accepted values fall in the range of
---   [0..255]. This component is not required.
+--   [0..1]. This component is not required.
 -- @treturn color A new color object with the specified component values.
 function color.fromrgba(r, g, b, a)
   assert(type(r) == 'number')
@@ -236,11 +248,11 @@ end
 --- Inverts this color.
 -- @treturn color This color.
 function color:invert()
-  self[1] = 255 - self[1]
-  self[2] = 255 - self[2]
-  self[3] = 255 - self[3]
+  self[1] = 1 - self[1]
+  self[2] = 1 - self[2]
+  self[3] = 1 - self[3]
   if #self == 4 then
-    self[4] = 255 - self[4]
+    self[4] = 1 - self[4]
   end
   return self
 end
